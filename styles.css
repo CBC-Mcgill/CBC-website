@@ -678,15 +678,24 @@ main {
 }
 
 .people-grid {
+  --people-row: 240px;
+  --people-gap: var(--space-4);
+  --people-inset: clamp(0.75rem, 2vw, 1.5rem);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-4);
+  gap: var(--people-gap);
+  grid-auto-rows: minmax(var(--people-row), auto);
   align-items: stretch;
   position: relative;
+  transition: gap 0.6s var(--ease);
 }
 
 .people-grid.is-expanded {
   overflow: hidden;
+}
+
+.people-grid.is-animating {
+  pointer-events: none;
 }
 
 .people-grid::after {
@@ -716,12 +725,15 @@ main {
     "header"
     "details";
   height: 100%;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease), background 0.35s var(--ease), opacity 0.25s var(--ease), filter 0.25s var(--ease);
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease), border-color 0.6s var(--ease), background 0.6s var(--ease), opacity 0.4s var(--ease), filter 0.4s var(--ease), color 0.6s var(--ease);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   will-change: transform;
   isolation: isolate;
+  transform-origin: top left;
+  scroll-margin-top: 6rem;
+  z-index: 1;
 }
 
 .person-card > * {
@@ -780,7 +792,7 @@ main {
   opacity: 0;
   overflow: hidden;
   transform: translateY(8px);
-  transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), transform 0.3s var(--ease), padding 0.3s var(--ease);
+  transition: max-height 0.9s var(--ease), opacity 0.6s var(--ease), transform 0.6s var(--ease), padding 0.6s var(--ease);
 }
 
 .person-detail {
@@ -795,101 +807,138 @@ main {
   letter-spacing: 0.12rem;
 }
 
-.person-card.is-expanding .person-details,
-.person-card.is-expanded .person-details,
-.person-card.is-collapsing .person-details {
+.person-card[aria-expanded="true"] .person-details,
+.person-card.is-expanding-y .person-details,
+.person-card.is-expanding-x .person-details,
+.person-card.is-collapsing-x .person-details,
+.person-card.is-collapsing-y .person-details {
   padding-top: 1rem;
-  max-height: 360px;
+  max-height: 520px;
   opacity: 1;
   transform: translateY(0);
 }
 
-.person-card.is-expanding,
+.person-card.is-expanding-y,
+.person-card.is-expanding-x,
 .person-card.is-expanded,
-.person-card.is-collapsing {
-  position: absolute;
-  inset: 0;
+.person-card.is-collapsing-x,
+.person-card.is-collapsing-y {
   padding: clamp(1.6rem, 3vw, 2.4rem);
-  grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
-  grid-template-areas:
-    "photo header"
-    "photo details";
   background: linear-gradient(140deg, #b17845, #8f5933);
   color: #fdf7f1;
   border-color: rgba(255, 232, 210, 0.25);
   box-shadow: 0 24px 60px rgba(60, 38, 22, 0.22);
   cursor: default;
-  z-index: 2;
-  transform-origin: center top;
-  min-height: 100%;
 }
 
-.person-card.is-expanding::after,
+.people-grid.is-expanded .person-card[aria-expanded="true"] {
+  z-index: 4;
+}
+
+.people-grid.is-animating .person-card[aria-expanded="false"] {
+  z-index: 2;
+}
+
+.people-grid.is-animating .person-card[aria-expanded="true"] {
+  z-index: 5;
+}
+
+.person-card.is-expanding-x,
+.person-card.is-expanded,
+.person-card.is-collapsing-x {
+  grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+  grid-template-areas:
+    "photo header"
+    "photo details";
+}
+
+.person-card.is-expanding-y::after,
+.person-card.is-expanding-x::after,
 .person-card.is-expanded::after,
-.person-card.is-collapsing::after {
+.person-card.is-collapsing-x::after,
+.person-card.is-collapsing-y::after {
   opacity: 0.9;
   animation: auraPulse 4s ease-in-out infinite;
 }
 
-.person-card.is-expanded {
-  animation: expandWide 0.5s var(--ease);
+.person-card.is-expanding-y,
+.person-card.is-expanding-x,
+.person-card.is-expanded,
+.person-card.is-collapsing-x,
+.person-card.is-collapsing-y {
+  grid-row-end: span var(--expand-rows, 1);
+}
+
+.person-card.is-expanding-x,
+.person-card.is-expanded,
+.person-card.is-collapsing-x {
+  grid-column: 1 / -1;
 }
 
 .person-card.is-expanded .person-details {
   max-height: none;
 }
 
-.person-card.is-expanding {
-  animation: expandTall 0.5s var(--ease) forwards;
-}
-
-.person-card.is-collapsing {
-  animation: collapseTall 0.4s var(--ease) forwards;
-}
-
-.people-grid.is-expanded .person-card:not(.is-expanded):not(.is-expanding):not(.is-collapsing) {
-  opacity: 0;
-  transform: translateY(14px) scale(0.94);
-  filter: blur(6px);
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 0.3s var(--ease) 0.08s, transform 0.3s var(--ease) 0.08s, filter 0.3s var(--ease) 0.08s, visibility 0s 0.38s;
-}
 
 .person-card.is-expanded .person-role,
-.person-card.is-expanding .person-role,
-.person-card.is-collapsing .person-role {
+.person-card.is-expanding-y .person-role,
+.person-card.is-expanding-x .person-role,
+.person-card.is-collapsing-x .person-role,
+.person-card.is-collapsing-y .person-role {
   color: rgba(255, 239, 226, 0.85);
 }
 
 .person-card.is-expanded .person-meta,
-.person-card.is-expanding .person-meta,
-.person-card.is-collapsing .person-meta {
+.person-card.is-expanding-y .person-meta,
+.person-card.is-expanding-x .person-meta,
+.person-card.is-collapsing-x .person-meta,
+.person-card.is-collapsing-y .person-meta {
   color: rgba(255, 239, 226, 0.75);
 }
 
 .person-card.is-expanded .person-detail span,
-.person-card.is-expanding .person-detail span,
-.person-card.is-collapsing .person-detail span {
+.person-card.is-expanding-y .person-detail span,
+.person-card.is-expanding-x .person-detail span,
+.person-card.is-collapsing-x .person-detail span,
+.person-card.is-collapsing-y .person-detail span {
   color: rgba(255, 239, 226, 0.7);
 }
 
 .person-card.is-expanded .person-details,
-.person-card.is-expanding .person-details,
-.person-card.is-collapsing .person-details {
+.person-card.is-expanding-y .person-details,
+.person-card.is-expanding-x .person-details,
+.person-card.is-collapsing-x .person-details,
+.person-card.is-collapsing-y .person-details {
   border-top-color: rgba(255, 239, 226, 0.25);
 }
 
 .person-card.is-expanded .img-frame,
-.person-card.is-expanding .img-frame,
-.person-card.is-collapsing .img-frame {
+.person-card.is-expanding-y .img-frame,
+.person-card.is-expanding-x .img-frame,
+.person-card.is-collapsing-x .img-frame,
+.person-card.is-collapsing-y .img-frame {
   box-shadow: 0 18px 36px rgba(35, 20, 10, 0.25);
 }
 
-:is(.card, .meta-card, .schedule-item, .note, .contact-panel, .hero-note, .img-frame):hover,
-.person-card:not(.is-expanded):hover {
+:is(.card, .meta-card, .schedule-item, .note, .contact-panel, .hero-note, .img-frame):hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(40, 33, 26, 0.12);
+  box-shadow:
+    0 18px 36px rgba(40, 33, 26, 0.12),
+    0 0 0 1px rgba(201, 130, 69, 0.08),
+    0 0 32px rgba(201, 130, 69, 0.16);
+  animation: hoverFloat 0.6s var(--ease);
+}
+
+.person-card[aria-expanded="false"]:hover,
+.person-card[aria-expanded="false"]:focus-visible,
+.person-card[aria-expanded="false"]:active {
+  background: linear-gradient(140deg, rgba(201, 130, 69, 0.18), rgba(177, 120, 69, 0.08));
+  border-color: rgba(201, 130, 69, 0.35);
+  transform: translateY(-6px);
+  box-shadow:
+    0 18px 36px rgba(40, 33, 26, 0.12),
+    0 0 0 1px rgba(201, 130, 69, 0.12),
+    0 0 36px rgba(201, 130, 69, 0.22);
   animation: hoverFloat 0.6s var(--ease);
 }
 
@@ -1330,9 +1379,11 @@ body.page-leave .page-shell {
     grid-template-columns: 1fr;
   }
 
-  .person-card.is-expanding,
+  .person-card.is-expanding-y,
+  .person-card.is-expanding-x,
   .person-card.is-expanded,
-  .person-card.is-collapsing {
+  .person-card.is-collapsing-x,
+  .person-card.is-collapsing-y {
     grid-template-columns: 1fr;
     grid-template-areas:
       "photo"
@@ -1426,17 +1477,21 @@ body.page-leave .page-shell {
   }
 
   :is(.card, .meta-card, .schedule-item, .note, .contact-panel, .hero-note, .img-frame):hover,
-  .person-card:not(.is-expanded):hover,
+  .person-card[aria-expanded="false"]:hover,
   .person-card.is-expanded,
-  .person-card.is-expanding,
-  .person-card.is-collapsing {
+  .person-card.is-expanding-y,
+  .person-card.is-expanding-x,
+  .person-card.is-collapsing-x,
+  .person-card.is-collapsing-y {
     animation: none !important;
     transform: none !important;
   }
 
   .person-card.is-expanded::after,
-  .person-card.is-expanding::after,
-  .person-card.is-collapsing::after,
+  .person-card.is-expanding-y::after,
+  .person-card.is-expanding-x::after,
+  .person-card.is-collapsing-x::after,
+  .person-card.is-collapsing-y::after,
   .people-grid::after {
     animation: none !important;
     opacity: 0 !important;

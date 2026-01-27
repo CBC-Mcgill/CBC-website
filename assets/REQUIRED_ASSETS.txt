@@ -1,12 +1,15 @@
 Required assets (place files in these paths):
 
-- assets/ui/hero.png
-- assets/ui/notebook.png
-- assets/people/person-01.png
-- assets/people/person-02.png
-- assets/people/person-03.png
-- assets/people/person-04.png
-- assets/people/person-05.png
-- assets/people/person-06.png
-- assets/people/person-07.png
-- assets/people/person-08.png
+- assets/ui/hero.png — Warm, inviting hero illustration (builders/creative energy), used in `index.html` hero image.
+- assets/ui/notebook.png — Minimal notebook/working scene, used in `about.html` split image card.
+- assets/people/person-01.png — Executive Director headshot, used in `people.html` People list.
+- assets/people/person-02.png — Operations Director headshot, used in `people.html` People list.
+- assets/people/person-03.png — Curriculum Director headshot, used in `people.html` People list.
+- assets/people/person-04.png — Community Director headshot, used in `people.html` People list.
+- assets/people/person-05.png — Events Director headshot, used in `people.html` People list.
+- assets/people/person-06.png — Research Director headshot, used in `people.html` People list.
+- assets/people/person-07.png — Design Director headshot, used in `people.html` People list.
+- assets/people/person-08.png — Partnerships Director headshot, used in `people.html` People list.
+- assets/people/person-09.png — Finance Director headshot, used in `people.html` People list.
+- assets/people/person-10.png — Marketing Director headshot, used in `people.html` People list.
+- assets/people/placeholder.png — Friendly silhouette placeholder, used when a person photo path is missing (rendered in `main.js` People cards).
