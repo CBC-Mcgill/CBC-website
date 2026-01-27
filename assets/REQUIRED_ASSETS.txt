@@ -1,0 +1,12 @@
+Required assets (place files in these paths):
+
+- assets/ui/hero.png
+- assets/ui/notebook.png
+- assets/people/person-01.png
+- assets/people/person-02.png
+- assets/people/person-03.png
+- assets/people/person-04.png
+- assets/people/person-05.png
+- assets/people/person-06.png
+- assets/people/person-07.png
+- assets/people/person-08.png
