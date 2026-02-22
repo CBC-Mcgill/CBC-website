@@ -15,6 +15,92 @@
   let introTimeout;
   let currentPath = window.location.pathname;
   let peopleController = null;
+  const clubLinkDefaults = {
+    discord: "",
+    instagram: "",
+    linkedin: "",
+    signup: "",
+    github: "",
+    email: "",
+  };
+
+  const getClubLinks = () => {
+    const custom = window.CBC_LINKS && typeof window.CBC_LINKS === "object" ? window.CBC_LINKS : {};
+    return { ...clubLinkDefaults, ...custom };
+  };
+
+  const normalizeExternalHref = (value) => {
+    const trimmed = (value || "").toString().trim();
+    if (!trimmed) return "";
+    if (/^(https?:\/\/|mailto:)/i.test(trimmed)) return trimmed;
+    return `https://${trimmed.replace(/^\/+/, "")}`;
+  };
+
+  const normalizeEmailHref = (value) => {
+    const trimmed = (value || "").toString().trim();
+    if (!trimmed) return "";
+    if (/^mailto:/i.test(trimmed)) return trimmed;
+    return `mailto:${trimmed}`;
+  };
+
+  const clubLinkIcons = {
+    discord:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M13.545 2.907a13.227 13.227 0 0 0-3.257-.8.05.05 0 0 0-.053.025c-.141.25-.297.577-.406.837a12.19 12.19 0 0 0-3.658 0 8.404 8.404 0 0 0-.412-.837.052.052 0 0 0-.053-.025 13.236 13.236 0 0 0-3.257.8.041.041 0 0 0-.019.015C.533 5.729-.32 8.463.099 11.162a.04.04 0 0 0 .015.027 13.307 13.307 0 0 0 4.001 2.03.052.052 0 0 0 .056-.019c.308-.42.582-.864.818-1.329a.051.051 0 0 0-.025-.069 8.668 8.668 0 0 1-1.248-.595.05.05 0 0 1-.005-.084c.084-.062.168-.126.248-.191a.05.05 0 0 1 .052-.007c2.619 1.196 5.455 1.196 8.041 0a.05.05 0 0 1 .053.006c.08.066.164.13.248.191a.05.05 0 0 1-.004.084 8.066 8.066 0 0 1-1.249.594.051.051 0 0 0-.025.069c.241.465.515.91.817 1.33a.052.052 0 0 0 .056.019 13.293 13.293 0 0 0 4.002-2.03.05.05 0 0 0 .015-.026c.5-3.129-.838-5.839-2.354-8.23a.041.041 0 0 0-.019-.016zM5.331 9.845c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612zm5.339 0c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612z'/></svg>",
+    instagram:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.95 3.95 0 0 0-1.417.923A3.957 3.957 0 0 0 .42 2.76c-.198.509-.332 1.09-.372 1.944C.01 5.556 0 5.827 0 8c0 2.172.01 2.444.048 3.297.04.854.174 1.435.372 1.943.205.527.478.974.923 1.417.444.445.89.719 1.417.923.509.199 1.09.333 1.943.372C5.556 15.99 5.828 16 8 16c2.172 0 2.444-.01 3.297-.048.854-.04 1.435-.174 1.943-.372a3.956 3.956 0 0 0 1.417-.923 3.958 3.958 0 0 0 .923-1.417c.199-.508.333-1.09.372-1.943C15.99 10.444 16 10.172 16 8c0-2.173-.01-2.444-.048-3.297-.04-.854-.174-1.435-.372-1.943a3.955 3.955 0 0 0-.923-1.417A3.95 3.95 0 0 0 13.24.42c-.508-.198-1.09-.332-1.943-.372C10.444.01 10.172 0 8 0zm0 1.441c2.136 0 2.389.008 3.233.046.78.035 1.204.166 1.486.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.706.276 1.486.038.844.046 1.097.046 3.233s-.008 2.389-.046 3.233c-.036.78-.166 1.204-.276 1.486a2.5 2.5 0 0 1-.598.92 2.5 2.5 0 0 1-.92.598c-.282.11-.706.24-1.486.276-.844.038-1.097.046-3.233.046s-2.389-.008-3.233-.046c-.78-.036-1.204-.166-1.486-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.282-.24-.706-.276-1.486C1.449 10.389 1.441 10.136 1.441 8s.008-2.389.046-3.233c.036-.78.166-1.204.276-1.486.145-.374.318-.64.598-.92.28-.28.546-.453.92-.598.282-.11.706-.24 1.486-.276.844-.038 1.097-.046 3.233-.046zm0 2.458a4.101 4.101 0 1 0 0 8.202 4.101 4.101 0 0 0 0-8.202zm0 6.761a2.66 2.66 0 1 1 0-5.32 2.66 2.66 0 0 1 0 5.32zm4.267-6.924a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z'/></svg>",
+    linkedin:
+      "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M20.45 20.45h-3.55V14.9c0-1.32-.03-3.02-1.84-3.02-1.84 0-2.12 1.43-2.12 2.92v5.65H9.39V9h3.41v1.56h.05c.48-.9 1.63-1.84 3.36-1.84 3.59 0 4.25 2.36 4.25 5.43v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z'/></svg>",
+    github:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M8 0C3.58 0 0 3.67 0 8.2c0 3.63 2.29 6.7 5.47 7.78.4.08.55-.18.55-.39 0-.19-.01-.83-.01-1.5-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.25 1.87.9 2.33.68.07-.53.28-.9.5-1.1-1.78-.21-3.64-.92-3.64-4.09 0-.91.32-1.65.84-2.23-.08-.21-.37-1.06.08-2.2 0 0 .69-.23 2.26.85.66-.19 1.36-.29 2.06-.29.7 0 1.4.1 2.06.29 1.57-1.08 2.26-.85 2.26-.85.45 1.14.16 1.99.08 2.2.52.58.84 1.32.84 2.23 0 3.18-1.87 3.88-3.65 4.09.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.47.55.39A8.24 8.24 0 0 0 16 8.2C16 3.67 12.42 0 8 0z'/></svg>",
+    email:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-.5a.5.5 0 0 0-.32.115L8 8.86l6.32-5.245A.5.5 0 0 0 14 3.5H2zm13.5 1.09-4.852 4.025 4.852 3.837V4.59zM14.803 13 10.24 9.39 8.32 10.98a.5.5 0 0 1-.64 0L5.76 9.39 1.197 13H14.803zM.5 12.452l4.852-3.837L.5 4.59v7.862z'/></svg>",
+    signup:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path fill-rule='evenodd' d='M14 2.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L4.146 11.146a.5.5 0 1 0 .708.708L13 3.707V7.5a.5.5 0 0 0 1 0v-5z'/></svg>",
+  };
+
+  const shouldDecorateClubLink = (el) => {
+    return !!(el.closest(".footer-socials") || el.closest(".contact-panel"));
+  };
+
+  const decorateClubLink = (el, key) => {
+    if (el.dataset.iconReady === "true") return;
+    const iconSvg = clubLinkIcons[key];
+    if (!iconSvg) return;
+
+    const rawLabel = (el.textContent || "").replace(/\s+/g, " ").trim();
+    const icon = document.createElement("span");
+    icon.className = "club-link-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.innerHTML = iconSvg;
+
+    const label = document.createElement("span");
+    label.className = "club-link-label";
+    label.textContent = rawLabel;
+
+    el.textContent = "";
+    el.classList.add("club-link-with-icon");
+    el.appendChild(icon);
+    el.appendChild(label);
+    el.dataset.iconReady = "true";
+  };
+
+  const applyClubLinks = (scope = document) => {
+    const links = getClubLinks();
+    scope.querySelectorAll("[data-club-link]").forEach((el) => {
+      const key = (el.dataset.clubLink || "").toLowerCase();
+      if (!key) return;
+      const raw = links[key];
+      const href = key === "email" ? normalizeEmailHref(raw) : normalizeExternalHref(raw);
+      if (el.tagName.toLowerCase() === "a") {
+        if (href) {
+          el.setAttribute("href", href);
+        }
+        if (shouldDecorateClubLink(el)) {
+          decorateClubLink(el, key);
+        }
+      }
+    });
+  };
 
   const setupPeopleGlobalListener = () => {
     if (body.dataset.peopleClickReady) return;
@@ -98,27 +184,23 @@
 
   const applyImageFallbacks = () => {
     const fallbackLabel = (label) => {
-      const safe = (label || "Image Placeholder").replace(/[^a-zA-Z0-9 ]/g, "");
+      const safe = (label || "CBC Member").replace(/[^a-zA-Z0-9 ]/g, "");
       const svg =
         "<svg xmlns='http://www.w3.org/2000/svg' width='480' height='600' viewBox='0 0 480 600'>" +
         "<rect width='100%' height='100%' fill='%23f3e7db'/>" +
-        "<text x='50%' y='50%' font-family='Fraunces,serif' font-size='24' fill='%238a7f75' text-anchor='middle' dominant-baseline='middle' letter-spacing='2'>" +
+        "<circle cx='240' cy='220' r='74' fill='%23d8c5b2'/>" +
+        "<rect x='130' y='320' width='220' height='180' rx='110' fill='%23d8c5b2'/>" +
+        "<text x='50%' y='548' font-family='Fraunces,serif' font-size='22' fill='%238a7f75' text-anchor='middle' letter-spacing='2'>" +
         safe +
         "</text></svg>";
       return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     };
 
     const markMissing = (img) => {
-      const frame = img.closest(".img-frame");
-      const label = img.dataset.fallbackLabel || img.alt || "Image Placeholder";
-      if (frame) {
-        frame.classList.add("is-missing");
-        if (!frame.dataset.label) {
-          frame.dataset.label = label;
-        }
-      } else {
-        img.src = fallbackLabel(label);
-      }
+      if (img.dataset.fallbackApplied === "true") return;
+      img.dataset.fallbackApplied = "true";
+      const label = img.dataset.fallbackLabel || img.alt || "CBC Member";
+      img.src = fallbackLabel(label);
     };
 
     document.querySelectorAll("img[data-fallback]").forEach((img) => {
@@ -151,17 +233,74 @@
       .replace(/^-+|-+$/g, "");
   };
 
+  const personSocialIcons = {
+    email:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-.5a.5.5 0 0 0-.32.115L8 8.86l6.32-5.245A.5.5 0 0 0 14 3.5H2zm13.5 1.09-4.852 4.025 4.852 3.837V4.59zM14.803 13 10.24 9.39 8.32 10.98a.5.5 0 0 1-.64 0L5.76 9.39 1.197 13H14.803zM.5 12.452l4.852-3.837L.5 4.59v7.862z'/></svg>",
+    linkedin:
+      "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M20.45 20.45h-3.55V14.9c0-1.32-.03-3.02-1.84-3.02-1.84 0-2.12 1.43-2.12 2.92v5.65H9.39V9h3.41v1.56h.05c.48-.9 1.63-1.84 3.36-1.84 3.59 0 4.25 2.36 4.25 5.43v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z'/></svg>",
+    github:
+      "<svg viewBox='0 0 16 16' aria-hidden='true'><path d='M8 0C3.58 0 0 3.67 0 8.2c0 3.63 2.29 6.7 5.47 7.78.4.08.55-.18.55-.39 0-.19-.01-.83-.01-1.5-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.25 1.87.9 2.33.68.07-.53.28-.9.5-1.1-1.78-.21-3.64-.92-3.64-4.09 0-.91.32-1.65.84-2.23-.08-.21-.37-1.06.08-2.2 0 0 .69-.23 2.26.85.66-.19 1.36-.29 2.06-.29.7 0 1.4.1 2.06.29 1.57-1.08 2.26-.85 2.26-.85.45 1.14.16 1.99.08 2.2.52.58.84 1.32.84 2.23 0 3.18-1.87 3.88-3.65 4.09.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.47.55.39A8.24 8.24 0 0 0 16 8.2C16 3.67 12.42 0 8 0z'/></svg>",
+  };
+
+  const normalizePersonSocialHref = (type, value) => {
+    const raw = (value || "").toString().trim();
+    if (!raw) return "";
+    if (type === "email") return normalizeEmailHref(raw);
+    if (/^https?:\/\//i.test(raw)) return raw;
+    if (type === "linkedin") {
+      if (/linkedin\.com\//i.test(raw)) return `https://${raw.replace(/^https?:\/\//i, "")}`;
+      return `https://www.linkedin.com/in/${raw.replace(/^@/, "")}`;
+    }
+    if (type === "github") {
+      if (/github\.com\//i.test(raw)) return `https://${raw.replace(/^https?:\/\//i, "")}`;
+      return `https://github.com/${raw.replace(/^@/, "")}`;
+    }
+    return normalizeExternalHref(raw);
+  };
+
+  const buildPersonSocials = (person, name) => {
+    const socialData = person && person.socials && typeof person.socials === "object" ? person.socials : {};
+    const rawSocials = [
+      { type: "email", value: (person && person.email) || socialData.email || "" },
+      { type: "linkedin", value: (person && person.linkedin) || socialData.linkedin || "" },
+      { type: "github", value: (person && person.github) || socialData.github || "" },
+    ];
+
+    const entries = rawSocials
+      .map((item) => ({ ...item, href: normalizePersonSocialHref(item.type, item.value) }))
+      .filter((item) => item.href);
+
+    if (!entries.length) return null;
+
+    const wrap = document.createElement("div");
+    wrap.className = "person-socials";
+
+    entries.forEach((entry) => {
+      const link = document.createElement("a");
+      link.className = "person-social-link";
+      link.href = entry.href;
+      if (entry.type !== "email") {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      link.dataset.noTransition = "";
+      link.setAttribute("aria-label", `${name} ${entry.type}`);
+      link.innerHTML = personSocialIcons[entry.type];
+      wrap.appendChild(link);
+    });
+
+    return wrap;
+  };
+
   const buildPersonCard = (person, index, usedIds) => {
     const name = person && person.name ? person.name : `Person ${index + 1}`;
     const role = person && person.role ? person.role : "Exec";
-    const tagline = person && person.tagline ? person.tagline : "Add a two-sentence tagline here.";
+    const tagline = person && person.tagline ? person.tagline : "Bio coming soon.";
     const photo = person && person.photo ? person.photo : "assets/people/placeholder.png";
     const details = Array.isArray(person && person.details) ? person.details : [];
 
     const card = document.createElement("article");
     card.className = "person-card";
-    card.tabIndex = 0;
-    card.setAttribute("aria-expanded", "false");
 
     let baseId = slugifyId(person && person.id ? person.id : name) || `person-${index + 1}`;
     let uniqueId = baseId;
@@ -202,614 +341,88 @@
     header.appendChild(roleEl);
     header.appendChild(meta);
 
-    const detailWrap = document.createElement("div");
-    detailWrap.className = "person-details";
-
-    details.slice(0, 3).forEach((detail) => {
-      const item = document.createElement("div");
-      item.className = "person-detail";
-
-      const label = document.createElement("span");
-      label.textContent = detail.label || "Focus";
-
-      const text = document.createElement("p");
-      text.textContent = detail.text || "";
-
-      item.appendChild(label);
-      item.appendChild(text);
-      detailWrap.appendChild(item);
-    });
+    const socialWrap = buildPersonSocials(person, name);
+    if (socialWrap) {
+      header.appendChild(socialWrap);
+    }
 
     card.appendChild(imgFrame);
     card.appendChild(header);
-    card.appendChild(detailWrap);
+
+    if (details.length) {
+      const detailWrap = document.createElement("div");
+      detailWrap.className = "person-details";
+
+      details.slice(0, 3).forEach((detail) => {
+        const item = document.createElement("div");
+        item.className = "person-detail";
+
+        const label = document.createElement("span");
+        label.textContent = detail.label || "Focus";
+
+        const text = document.createElement("p");
+        text.textContent = detail.text || "";
+
+        item.appendChild(label);
+        item.appendChild(text);
+        detailWrap.appendChild(item);
+      });
+
+      card.appendChild(detailWrap);
+    }
 
     return card;
   };
 
-  const renderPeopleGrid = () => {
+  const getPeopleDataForGrid = (grid) => {
+    const key = (grid.dataset.peopleGrid || "").toLowerCase();
+    if (key === "associates") {
+      return Array.isArray(window.CBC_PEOPLE_ASSOCIATES) ? window.CBC_PEOPLE_ASSOCIATES : [];
+    }
+    if (key === "leadership") {
+      if (Array.isArray(window.CBC_PEOPLE_LEADERSHIP)) return window.CBC_PEOPLE_LEADERSHIP;
+      return Array.isArray(window.CBC_PEOPLE) ? window.CBC_PEOPLE : [];
+    }
+    return Array.isArray(window.CBC_PEOPLE) ? window.CBC_PEOPLE : [];
+  };
+
+  const renderPeopleGrids = () => {
     runPeopleDataScripts();
-    const grid = document.querySelector("[data-people-grid]") || document.querySelector(".people-grid");
-    if (!grid) return null;
-    if (grid.dataset.peopleReady === "true") return grid;
+    const explicitGrids = Array.from(document.querySelectorAll("[data-people-grid]"));
+    const grids = explicitGrids.length ? explicitGrids : Array.from(document.querySelectorAll(".people-grid"));
+    if (!grids.length) return [];
 
-    const peopleData = Array.isArray(window.CBC_PEOPLE) ? window.CBC_PEOPLE : [];
-    if (!peopleData.length) return grid;
-
-    grid.innerHTML = "";
     const usedIds = new Set();
-    peopleData.forEach((person, index) => {
-      grid.appendChild(buildPersonCard(person, index, usedIds));
-    });
-    grid.dataset.peopleReady = "true";
 
-    return grid;
+    grids.forEach((grid) => {
+      if (grid.dataset.peopleReady === "true") return;
+
+      const peopleData = getPeopleDataForGrid(grid);
+      if (!peopleData.length) return;
+
+      grid.innerHTML = "";
+      peopleData.forEach((person, index) => {
+        grid.appendChild(buildPersonCard(person, index, usedIds));
+      });
+      grid.dataset.peopleReady = "true";
+    });
+
+    return grids;
   };
 
   const setupPeopleExpansion = () => {
-    const grid = renderPeopleGrid();
-    if (!grid) {
+    const grids = renderPeopleGrids();
+    if (!grids.length) {
       peopleController = null;
       return;
     }
     applyImageFallbacks();
-
-    if (grid.dataset.expandReady && peopleController) {
-      peopleController.syncFromHash({ animate: false });
-      return;
-    }
-    grid.dataset.expandReady = "true";
-
-    const cards = Array.from(grid.querySelectorAll(".person-card"));
-    const cardById = new Map(cards.map((card) => [card.id, card]));
-    let expandedCard = null;
-    let isAnimating = false;
-    let lockedHeight = null;
-    let overlayReady = false;
-    let overlayRect = null;
-    const layoutState = new Map();
-    const pushVectors = new Map();
-    const easeValue = getComputedStyle(root).getPropertyValue("--ease").trim() || "cubic-bezier(0.25, 0.1, 0.2, 1)";
-    const motionTimings = {
-      expandY: 720,
-      expandX: 620,
-      collapseX: 520,
-      collapseY: 620,
-    };
-
-    const px = (value) => `${Math.round(value)}px`;
-
-    const lockHeight = () => {
-      if (lockedHeight) return;
-      const rect = grid.getBoundingClientRect();
-      lockedHeight = rect.height;
-      if (lockedHeight > 0) {
-        grid.style.minHeight = `${lockedHeight}px`;
-        grid.style.height = `${lockedHeight}px`;
-      }
-    };
-
-    const unlockHeight = () => {
-      grid.style.minHeight = "";
-      grid.style.height = "";
-      lockedHeight = null;
-    };
-
-    const rememberInlineStyles = () => {
-      cards.forEach((card) => {
-        if (card.dataset.inlineStyle !== undefined) return;
-        card.dataset.inlineStyle = card.getAttribute("style") || "";
-      });
-    };
-
-    const restoreInlineStyles = () => {
-      cards.forEach((card) => {
-        if (card.dataset.inlineStyle === undefined) return;
-        const saved = card.dataset.inlineStyle;
-        if (saved) {
-          card.setAttribute("style", saved);
-        } else {
-          card.removeAttribute("style");
-        }
-        delete card.dataset.inlineStyle;
-      });
-    };
-
-    const captureLayout = () => {
-      const rect = grid.getBoundingClientRect();
-      layoutState.clear();
-      rememberInlineStyles();
-      cards.forEach((card) => {
-        const cardRect = card.getBoundingClientRect();
-        layoutState.set(card, {
-          top: cardRect.top - rect.top,
-          left: cardRect.left - rect.left,
-          width: cardRect.width,
-          height: cardRect.height,
-        });
-      });
-      overlayRect = rect;
-      return rect;
-    };
-
-    const applyOverlay = () => {
-      if (overlayReady) return;
-      overlayReady = true;
-      cards.forEach((card) => {
-        const origin = layoutState.get(card);
-        if (!origin) return;
-        card.style.position = "absolute";
-        card.style.top = px(origin.top);
-        card.style.left = px(origin.left);
-        card.style.width = px(origin.width);
-        card.style.height = px(origin.height);
-        card.style.margin = "0";
-        card.style.transform = "translate(0px, 0px)";
-        card.style.visibility = "visible";
-        card.style.opacity = "1";
-        card.style.pointerEvents = "auto";
-      });
-    };
-
-    const resetOverlay = () => {
-      overlayReady = false;
-      overlayRect = null;
-      layoutState.clear();
-      pushVectors.clear();
-      restoreInlineStyles();
-    };
-
-    const setCardVisibility = (card, visible) => {
-      card.style.visibility = visible ? "visible" : "hidden";
-      card.style.pointerEvents = visible ? "auto" : "none";
-      card.style.opacity = visible ? "1" : "0";
-    };
-
-    const computePushVectors = (originCard) => {
-      pushVectors.clear();
-      if (!overlayRect) return;
-      const origin = layoutState.get(originCard);
-      if (!origin) return;
-      const originCenter = { x: origin.left + origin.width / 2, y: origin.top + origin.height / 2 };
-      const travelBase = Math.max(overlayRect.width, overlayRect.height);
-
-      cards.forEach((card) => {
-        if (card === originCard) return;
-        const rect = layoutState.get(card);
-        if (!rect) return;
-        let dx = rect.left + rect.width / 2 - originCenter.x;
-        let dy = rect.top + rect.height / 2 - originCenter.y;
-        const distance = Math.hypot(dx, dy) || 1;
-        dx /= distance;
-        dy /= distance;
-        const travel = travelBase + Math.max(rect.width, rect.height);
-        pushVectors.set(card, { x: dx * travel, y: dy * travel });
-      });
-    };
-
-    const getInsetValue = () => {
-      const raw = getComputedStyle(grid).getPropertyValue("--people-inset").trim();
-      const value = Number.parseFloat(raw);
-      return Number.isFinite(value) ? value : 0;
-    };
-
-    const getExpandedBounds = (origin) => {
-      if (!overlayRect) {
-        return {
-          top: 0,
-          left: 0,
-          width: origin.width,
-          height: origin.height,
-        };
-      }
-      const inset = getInsetValue();
-      const targetWidth = Math.max(origin.width, overlayRect.width - inset * 2);
-      const targetHeight = Math.max(origin.height, overlayRect.height - inset * 2);
-      const width = Math.min(targetWidth, overlayRect.width);
-      const height = Math.min(targetHeight, overlayRect.height);
-      const left = (overlayRect.width - width) / 2;
-      const top = (overlayRect.height - height) / 2;
-      return { top, left, width, height };
-    };
-
-    const animateProperties = (card, fromProps, toProps, duration) => {
-      if (reduceMotion || !duration) {
-        Object.assign(card.style, toProps);
-        return Promise.resolve();
-      }
-      const animation = card.animate([fromProps, toProps], { duration, easing: easeValue, fill: "forwards" });
-      return animation.finished.finally(() => {
-        Object.assign(card.style, toProps);
-      });
-    };
-
-    const animateTransform = (card, fromValue, toValue, duration) => {
-      if (reduceMotion || !duration) {
-        card.style.transform = toValue;
-        return Promise.resolve();
-      }
-      const animation = card.animate([{ transform: fromValue }, { transform: toValue }], {
-        duration,
-        easing: easeValue,
-        fill: "forwards",
-      });
-      return animation.finished.finally(() => {
-        card.style.transform = toValue;
-      });
-    };
-
-    const animatePushPhase = async (phase, duration, originCard) => {
-      const animations = [];
-      cards.forEach((card) => {
-        if (card === originCard) return;
-        const vector = pushVectors.get(card);
-        if (!vector) return;
-        const fromValue = phase === "y" ? "translate(0px, 0px)" : `translate(0px, ${px(vector.y)})`;
-        const toValue =
-          phase === "y" ? `translate(0px, ${px(vector.y)})` : `translate(${px(vector.x)}, ${px(vector.y)})`;
-        animations.push(animateTransform(card, fromValue, toValue, duration));
-      });
-      await Promise.allSettled(animations);
-    };
-
-    const animatePullPhase = async (phase, duration, originCard) => {
-      const animations = [];
-      cards.forEach((card) => {
-        if (card === originCard) return;
-        const vector = pushVectors.get(card);
-        if (!vector) return;
-        const fromValue =
-          phase === "x" ? `translate(${px(vector.x)}, ${px(vector.y)})` : `translate(0px, ${px(vector.y)})`;
-        const toValue = phase === "x" ? `translate(0px, ${px(vector.y)})` : "translate(0px, 0px)";
-        animations.push(animateTransform(card, fromValue, toValue, duration));
-      });
-      await Promise.allSettled(animations);
-    };
-
-    const expandCard = async (card, options = {}) => {
-      if (!card || isAnimating) return;
-      const { animate = true, pushHistory = true } = options;
-
-      if (expandedCard && expandedCard !== card) {
-        await switchCard(expandedCard, card, { animate, pushHistory });
-        return;
-      }
-
-      captureLayout();
-      lockHeight();
-      applyOverlay();
-      computePushVectors(card);
-
-      expandedCard = card;
-      grid.classList.add("is-expanded");
-      card.setAttribute("aria-expanded", "true");
-      card.classList.remove("is-collapsing-x", "is-collapsing-y");
-
-      cards.forEach((item) => setCardVisibility(item, true));
-      const origin = layoutState.get(card);
-      if (!origin) return;
-      const target = getExpandedBounds(origin);
-
-      isAnimating = true;
-      grid.classList.add("is-animating");
-
-      if (animate) {
-        card.classList.add("is-expanding-y");
-        await Promise.all([
-          animateProperties(
-            card,
-            {
-              top: px(origin.top),
-              left: px(origin.left),
-              width: px(origin.width),
-              height: px(origin.height),
-            },
-            { top: px(target.top), left: px(origin.left), width: px(origin.width), height: px(target.height) },
-            motionTimings.expandY
-          ),
-          animatePushPhase("y", motionTimings.expandY, card),
-        ]);
-
-        card.classList.remove("is-expanding-y");
-        card.classList.add("is-expanding-x");
-        await Promise.all([
-          animateProperties(
-            card,
-            { top: px(target.top), left: px(origin.left), width: px(origin.width), height: px(target.height) },
-            { top: px(target.top), left: px(target.left), width: px(target.width), height: px(target.height) },
-            motionTimings.expandX
-          ),
-          animatePushPhase("x", motionTimings.expandX, card),
-        ]);
-      } else {
-        card.style.top = px(target.top);
-        card.style.left = px(target.left);
-        card.style.width = px(target.width);
-        card.style.height = px(target.height);
-        cards.forEach((item) => {
-          if (item === card) return;
-          const vector = pushVectors.get(item);
-          if (!vector) return;
-          item.style.transform = `translate(${px(vector.x)}, ${px(vector.y)})`;
-        });
-      }
-
-      card.classList.remove("is-expanding-x");
-      card.classList.add("is-expanded");
-
-      cards.forEach((item) => {
-        if (item === card) {
-          item.setAttribute("aria-hidden", "false");
-          item.tabIndex = 0;
-          setCardVisibility(item, true);
-        } else {
-          item.setAttribute("aria-hidden", "true");
-          item.tabIndex = -1;
-          setCardVisibility(item, false);
-        }
-      });
-
-      grid.classList.remove("is-animating");
-      isAnimating = false;
-
-      if (pushHistory && card.id) {
-        window.history.pushState({ personId: card.id }, "", `${window.location.pathname}#${card.id}`);
-      }
-    };
-
-    const switchCard = async (fromCard, toCard, options = {}) => {
-      if (!fromCard || !toCard || fromCard === toCard || isAnimating) return;
-      const { animate = true, pushHistory = true } = options;
-      if (!overlayRect) {
-        await expandCard(toCard, options);
-        return;
-      }
-
-      const fromOrigin = layoutState.get(fromCard);
-      const toOrigin = layoutState.get(toCard);
-      if (!fromOrigin || !toOrigin) return;
-      const target = getExpandedBounds(toOrigin);
-
-      isAnimating = true;
-      grid.classList.add("is-animating");
-
-      cards.forEach((item) => setCardVisibility(item, false));
-      setCardVisibility(fromCard, true);
-      setCardVisibility(toCard, true);
-      toCard.style.transform = "translate(0px, 0px)";
-      fromCard.style.transform = "translate(0px, 0px)";
-
-      fromCard.setAttribute("aria-expanded", "false");
-      toCard.setAttribute("aria-expanded", "true");
-
-      if (animate) {
-        fromCard.classList.remove("is-expanded");
-        fromCard.classList.add("is-collapsing-x");
-        toCard.classList.add("is-expanding-y");
-
-        await Promise.all([
-          animateProperties(
-            fromCard,
-            { top: px(target.top), left: px(target.left), width: px(target.width), height: px(target.height) },
-            { top: px(target.top), left: px(fromOrigin.left), width: px(fromOrigin.width), height: px(target.height) },
-            motionTimings.collapseX
-          ),
-          animateProperties(
-            toCard,
-            { top: px(toOrigin.top), left: px(toOrigin.left), width: px(toOrigin.width), height: px(toOrigin.height) },
-            { top: px(target.top), left: px(toOrigin.left), width: px(toOrigin.width), height: px(target.height) },
-            motionTimings.expandY
-          ),
-        ]);
-
-        fromCard.classList.remove("is-collapsing-x");
-        fromCard.classList.add("is-collapsing-y");
-        toCard.classList.remove("is-expanding-y");
-        toCard.classList.add("is-expanding-x");
-
-        await Promise.all([
-          animateProperties(
-            fromCard,
-            { top: px(target.top), left: px(fromOrigin.left), width: px(fromOrigin.width), height: px(target.height) },
-            {
-              top: px(fromOrigin.top),
-              left: px(fromOrigin.left),
-              width: px(fromOrigin.width),
-              height: px(fromOrigin.height),
-            },
-            motionTimings.collapseY
-          ),
-          animateProperties(
-            toCard,
-            { top: px(target.top), left: px(toOrigin.left), width: px(toOrigin.width), height: px(target.height) },
-            { top: px(target.top), left: px(target.left), width: px(target.width), height: px(target.height) },
-            motionTimings.expandX
-          ),
-        ]);
-      } else {
-        fromCard.style.top = px(fromOrigin.top);
-        fromCard.style.left = px(fromOrigin.left);
-        fromCard.style.width = px(fromOrigin.width);
-        fromCard.style.height = px(fromOrigin.height);
-        toCard.style.top = px(target.top);
-        toCard.style.left = px(target.left);
-        toCard.style.width = px(target.width);
-        toCard.style.height = px(target.height);
-      }
-
-      fromCard.classList.remove("is-collapsing-y");
-      fromCard.classList.remove("is-expanded");
-      toCard.classList.remove("is-expanding-x");
-      toCard.classList.add("is-expanded");
-      expandedCard = toCard;
-
-      computePushVectors(toCard);
-      cards.forEach((item) => {
-        if (item === toCard) return;
-        const vector = pushVectors.get(item);
-        if (!vector) return;
-        item.style.transform = `translate(${px(vector.x)}, ${px(vector.y)})`;
-      });
-
-      cards.forEach((item) => {
-        if (item === toCard) {
-          item.setAttribute("aria-hidden", "false");
-          item.tabIndex = 0;
-          setCardVisibility(item, true);
-        } else {
-          item.setAttribute("aria-hidden", "true");
-          item.tabIndex = -1;
-          setCardVisibility(item, false);
-        }
-      });
-
-      grid.classList.remove("is-animating");
-      isAnimating = false;
-
-      if (pushHistory && toCard.id) {
-        window.history.pushState({ personId: toCard.id }, "", `${window.location.pathname}#${toCard.id}`);
-      }
-    };
-
-    const collapseExpanded = async (options = {}) => {
-      if (!expandedCard || isAnimating) return;
-      const { animate = true } = options;
-      const card = expandedCard;
-      const origin = layoutState.get(card);
-      if (!origin || !overlayRect) {
-        isAnimating = false;
-        grid.classList.remove("is-animating");
-        return;
-      }
-      const target = getExpandedBounds(origin);
-      computePushVectors(card);
-
-      isAnimating = true;
-      grid.classList.add("is-animating");
-      card.setAttribute("aria-expanded", "false");
-
-      cards.forEach((item) => {
-        if (item === card) return;
-        const vector = pushVectors.get(item);
-        if (vector) {
-          item.style.transform = `translate(${px(vector.x)}, ${px(vector.y)})`;
-        }
-        setCardVisibility(item, true);
-        item.setAttribute("aria-hidden", "false");
-        item.tabIndex = 0;
-      });
-
-      if (animate) {
-        card.classList.remove("is-expanded");
-        card.classList.add("is-collapsing-x");
-
-        await Promise.all([
-          animateProperties(
-            card,
-            { top: px(target.top), left: px(target.left), width: px(target.width), height: px(target.height) },
-            { top: px(target.top), left: px(origin.left), width: px(origin.width), height: px(target.height) },
-            motionTimings.collapseX
-          ),
-          animatePullPhase("x", motionTimings.collapseX, card),
-        ]);
-
-        card.classList.remove("is-collapsing-x");
-        card.classList.add("is-collapsing-y");
-
-        await Promise.all([
-          animateProperties(
-            card,
-            { top: px(target.top), left: px(origin.left), width: px(origin.width), height: px(target.height) },
-            { top: px(origin.top), left: px(origin.left), width: px(origin.width), height: px(origin.height) },
-            motionTimings.collapseY
-          ),
-          animatePullPhase("y", motionTimings.collapseY, card),
-        ]);
-      } else {
-        card.style.top = px(origin.top);
-        card.style.left = px(origin.left);
-        card.style.width = px(origin.width);
-        card.style.height = px(origin.height);
-        cards.forEach((item) => {
-          if (item === card) return;
-          item.style.transform = "translate(0px, 0px)";
-        });
-      }
-
-      card.classList.remove("is-expanded");
-      card.classList.remove("is-collapsing-y");
-      grid.classList.remove("is-expanded");
-      grid.classList.remove("is-animating");
-      expandedCard = null;
-      cards.forEach((item) => {
-        item.setAttribute("aria-hidden", "false");
-        item.tabIndex = 0;
-        setCardVisibility(item, true);
-      });
-      unlockHeight();
-      resetOverlay();
-      isAnimating = false;
-    };
-
-    const requestCollapse = () => {
-      if (!expandedCard) return;
-      const currentState = window.history.state;
-      if (currentState && currentState.personId === expandedCard.id) {
-        window.history.back();
-      } else {
-        window.history.replaceState({}, "", window.location.pathname);
-        collapseExpanded({ animate: true });
-      }
-    };
-
-    const toggleCard = (card) => {
-      if (isAnimating) return;
-      if (card.classList.contains("is-expanded") || card.classList.contains("is-expanding-y") || card.classList.contains("is-expanding-x")) {
-        return;
-      }
-      expandCard(card, { animate: true, pushHistory: true });
-    };
-
-    const syncFromHash = (options = {}) => {
-      const { animate = true } = options;
-      const hash = window.location.hash ? window.location.hash.slice(1) : "";
-      if (!hash) {
-        collapseExpanded({ animate });
-        return;
-      }
-      const target = cardById.get(decodeURIComponent(hash));
-      if (!target) {
-        collapseExpanded({ animate });
-        return;
-      }
-      if (expandedCard === target && target.classList.contains("is-expanded")) return;
-      expandCard(target, { animate, pushHistory: false });
-    };
-
-    grid.addEventListener("click", (event) => {
-      const card = event.target.closest(".person-card");
-      if (!card || !grid.contains(card)) return;
-      toggleCard(card);
+    grids.forEach((grid) => {
+      if (grid.dataset.peopleStatic === "true") return;
+      grid.dataset.peopleStatic = "true";
+      grid.classList.add("is-static");
     });
-
-    grid.addEventListener("keydown", (event) => {
-      const card = event.target.closest(".person-card");
-      if (!card || !grid.contains(card)) return;
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        toggleCard(card);
-      }
-    });
-
-    peopleController = {
-      syncFromHash,
-      collapseExpanded,
-      requestCollapse,
-      isExpanded: () => !!expandedCard,
-      grid,
-    };
-    setupPeopleGlobalListener();
-    syncFromHash({ animate: false });
+    peopleController = null;
   };
 
   const runIntro = () => {
@@ -907,6 +520,7 @@
       currentPath = targetPath;
       applyNavActive();
       setupNavIndicator();
+      applyClubLinks();
       applyImageFallbacks();
       setupPeopleExpansion();
       runIntro();
@@ -987,6 +601,7 @@
     body.classList.add("page-loaded");
     applyNavActive();
     setupNavIndicator();
+    applyClubLinks();
     applyImageFallbacks();
     setupPeopleExpansion();
     currentPath = window.location.pathname;

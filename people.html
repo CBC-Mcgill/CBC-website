@@ -1,112 +1,151 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="view-transition" content="same-origin">
-  <title>Claude Builder Club · People</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Claude Builder Club · People</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="people">
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div id="blossom-intro" aria-hidden="true">
+<div id="blossom-intro" aria-hidden="true">
     <div class="wash"></div>
     <div class="blossom">
-      <span class="petal" style="--angle: 0deg;"></span>
-      <span class="petal" style="--angle: 60deg;"></span>
-      <span class="petal" style="--angle: 120deg;"></span>
-      <span class="petal" style="--angle: 180deg;"></span>
-      <span class="petal" style="--angle: 240deg;"></span>
-      <span class="petal" style="--angle: 300deg;"></span>
-      <span class="core"></span>
+        <span class="petal" style="--angle: 0deg;"></span>
+        <span class="petal" style="--angle: 60deg;"></span>
+        <span class="petal" style="--angle: 120deg;"></span>
+        <span class="petal" style="--angle: 180deg;"></span>
+        <span class="petal" style="--angle: 240deg;"></span>
+        <span class="petal" style="--angle: 300deg;"></span>
+        <span class="core"></span>
     </div>
-  </div>
+</div>
 
 
-  <div class="page-shell">
+<div class="page-shell">
     <header class="site-header">
-      <div class="container">
-        <a class="logo" href="index.html">
-          <span class="logo-mark">CBC</span>
-          <span class="logo-text">Claude Builder Club</span>
-          <span class="logo-sub">McGill University</span>
-        </a>
-        <nav class="site-nav" aria-label="Primary">
-          <a href="index.html" data-nav="home">Home</a>
-          <a href="about.html" data-nav="about">About</a>
-          <a href="people.html" data-nav="people">People</a>
-          <a href="contact.html" data-nav="contact">Contact</a>
-          <span class="nav-indicator" aria-hidden="true"></span>
-        </nav>
-        <a class="btn btn-ghost" href="contact.html">Contact</a>
-      </div>
+        <div class="container">
+            <a class="logo" href="index.html">
+                <span class="logo-mark">CBC</span>
+                <span class="logo-text">Claude Builder Club</span>
+                <span class="logo-sub">McGill University</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="index.html" data-nav="home">Home</a>
+                <a href="people.html" data-nav="people">People</a>
+                <a href="contact.html" data-nav="contact">Contact</a>
+                <span class="nav-indicator" aria-hidden="true"></span>
+            </nav>
+        </div>
     </header>
 
     <main id="main">
-      <section class="section">
-        <div class="container page-hero">
-          <p class="eyebrow reveal" style="--delay: 0.1s;">Meet the team</p>
-          <h1 class="reveal" style="--delay: 0.2s;">The execs and directors building CBC with you.</h1>
-          <p class="lead reveal" style="--delay: 0.35s;">Tap a card to see what each leader is focused on and what they want to build this term.</p>
-        </div>
-      </section>
+        <section class="section">
+            <div class="container page-hero">
+                <p class="eyebrow reveal" style="--delay: 0.1s;">Meet the team</p>
+                <h1 class="reveal" style="--delay: 0.2s;">Insert cool text about team</h1>
+            </div>
+        </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="people-grid" data-people-grid></div>
-        </div>
-      </section>
-      <script data-people-script>
-        // Friendly team tutorial: add yourself by adding ONE Person(...) line below.
-        // Think of each Person(...) as a quick form:
-        // 1) Put your name here!
-        // 2) Put your exec/director role here!
-        // 3) Write a 2-sentence tagline about what you'll do at the club.
-        // 4) Add your photo path (assets/people/your-name.png).
-        // 5-10) Add three label/text pairs for your card (Focus, Projects, Fun fact, etc.).
-        (() => {
-          const Person = (name, role, tagline, photo, labelOne, textOne, labelTwo, textTwo, labelThree, textThree) => ({
-            name,
-            role,
-            tagline,
-            photo,
-            details: [
-              { label: labelOne, text: textOne },
-              { label: labelTwo, text: textTwo },
-              { label: labelThree, text: textThree },
-            ],
-          });
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Execs and Directors</h2>
+                <p class="section-copy">Insert cool execDirector stuff.</p>
+                <div class="people-grid" data-people-grid="leadership" style="margin-top: 1.5rem;"></div>
+            </div>
+        </section>
 
-          window.CBC_PEOPLE = [
-            Person("Exec Name", "Executive Director", "Two-sentence tagline: what you'll do at CBC. What you're excited to build with members.", "assets/people/person-01.png", "Focus", "Put your leadership focus here.", "Building", "Share the project or initiative you're launching.", "Fun Fact", "Add a quick, friendly detail."),
-            Person("Operations Name", "Operations Director", "Two-sentence tagline: how you'll keep CBC running smoothly. What systems you'll improve this term.", "assets/people/person-02.png", "Focus", "Describe the operations piece you own.", "Building", "What workflows or resources you're improving.", "Fun Fact", "Something small that feels human."),
-            Person("Curriculum Name", "Curriculum Director", "Two-sentence tagline: the learning experience you'll craft. What skills you want members to leave with.", "assets/people/person-03.png", "Focus", "Mention the curriculum pillar you lead.", "Building", "Share a workshop or course you want to ship.", "Fun Fact", "A light personal detail."),
-            Person("Community Name", "Community Director", "Two-sentence tagline: how you'll grow the community. The kind of culture you're aiming for.", "assets/people/person-04.png", "Focus", "Describe how you support member connection.", "Building", "Call out a community initiative you want to run.", "Fun Fact", "Something quick about you."),
-            Person("Events Name", "Events Director", "Two-sentence tagline: the events you'll run. The vibe you want members to feel after each one.", "assets/people/person-05.png", "Focus", "Describe the event experience you lead.", "Building", "Share a signature event you're planning.", "Fun Fact", "A short personal note."),
-          ];
-        })();
-      </script>
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Associates</h2>
+                <p class="section-copy">Insert Cool associate stuff.</p>
+                <div class="people-grid" data-people-grid="associates" style="margin-top: 1.5rem;"></div>
+            </div>
+        </section>
+
+        <script data-people-script>
+            // Friendly team tutorial: add yourself by adding ONE Person(...) line below.
+            // Think of each Person(...) as a quick form:
+            // 1) Put your name here!
+            // 2) Put your role here!
+            // 3) Use this tagline text: "Tagline of what you'll do".
+            // 4) Add your photo path (assets/people/placeholder.png).
+            // 5-7) Optional: add email/linkedin/github links for icon buttons.
+            (() => {
+                const Person = (
+                    name,
+                    role,
+                    tagline,
+                    photo,
+                    email = "",
+                    linkedin = "",
+                    github = ""
+                ) => ({
+                    name,
+                    role,
+                    tagline,
+                    photo,
+                    details: [],
+                    email,
+                    linkedin,
+                    github,
+                });
+
+                window.CBC_PEOPLE_LEADERSHIP = [
+                    Person("Thai Tran", "President", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Ethan Tran", "VP Operations", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Virgile Couture", "VP Finance", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Benjamin Ghaderi", "Technical Director", "Tagline of what you'll do", "assets/people/placeholder.png", "", "linkedin.com/in/ben-ghaderi", "github.com/BenGhad/"),
+                    Person("Benjamin", "Director of Partnerships and Sponsorships", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Lawrence", "Director of Partnerships and Sponsorships", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                ];
+
+                window.CBC_PEOPLE_ASSOCIATES = [
+                    Person("Annie", "Media Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Jason", "Financial Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Rayyan", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("David", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Mubeen", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Minh", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Joshua", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Julien", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Parsa", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                    Person("Ralph", "General Associate", "Tagline of what you'll do", "assets/people/placeholder.png"),
+                ];
+            })();
+        </script>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <h3>Claude Builder Club</h3>
-          <p class="section-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <div class="container footer-grid">
+            <div>
+                <h3>Claude Builder Club</h3>
+                <p class="section-copy">Anyone can build with AI. Join CBC for free Claude Pro access, API credits,
+                    workshops, and a high-accountability builder community.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="people.html">People</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-links footer-socials">
+                <a href="#" data-club-link="discord" target="_blank" rel="noopener noreferrer" data-no-transition>Discord</a>
+                <a href="#" data-club-link="instagram" target="_blank" rel="noopener noreferrer" data-no-transition>Instagram</a>
+                <a href="#" data-club-link="linkedin" target="_blank" rel="noopener noreferrer" data-no-transition>LinkedIn</a>
+                <a href="#" data-club-link="signup" target="_blank" rel="noopener noreferrer" data-no-transition>Sign-up
+                    Form</a>
+            </div>
         </div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
     </footer>
-  </div>
+</div>
 
-  <script src="main.js"></script>
+<script src="links.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
