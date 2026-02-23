@@ -1,1 +1,1 @@
-Website runs here: https://cbc-mcgill.onrender.com/
+Website runs here: https://cbc-website-mocha.vercel.app/
