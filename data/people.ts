@@ -30,7 +30,7 @@ export const leadership: Person[] = [
 
 export const associates: Person[] = [
   Person('Annie Huynh', 'Media Associate', "Tagline of what you'll do", 'assets/people/AnnieHuynh.jpeg'),
-  Person('Jason Wang', 'Financial Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
+  Person('Jason Wang', 'Financial Associate', "Tagline of what you'll do", 'assets/people/JasonWang.png'),
   Person('Rayyan Khan', 'General Associate', "Tagline of what you'll do", 'assets/people/RayyanKhan.png'),
   Person('David Tang', 'General Associate', "Tagline of what you'll do", 'assets/people/DavidTang.jpeg'),
   Person('Mubeen Mohammed', 'General Associate', "Tagline of what you'll do", 'assets/people/MubeenMohammed.jpeg'),
