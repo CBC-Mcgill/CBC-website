@@ -20,9 +20,9 @@ const Person = (
 });
 
 export const leadership: Person[] = [
-  Person('Thai Tran', 'President', "I am building a degree planner with gamified UIs for McGill students", 'assets/people/ThaiTran.png'),
-  Person('Ethan Tran', 'VP Operations', "Tagline of what you'll do", 'assets/people/placeholder.png'),
-  Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/placeholder.png'),
+  Person('Thai Tran', 'President', "I max out my Claude Pro usage at least twice a day", 'assets/people/ThaiTran.png'),
+  Person('Ethan Tran', 'VP Operations', "Tagline of what you'll do", 'assets/people/ethan.png'),
+  Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/VirgileCouture.png'),
   Person('Benjamin Ghaderi', 'Technical Director', "Tagline of what you'll do", 'assets/people/placeholder.png', '', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
   Person('Benjamin', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Lawrence', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/placeholder.png'),
@@ -38,5 +38,5 @@ export const associates: Person[] = [
   Person('Joshua', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Julien', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Parsa', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
-  Person('Ralph', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
+  Person('Ralph', 'General Associate', "Tagline of what you'll do", 'assets/people/RalphAzrak.jpg'),
 ];
