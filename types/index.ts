@@ -22,6 +22,7 @@ export interface BuildTrack {
   description: string;
   leads: string;
   status: BuildTrackStatus;
+  github?: string;
 }
 
 export interface ClubLinks {

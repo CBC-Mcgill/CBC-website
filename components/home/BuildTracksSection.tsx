@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { BuildTrack, BuildTrackStatus } from '@/types';
+import { GitHubIcon } from '@/components/icons';
 
 const STATUS_PRIORITY: Record<BuildTrackStatus, number> = {
   open: 0,
@@ -73,9 +74,22 @@ export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
                 <div><span>{track.description}</span></div>
                 <div><span>Lead(s): {track.leads}</span></div>
               </div>
-              <span className={`status-pill status-${track.status}`}>
-                {STATUS_LABELS[track.status]}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
+                {track.github && (
+                  <a
+                    href={track.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="person-social-link"
+                    aria-label={`${track.name} GitHub repository`}
+                  >
+                    <GitHubIcon />
+                  </a>
+                )}
+                <span className={`status-pill status-${track.status}`}>
+                  {STATUS_LABELS[track.status]}
+                </span>
+              </div>
             </div>
           ))}
         </div>

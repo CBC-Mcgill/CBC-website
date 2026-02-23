@@ -18,5 +18,6 @@ export const buildTracks: BuildTrack[] = [
     description: 'Automated job scraper for SWE/ML internships and new grad positions.',
     leads: 'TBD',
     status: 'complete',
+    github: 'https://github.com/claude-builder-club/beenjobbot',
   },
 ];
