@@ -54,6 +54,11 @@ export default function ContactPage() {
               </div>
               <div className="detail-item">
                 <span>Sign-up Form</span>
+                <strong>
+                  <a href={clubLinks.signup} target="_blank" rel="noopener noreferrer">
+                    Apply to join CBC
+                  </a>
+                </strong>
               </div>
             </div>
           </div>

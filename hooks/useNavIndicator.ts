@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const useNavIndicator = () => {
   const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const nav = navRef.current;
@@ -13,8 +15,11 @@ export const useNavIndicator = () => {
     if (!indicator) return;
 
     const updateIndicator = (target?: Element | null) => {
-      const link = target || nav.querySelector('a.active') || nav.querySelector('a');
-      if (!link) return;
+      const link = target || nav.querySelector('a.active');
+      if (!link) {
+        nav.classList.remove('has-indicator');
+        return;
+      }
       const navRect = nav.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
       nav.style.setProperty('--nav-left', `${linkRect.left - navRect.left}px`);
@@ -46,7 +51,7 @@ export const useNavIndicator = () => {
       nav.removeEventListener('pointerleave', onPointerLeave);
       window.removeEventListener('resize', onResize);
     };
-  }, []);
+  }, [pathname]);
 
   return navRef;
 };

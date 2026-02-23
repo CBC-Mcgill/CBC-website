@@ -10,6 +10,7 @@ interface ImgFrameProps {
   label?: string;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 const normalizeSrc = (src: string) => {
@@ -18,7 +19,7 @@ const normalizeSrc = (src: string) => {
   return `/${src}`;
 };
 
-export function ImgFrame({ src, alt, label, className, priority }: ImgFrameProps) {
+export function ImgFrame({ src, alt, label, className, priority, sizes }: ImgFrameProps) {
   const [imgSrc, setImgSrc] = useState(normalizeSrc(src));
   const [hasFailed, setHasFailed] = useState(false);
 
@@ -39,6 +40,7 @@ export function ImgFrame({ src, alt, label, className, priority }: ImgFrameProps
           src={imgSrc}
           alt={alt}
           fill
+          sizes={sizes ?? '(max-width: 980px) 100vw, 50vw'}
           style={{ objectFit: 'cover' }}
           onError={handleError}
           priority={priority}

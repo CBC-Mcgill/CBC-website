@@ -334,7 +334,7 @@ button {
 }
 
 main {
-  padding: var(--space-7) 0 var(--space-8);
+  padding: var(--space-5) 0 var(--space-8);
   position: relative;
 }
 
