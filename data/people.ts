@@ -20,7 +20,7 @@ const Person = (
 });
 
 export const leadership: Person[] = [
-  Person('Thai Tran', 'President', "Tagline of what you'll do", 'assets/people/placeholder.png'),
+  Person('Thai Tran', 'President', "I am building a degree planner with gamified UIs for McGill students", 'assets/people/ThaiTran.png'),
   Person('Ethan Tran', 'VP Operations', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Benjamin Ghaderi', 'Technical Director', "Tagline of what you'll do", 'assets/people/placeholder.png', '', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
