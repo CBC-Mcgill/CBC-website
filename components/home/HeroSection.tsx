@@ -32,7 +32,7 @@ export function HeroSection() {
               <div className="meta-value">Get access to the latest models and access them on Claude Code</div>
             </div>
             <div className="meta-card">
-              <div className="meta-label">Official Anthropic workshops</div>
+              <div className="meta-label">Workshops</div>
               <div className="meta-value">Biweekly lectures headed by McGill students + Frequent workshops</div>
             </div>
             <div className="meta-card">

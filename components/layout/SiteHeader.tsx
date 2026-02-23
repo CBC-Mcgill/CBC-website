@@ -8,7 +8,7 @@ export function SiteHeader() {
         <Link className="logo" href="/">
           <span className="logo-mark">CBC</span>
           <span className="logo-text">Claude Builder Club</span>
-          <span className="logo-sub">McGill University</span>
+          <span className="logo-sub">McGill University Chapter</span>
         </Link>
         <NavIndicator />
       </div>

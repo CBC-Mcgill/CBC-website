@@ -34,7 +34,7 @@ export default function AboutPage() {
           <div className="card">
             <h3>What members get</h3>
             <p>
-              Free Claude Pro access, API credits, official Anthropic workshops, and a group of
+              Free Claude Pro access, API credits, Claude Code workshops, and a group of
               builders who ship together.
             </p>
           </div>
