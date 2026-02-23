@@ -15,7 +15,7 @@ export default function PeoplePage() {
             Meet the team
           </p>
           <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-            Insert cool text about team
+            Builders, operators, and mentors behind CBC
           </h1>
         </div>
       </section>
@@ -23,7 +23,7 @@ export default function PeoplePage() {
       <section className="section">
         <div className="container">
           <h2 className="section-title">Execs and Directors</h2>
-          <p className="section-copy">Insert cool execDirector stuff.</p>
+          <p className="section-copy">Our leadership team sets direction, builds partnerships, and keeps programs moving.</p>
           <PeopleGrid people={leadership} />
         </div>
       </section>
@@ -31,7 +31,7 @@ export default function PeoplePage() {
       <section className="section">
         <div className="container">
           <h2 className="section-title">Associates</h2>
-          <p className="section-copy">Insert Cool associate stuff.</p>
+          <p className="section-copy">Our associates run operations, media, and member support to turn ideas into shipped work.</p>
           <PeopleGrid people={associates} />
         </div>
       </section>

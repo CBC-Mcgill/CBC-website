@@ -1781,6 +1781,7 @@ body.page-leave .page-shell {
   border: 1px solid rgba(255, 220, 180, 0.11);
   background: linear-gradient(145deg, #141009 0%, #1e1511 45%, #160f09 100%);
   padding: var(--space-7) var(--space-6);
+  padding-bottom: calc(var(--space-7) + 2.1rem);
   overflow: hidden;
   position: relative;
   isolation: isolate;
@@ -1812,6 +1813,48 @@ body.page-leave .page-shell {
 .hackathon-hero-panel > * {
   position: relative;
   z-index: 1;
+}
+
+.hackathon-hero-footer-link {
+  position: absolute;
+  right: var(--space-6);
+  bottom: 1.25rem;
+  margin-top: 0;
+}
+
+.hackathon-hero-footer-link a {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 220, 180, 0.62);
+  text-decoration: underline;
+  text-underline-offset: 0.16rem;
+  transition: color 0.25s var(--ease);
+}
+
+.hackathon-hero-footer-link a:hover,
+.hackathon-hero-footer-link a:focus-visible {
+  color: rgba(255, 240, 220, 0.92);
+}
+
+.hackathon-volunteer-inline {
+  margin-top: 0.9rem;
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 220, 180, 0.62);
+}
+
+.hackathon-volunteer-inline a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16rem;
+  transition: color 0.25s var(--ease);
+}
+
+.hackathon-volunteer-inline a:hover,
+.hackathon-volunteer-inline a:focus-visible {
+  color: rgba(255, 240, 220, 0.92);
 }
 
 /* Hero layout */
@@ -2220,6 +2263,11 @@ body.page-leave .page-shell {
   .hackathon-hero-panel,
   .hackathon-cta-panel {
     padding: var(--space-5) var(--space-4);
+  }
+
+  .hackathon-hero-footer-link {
+    position: static;
+    margin-top: var(--space-4);
   }
 
   .hackathon-meta-grid {

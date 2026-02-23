@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const SIGN_UP_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc30XH0k_ZZdgyZ2tU-txvbN9lJtdC6XzVVRkBofVMWLwGZrg/viewform?usp=sharing&ouid=102839564480593837548';
 const DETAILS_URL = 'https://docs.google.com/document/d/1TEndbv3OXdaNVJrUVNzrXNNZ1ajDU1Ywh9OF3JF0lw0/edit?usp=sharing';
+const VOLUNTEER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeB5iUV9eD6u3xY4Lm9-VL5RkWaOvOiEbhts8a9jgVgyur9ig/viewform';
 
 export default function HackathonPage() {
   return (
@@ -117,6 +118,15 @@ export default function HackathonPage() {
               </div>
 
             </div>
+            <div className="hackathon-hero-footer-link reveal" style={{ '--delay': '0.32s' } as React.CSSProperties}>
+              <a
+                href={VOLUNTEER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Interested in volunteering?
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -174,6 +184,11 @@ export default function HackathonPage() {
                    Free to enter. Open to all universities.</p>
                 <p>Build something a real person would use. You have a 6-hour build window.</p>
               </div>
+              <p className="hackathon-volunteer-inline reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
+                <a href={VOLUNTEER_URL} target="_blank" rel="noopener noreferrer">
+                  Interested in volunteering?
+                </a>
+              </p>
             </div>
 
             {/* Right: tool cards */}
@@ -252,6 +267,11 @@ export default function HackathonPage() {
               letterSpacing: '0.04em',
             }}>
               Organized by Claude Builder Club @ McGill · In partnership with Anthropic
+            </p>
+            <p className="hackathon-volunteer-inline">
+              <a href={VOLUNTEER_URL} target="_blank" rel="noopener noreferrer">
+                Interested in volunteering?
+              </a>
             </p>
           </div>
         </div>
