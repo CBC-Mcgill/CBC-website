@@ -11,6 +11,7 @@ export function NavIndicator() {
       <NavLink href="/" navKey="home">Home</NavLink>
       <NavLink href="/about" navKey="about">About</NavLink>
       <NavLink href="/people" navKey="people">People</NavLink>
+      <NavLink href="/hackathon" navKey="hackathon">Hackathon</NavLink>
       <NavLink href="/contact" navKey="contact">Contact</NavLink>
       <span className="nav-indicator" aria-hidden="true" />
     </nav>

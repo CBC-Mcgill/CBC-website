@@ -39,14 +39,15 @@ export default function AboutPage() {
               with over 15,000 students enrolled globally.
             </p>
             <p className="section-copy reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
-              Each chapter is student-run and Anthropic-backed: McGill members receive free Claude Pro
-              access and API credits, and chapters are supported to run workshops, hackathons,
-              and demo days on their campuses.
+              Each chapter is student-run and officially Anthropic-backed. Anthropic gives us free Claude Pro
+              access and API credits, and the support needed to run AI tools and fluency workshops, hackathons,
+              and demo days on campuses.
             </p>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {[
               'MIT',
+              'Stanford',
               'Princeton',
               'UCLA',
               'Waterloo',

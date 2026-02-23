@@ -37,7 +37,7 @@ export default function HackathonPage() {
                   </span>
                 </div>
                 <h1 className="hackathon-title">
-                  Build Something<br />Real.
+                  Claude Builders AI Hackathon 2026<br />
                 </h1>
                 <p className="hackathon-lead">
                   One day. One theme. Build with Claude and ship something that matters.
