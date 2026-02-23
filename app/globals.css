@@ -345,6 +345,11 @@ main {
   max-width: 780px;
 }
 
+.page-hero h1 {
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  line-height: 1.15;
+}
+
 .eyebrow {
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -626,6 +631,10 @@ main {
   pointer-events: none;
   transform: translateY(0);
   animation: panelDrift 14s ease-in-out infinite;
+}
+
+.soft-panel .section-title {
+  margin-bottom: 0;
 }
 
 .schedule-list {
