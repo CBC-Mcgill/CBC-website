@@ -24,7 +24,7 @@ export const leadership: Person[] = [
   Person('Ethan Tran', 'VP Operations', "BOULDERING🧗🧗‍♀️🧗‍♂️‼️‼️‼️‼️", 'assets/people/ethan.png', '', 'https://www.linkedin.com/in/-ethantran-/', 'https://github.com/tran-ethan'),
   Person('Virgile Couture', 'VP Finance', "I am still a 6-hcp golfer on paper", 'assets/people/VirgileCouture.png', '', 'https://www.linkedin.com/in/v-couture/'),
   Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/placeholder.png', 'benjamin.ghaderi@mail.mcgill.ca', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
-  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjaminCoriat.jpeg', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
+  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjiCoriat.png', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
   Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/LawrenceKang.jpeg'),
 ];
 
@@ -37,6 +37,6 @@ export const associates: Person[] = [
   Person('Minh Vo', 'General Associate', "Tagline of what you'll do", 'assets/people/MinhVo.jpeg'),
   Person('Joshua', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Julien Yang', 'General Associate', "Tagline of what you'll do", 'assets/people/JulienYang.jpeg'),
-  Person('Parsa Rahimnia', 'General Associate', "Tagline of what you'll do", 'assets/people/ParsaRahimnia.jpeg'),
+  Person('Parsa Rahimnia', 'General Associate', "Claude University Alumni with a Bachelors in prompt engineering", 'assets/people/ParsaRahimnia.jpeg', '', '', ' https://github.com/ParseDotEXE'),
   Person('Ralph Azrak', 'General Associate', "Software Engineering student at McGill with a strong interest in product development and emerging technologies. As CBC Hackathon Team Lead, I coordinate teams and ensure we deliver a high-impact and well-organized event", 'assets/people/RalphAzrak.jpg', 'ralph.azrak@mail.mcgill.ca', 'www.linkedin.com/in/ralph-azrak/', 'https://github.com/RalphAzrak'),
 ];
