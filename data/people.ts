@@ -20,10 +20,10 @@ const Person = (
 });
 
 export const leadership: Person[] = [
-  Person('Thai Tran', 'President', "I max out my Claude Pro usage at least twice a day", 'assets/people/ThaiTran.png'),
-  Person('Ethan Tran', 'VP Operations', "Tagline of what you'll do", 'assets/people/ethan.png'),
+  Person('Thai Tran', 'President', "I max out my Claude Pro usage at least twice a day", 'assets/people/ThaiTran.png', '', 'https://www.linkedin.com/in/thai-tran-minh/', 'https://github.com/thaimtl/'),
+  Person('Ethan Tran', 'VP Operations', "BOULDERING🧗🧗‍♀️🧗‍♂️‼️‼️‼️‼️", 'assets/people/ethan.png', '', 'https://www.linkedin.com/in/-ethantran-/', 'https://github.com/tran-ethan'),
   Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/VirgileCouture.png'),
-  Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/placeholder.png', '', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
+  Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/placeholder.png', 'benjamin.ghaderi@mail.mcgill.ca', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
   Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "Hi! My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjaminCoriat.jpeg', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
   Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/LawrenceKang.jpeg'),
 ];
@@ -31,7 +31,7 @@ export const leadership: Person[] = [
 export const associates: Person[] = [
   Person('Annie Huynh', 'Media Associate', "Tagline of what you'll do", 'assets/people/AnnieHuynh.jpeg'),
   Person('Jason Wang', 'Financial Associate', "I'm gonna name my son Claude", 'assets/people/JasonWang.png'),
-  Person('Rayyan Khan', 'General Associate', "Tagline of what you'll do", 'assets/people/RayyanKhan.png'),
+  Person('Rayyan Khan', 'General Associate', "I’m building Quebec’s largest Islamic charity hackathon: muslimhacks.ca", 'assets/people/RayyanKhan.png', '', 'https://www.linkedin.com/in/rayyankhan1', 'https://github.com/rayyankhan47'),
   Person('David Tang', 'General Associate', "Tagline of what you'll do", 'assets/people/DavidTang.jpeg'),
   Person('Mubeen Mohammed', 'General Associate', "Tagline of what you'll do", 'assets/people/MubeenMohammed.jpeg'),
   Person('Minh Vo', 'General Associate', "Tagline of what you'll do", 'assets/people/MinhVo.jpeg'),
