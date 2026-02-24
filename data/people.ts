@@ -24,13 +24,13 @@ export const leadership: Person[] = [
   Person('Ethan Tran', 'VP Operations', "Tagline of what you'll do", 'assets/people/ethan.png'),
   Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/VirgileCouture.png'),
   Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/placeholder.png', '', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
-  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/BenjaminCoriat.jpeg'),
+  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "Hi! My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjaminCoriat.jpeg', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
   Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/LawrenceKang.jpeg'),
 ];
 
 export const associates: Person[] = [
   Person('Annie Huynh', 'Media Associate', "Tagline of what you'll do", 'assets/people/AnnieHuynh.jpeg'),
-  Person('Jason Wang', 'Financial Associate', "Tagline of what you'll do", 'assets/people/JasonWang.png'),
+  Person('Jason Wang', 'Financial Associate', "I'm gonna name my son Claude", 'assets/people/JasonWang.png'),
   Person('Rayyan Khan', 'General Associate', "Tagline of what you'll do", 'assets/people/RayyanKhan.png'),
   Person('David Tang', 'General Associate', "Tagline of what you'll do", 'assets/people/DavidTang.jpeg'),
   Person('Mubeen Mohammed', 'General Associate', "Tagline of what you'll do", 'assets/people/MubeenMohammed.jpeg'),
@@ -38,5 +38,5 @@ export const associates: Person[] = [
   Person('Joshua', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Julien Yang', 'General Associate', "Tagline of what you'll do", 'assets/people/JulienYang.jpeg'),
   Person('Parsa Rahimnia', 'General Associate', "Tagline of what you'll do", 'assets/people/ParsaRahimnia.jpeg'),
-  Person('Ralph Azrak', 'General Associate', "Tagline of what you'll do", 'assets/people/RalphAzrak.jpg'),
+  Person('Ralph Azrak', 'General Associate', "Software Engineering student at McGill with a strong interest in product development and emerging technologies. As CBC Hackathon Team Lead, I coordinate teams and ensure we deliver a high-impact and well-organized event", 'assets/people/RalphAzrak.jpg', 'ralph.azrak@mail.mcgill.ca', 'www.linkedin.com/in/ralph-azrak/', 'https://github.com/RalphAzrak'),
 ];
