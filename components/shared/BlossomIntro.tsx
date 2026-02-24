@@ -1,22 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { type CSSProperties, useEffect } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const INTRO_KEY = 'cbcIntroPlayed';
-
-const PETAL_ANGLES = [0, 60, 120, 180, 240, 300];
+const TITLE_LETTERS = Array.from('CLAUDE');
+const RING_COUNT = [0, 1, 2];
+const SPARK_COUNT = Array.from({ length: 14 }, (_, index) => index);
 
 export function BlossomIntro() {
-  const pathname = usePathname();
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('intro-play');
 
-    if (pathname !== '/' || reduceMotion) {
+    if (reduceMotion) {
       root.classList.add('intro-complete');
       return;
     }
@@ -45,26 +44,47 @@ export function BlossomIntro() {
     const timeout = window.setTimeout(() => {
       root.classList.add('intro-complete');
       root.classList.remove('intro-play');
-    }, 2400);
+    }, 3000);
 
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [pathname, reduceMotion]);
+  }, [reduceMotion]);
 
   return (
     <div id="blossom-intro" aria-hidden="true">
-      <div className="wash" />
-      <div className="blossom">
-        {PETAL_ANGLES.map((angle) => (
+      <div className="intro-backdrop" />
+      <div className="intro-orbit">
+        {RING_COUNT.map((ring) => (
           <span
-            key={angle}
-            className="petal"
-            style={{ '--angle': `${angle}deg` } as React.CSSProperties}
+            key={ring}
+            className="orbit-ring"
+            style={{ '--ring-index': ring } as CSSProperties}
           />
         ))}
-        <span className="core" />
+        {SPARK_COUNT.map((spark) => (
+          <span
+            key={spark}
+            className="orbit-spark"
+            style={{ '--spark-index': spark } as CSSProperties}
+          />
+        ))}
       </div>
+      <div className="intro-wordmark">
+        <div className="wordmark-title">
+          {TITLE_LETTERS.map((letter, index) => (
+            <span
+              key={`${letter}-${index}`}
+              className="title-letter"
+              style={{ '--letter-index': index } as CSSProperties}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+        <div className="wordmark-subtitle">@ McGill</div>
+      </div>
+      <div className="intro-flash" />
     </div>
   );
 }

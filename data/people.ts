@@ -22,9 +22,9 @@ const Person = (
 export const leadership: Person[] = [
   Person('Thai Tran', 'President', "I max out my Claude Pro usage at least twice a day", 'assets/people/ThaiTran.png', '', 'https://www.linkedin.com/in/thai-tran-minh/', 'https://github.com/thaimtl/'),
   Person('Ethan Tran', 'VP Operations', "BOULDERING🧗🧗‍♀️🧗‍♂️‼️‼️‼️‼️", 'assets/people/ethan.png', '', 'https://www.linkedin.com/in/-ethantran-/', 'https://github.com/tran-ethan'),
-  Person('Virgile Couture', 'VP Finance', "Tagline of what you'll do", 'assets/people/VirgileCouture.png'),
+  Person('Virgile Couture', 'VP Finance', "I am still a 6-hcp golfer on paper", 'assets/people/VirgileCouture.png', '', 'https://www.linkedin.com/in/v-couture/'),
   Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/placeholder.png', 'benjamin.ghaderi@mail.mcgill.ca', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
-  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "Hi! My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjaminCoriat.jpeg', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
+  Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjaminCoriat.jpeg', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
   Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "Tagline of what you'll do", 'assets/people/LawrenceKang.jpeg'),
 ];
 
