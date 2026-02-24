@@ -3,11 +3,28 @@
 import { useNavIndicator } from '@/hooks/useNavIndicator';
 import { NavLink } from './NavLink';
 
-export function NavIndicator() {
+interface NavIndicatorProps {
+  className?: string;
+  onNavigate?: () => void;
+}
+
+export function NavIndicator({ className, onNavigate }: NavIndicatorProps) {
   const navRef = useNavIndicator();
 
+  const navClassName = className ? `site-nav ${className}` : 'site-nav';
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!(event.target as HTMLElement).closest('a')) return;
+    onNavigate?.();
+  };
+
   return (
-    <nav className="site-nav" aria-label="Primary" ref={navRef as React.RefObject<HTMLElement>}>
+    <nav
+      className={navClassName}
+      aria-label="Primary"
+      ref={navRef as React.RefObject<HTMLElement>}
+      onClick={handleClick}
+    >
       <NavLink href="/" navKey="home">Home</NavLink>
       <NavLink href="/about" navKey="about">About</NavLink>
       <NavLink href="/people" navKey="people">People</NavLink>
