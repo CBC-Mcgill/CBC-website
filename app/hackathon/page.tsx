@@ -43,7 +43,7 @@ export default function HackathonPage() {
                 <p className="hackathon-lead">
                   One day. One theme. Build with Claude and ship something that matters.
                 </p>
-                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <div className="hack-btn-row">
                   <a
                     href={SIGN_UP_URL}
                     target="_blank"
@@ -165,12 +165,7 @@ export default function HackathonPage() {
       {/* ── BRIEF + TOOLS ─────────────────────────────────────── */}
       <section className="hack-section">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 'var(--space-6)',
-            alignItems: 'start',
-          }}>
+          <div className="hack-brief-grid">
 
             {/* Left: mission brief */}
             <div>
@@ -193,7 +188,7 @@ export default function HackathonPage() {
 
             {/* Right: tool cards */}
             <div className="reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
-              <div className="integration-grid" style={{ gridTemplateColumns: '1fr', marginTop: 0 }}>
+              <div className="integration-grid integration-grid-single">
                 <div className="integration-card">
                   <span className="option-label">01</span>
                   <div className="integration-icon">
@@ -242,7 +237,7 @@ export default function HackathonPage() {
             <p className="hackathon-lead" style={{ textAlign: 'center', marginBottom: 0 }}>
               Register now — free, open to all universities, no experience required.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="hack-btn-row hack-btn-row-center">
               <a
                 href={SIGN_UP_URL}
                 target="_blank"
