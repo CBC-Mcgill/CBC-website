@@ -33,7 +33,7 @@ export const associates: Person[] = [
   Person('Jason Wang', 'Financial Associate', "I'm gonna name my son Claude", 'assets/people/JasonWang.png'),
   Person('Rayyan Khan', 'General Associate', "I’m building Quebec’s largest Islamic charity hackathon: muslimhacks.ca", 'assets/people/RayyanKhan.png', '', 'https://www.linkedin.com/in/rayyankhan1', 'https://github.com/rayyankhan47'),
   Person('David Tang', 'General Associate', "Tagline of what you'll do", 'assets/people/DavidTang.jpeg'),
-  Person('Mubeen Mohammed', 'General Associate', "Tagline of what you'll do", 'assets/people/MubeenMohammed.jpeg'),
+  Person('Mubeen Mohammed', 'General Associate', "I am a U3 Computer Science student with an interest in ML and AI. I play squash and read manga in my free time", 'assets/people/MubeenMohammed.jpeg', 'mubeen.mohammed@mail.mcgill.ca', 'https://www.linkedin.com/in/mubeen12', 'https://github.com/mubeenmohammed'),
   Person('Minh Vo', 'General Associate', "Tagline of what you'll do", 'assets/people/MinhVo.jpeg'),
   Person('Joshua', 'General Associate', "Tagline of what you'll do", 'assets/people/placeholder.png'),
   Person('Julien Yang', 'General Associate', "Tagline of what you'll do", 'assets/people/JulienYang.jpeg'),

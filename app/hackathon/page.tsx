@@ -179,11 +179,6 @@ export default function HackathonPage() {
                    Free to enter. Open to all universities.</p>
                 <p>Build something a real person would use. You have a 6-hour build window.</p>
               </div>
-              <p className="hackathon-volunteer-inline reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
-                <a href={VOLUNTEER_URL} target="_blank" rel="noopener noreferrer">
-                  Interested in volunteering?
-                </a>
-              </p>
             </div>
 
             {/* Right: tool cards */}
@@ -262,11 +257,6 @@ export default function HackathonPage() {
               letterSpacing: '0.04em',
             }}>
               Organized by Claude Builder Club @ McGill · In partnership with Anthropic
-            </p>
-            <p className="hackathon-volunteer-inline">
-              <a href={VOLUNTEER_URL} target="_blank" rel="noopener noreferrer">
-                Interested in volunteering?
-              </a>
             </p>
           </div>
         </div>
