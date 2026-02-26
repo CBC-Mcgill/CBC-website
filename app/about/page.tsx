@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="section">
-        <div className="container page-hero">
+        <div className="container page-hero page-hero--about">
           <p className="eyebrow reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
             About CBC
           </p>

@@ -6,25 +6,27 @@
   padding: 0.75rem 1.6rem;
   border-radius: 999px;
   border: 1px solid transparent;
-  background: linear-gradient(140deg, #d08a4a, #b56f36);
+  background: linear-gradient(140deg, #d08a4a 0%, #c77f44 48%, #b56f36 100%);
+  background-size: 170% 170%;
+  background-position: 0% 50%;
   color: #fff;
   font-size: 0.95rem;
   letter-spacing: 0.02rem;
   box-shadow: 0 12px 26px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background-position 0.3s var(--ease), background-color 0.3s var(--ease), filter 0.3s var(--ease);
+  filter: none;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 30px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
-  background: var(--color-accent-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.32);
+  background-position: 100% 45%;
+  filter: brightness(1.08) saturate(1.05);
 }
 
 .btn-ghost {
-  background: transparent;
+  background-color: transparent;
   color: rgba(255, 235, 210, 0.75);
   border-color: rgba(255, 220, 180, 0.22);
   box-shadow: none;
@@ -32,6 +34,7 @@
 
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
-  background: var(--color-paper-dust);
+  background-color: var(--color-paper-dust);
   box-shadow: 0 12px 30px rgba(40, 33, 26, 0.12);
+  filter: none;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { clubLinks } from '@/data/links';
+import { DiscordIcon, InstagramIcon, LinkedInIcon, GitHubIcon, SignupIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Claude Builder Club · Contact',
@@ -31,32 +32,36 @@ export default function ContactPage() {
               <div className="detail-item">
                 <span>Discord</span>
                 <strong>
-                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer">
-                    Join the server
+                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><DiscordIcon /></span>
+                    <span className="club-link-label">Join the server</span>
                   </a>
                 </strong>
               </div>
               <div className="detail-item">
                 <span>Instagram</span>
                 <strong>
-                  <a href={clubLinks.instagram} target="_blank" rel="noopener noreferrer">
-                    Follow CBC
+                  <a href={clubLinks.instagram} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><InstagramIcon /></span>
+                    <span className="club-link-label">Follow CBC</span>
                   </a>
                 </strong>
               </div>
               <div className="detail-item">
                 <span>LinkedIn</span>
                 <strong>
-                  <a href={clubLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                    Connect on LinkedIn
+                  <a href={clubLinks.linkedin} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><LinkedInIcon /></span>
+                    <span className="club-link-label">Connect on LinkedIn</span>
                   </a>
                 </strong>
               </div>
               <div className="detail-item">
                 <span>Sign-up Form</span>
                 <strong>
-                  <a href={clubLinks.signup} target="_blank" rel="noopener noreferrer">
-                    Apply to join CBC
+                  <a href={clubLinks.signup} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><SignupIcon /></span>
+                    <span className="club-link-label">Apply to join CBC</span>
                   </a>
                 </strong>
               </div>
@@ -72,16 +77,18 @@ export default function ContactPage() {
               <div className="detail-item">
                 <span>GitHub</span>
                 <strong>
-                  <a href={clubLinks.github} target="_blank" rel="noopener noreferrer">
-                    View repositories
+                  <a href={clubLinks.github} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><GitHubIcon /></span>
+                    <span className="club-link-label">View repositories</span>
                   </a>
                 </strong>
               </div>
               <div className="detail-item">
                 <span>Announcements</span>
                 <strong>
-                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer">
-                    Check updates in Discord
+                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
+                    <span className="club-link-icon"><DiscordIcon /></span>
+                    <span className="club-link-label">Check updates in Discord</span>
                   </a>
                 </strong>
               </div>
