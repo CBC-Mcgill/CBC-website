@@ -22,8 +22,8 @@ export function HeroSection() {
             >
               Join CBC
             </a>
-            <Link className="btn btn-ghost" href="#build-tracks">
-              How it works
+            <Link className="btn btn-ghost" href="/hackathon">
+              Join our first Claude Hackathon
             </Link>
           </div>
           <div className="hero-meta reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
