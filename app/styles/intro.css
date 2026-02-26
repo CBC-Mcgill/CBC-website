@@ -1,0 +1,280 @@
+/* Intro wordmark animation */
+#blossom-intro {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(1400px 780px at 10% -15%, rgba(255, 214, 168, 0.18), transparent 60%),
+    radial-gradient(1000px 680px at 92% 15%, rgba(154, 180, 200, 0.12), transparent 58%),
+    var(--color-paper);
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+#blossom-intro .intro-backdrop {
+  position: absolute;
+  inset: -15%;
+  background:
+    repeating-linear-gradient(110deg, rgba(255, 223, 188, 0.05) 0 10px, transparent 10px 24px),
+    radial-gradient(circle at center, rgba(255, 240, 225, 0.24), rgba(13, 11, 8, 0.28) 40%, transparent 68%);
+  opacity: 0;
+  transform: scale(1.2) rotate(-4deg);
+}
+
+#blossom-intro .intro-orbit {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+#blossom-intro .orbit-ring {
+  --ring-size: calc(240px + 140px * var(--ring-index));
+  position: absolute;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 223, 188, 0.45);
+  box-shadow:
+    inset 0 0 24px rgba(255, 223, 188, 0.22),
+    0 0 28px rgba(154, 180, 200, 0.18);
+  opacity: 0;
+  transform: scale(0.35) rotate(calc(25deg * var(--ring-index)));
+}
+
+#blossom-intro .orbit-spark {
+  --spark-angle: calc((360deg / 14) * var(--spark-index));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(5px, 1vw, 10px);
+  height: clamp(5px, 1vw, 10px);
+  border-radius: 999px;
+  background: radial-gradient(circle, #fff7ee 0%, rgba(255, 225, 190, 0.8) 55%, rgba(255, 225, 190, 0) 100%);
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--spark-angle)) translateY(-170px) scale(0.2);
+  filter: blur(0.6px);
+}
+
+#blossom-intro .intro-wordmark {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  padding-inline: 1rem;
+}
+
+#blossom-intro .wordmark-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.22rem, 0.9vw, 0.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 10vw, 8rem);
+  font-weight: 650;
+  letter-spacing: clamp(0.14rem, 0.7vw, 0.75rem);
+  color: #fff5e7;
+  text-shadow:
+    0 0 42px rgba(255, 229, 192, 0.18),
+    0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+#blossom-intro .title-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(36px) scale(0.76) rotateX(70deg);
+  transform-origin: center bottom;
+  filter: blur(10px);
+}
+
+#blossom-intro .wordmark-subtitle {
+  position: relative;
+  width: max-content;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.4vw, 1.65rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 227, 191, 0.88);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#blossom-intro .wordmark-subtitle::before,
+#blossom-intro .wordmark-subtitle::after {
+  content: "";
+  position: absolute;
+  top: 52%;
+  width: clamp(34px, 9vw, 120px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 227, 191, 0), rgba(255, 227, 191, 0.7), rgba(255, 227, 191, 0));
+}
+
+#blossom-intro .wordmark-subtitle::before {
+  right: calc(100% + 0.85rem);
+}
+
+#blossom-intro .wordmark-subtitle::after {
+  left: calc(100% + 0.85rem);
+}
+
+#blossom-intro .intro-flash {
+  position: absolute;
+  width: min(130vw, 2000px);
+  height: min(65vh, 460px);
+  background: linear-gradient(90deg, rgba(255, 233, 206, 0), rgba(255, 233, 206, 0.72), rgba(255, 233, 206, 0));
+  opacity: 0;
+  transform: translate(-28%, 86%) rotate(-10deg) scaleY(0.55);
+  mix-blend-mode: screen;
+}
+
+html.intro-play #blossom-intro .intro-backdrop {
+  animation: introBackdropPulse 2.2s var(--ease) forwards;
+}
+
+html.intro-play #blossom-intro .orbit-ring {
+  animation: introRingPulse 1.7s var(--ease) forwards;
+  animation-delay: calc(140ms * var(--ring-index));
+}
+
+html.intro-play #blossom-intro .orbit-spark {
+  animation: introSparkBurst 1.6s var(--ease) forwards;
+  animation-delay: calc(45ms * var(--spark-index));
+}
+
+html.intro-play #blossom-intro .title-letter {
+  animation: introLetterPop 0.95s var(--ease) forwards;
+  animation-delay: calc(140ms + 85ms * var(--letter-index));
+}
+
+html.intro-play #blossom-intro .wordmark-subtitle {
+  animation: introSubtitleRise 0.85s var(--ease) forwards;
+  animation-delay: 780ms;
+}
+
+html.intro-play #blossom-intro .intro-flash {
+  animation: introFlashSweep 1.45s var(--ease) forwards;
+  animation-delay: 520ms;
+}
+
+html.intro-play #blossom-intro {
+  animation: introFade 0.75s var(--ease) forwards;
+  animation-delay: 1.95s;
+}
+
+html.intro-complete #blossom-intro {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s var(--ease), visibility 0s 0.6s;
+}
+
+@keyframes introBackdropPulse {
+  0% {
+    opacity: 0;
+    transform: scale(1.2) rotate(-4deg);
+  }
+  45% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.42;
+    transform: scale(1.02) rotate(0deg);
+  }
+}
+
+@keyframes introRingPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.35) rotate(calc(25deg * var(--ring-index)));
+  }
+  42% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.58) rotate(calc(55deg + 35deg * var(--ring-index)));
+  }
+}
+
+@keyframes introSparkBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--spark-angle)) translateY(-130px) scale(0.1);
+  }
+  36% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--spark-angle)) translateY(-250px) scale(1.22);
+  }
+}
+
+@keyframes introLetterPop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.76) rotateX(70deg);
+    filter: blur(10px);
+  }
+  68% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02) rotateX(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes introSubtitleRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    letter-spacing: 0.42em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.28em;
+  }
+}
+
+@keyframes introFlashSweep {
+  0% {
+    opacity: 0;
+    transform: translate(-30%, 86%) rotate(-10deg) scaleY(0.55);
+  }
+  40% {
+    opacity: 0.92;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(26%, -42%) rotate(-10deg) scaleY(1.02);
+  }
+}
+
+@keyframes introFade {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  #blossom-intro .wordmark-title {
+    letter-spacing: clamp(0.1rem, 0.58vw, 0.38rem);
+  }
+
+  #blossom-intro .wordmark-subtitle {
+    letter-spacing: 0.22em;
+  }
+
+  #blossom-intro .wordmark-subtitle::before,
+  #blossom-intro .wordmark-subtitle::after {
+    width: clamp(22px, 6vw, 52px);
+  }
+}
