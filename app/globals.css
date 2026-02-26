@@ -8,6 +8,7 @@
  * When updating a token value, update BOTH blocks to keep them in sync.
  * Spacing tokens (--space-*) and --container-width live in :root only — Tailwind
  * does not need them because no utility classes reference them.
+ * --color-accent-soft in @theme references --accent-r/g/b from :root (resolved at runtime).
  */
 @theme {
   --color-paper:         #0d0b08;
@@ -2084,6 +2085,28 @@ body.page-leave .page-shell {
   letter-spacing: 0.18rem;
   color: rgba(255, 220, 180, 0.5);
   font-family: var(--font-display);
+}
+
+.hackathon-date-badge {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.6);
+  border: 1px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.hackathon-warning-text {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: #e8a870;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-left: 3px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.7);
+  padding-left: 0.75rem;
+  margin: 0;
 }
 
 /* Dark title & lead */

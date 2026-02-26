@@ -25,15 +25,7 @@ export default function HackathonPage() {
               <div className="hackathon-hero-copy reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
                 <div className="hackathon-eyebrow">
                   <span className="hackathon-org-label">CBC @ McGill</span>
-                  <span style={{
-                    fontFamily: "'SF Mono', 'Fira Code', monospace",
-                    fontSize: '0.75rem',
-                    color: 'rgba(201, 130, 69, 0.6)',
-                    border: '1px solid rgba(201, 130, 69, 0.25)',
-                    borderRadius: '4px',
-                    padding: '0.15rem 0.55rem',
-                    letterSpacing: '0.06em',
-                  }}>
+                  <span className="hackathon-date-badge">
                     April 4, 2026
                   </span>
                 </div>
@@ -61,17 +53,7 @@ export default function HackathonPage() {
                     View Full Details
                   </a>
                 </div>
-                <p style={{
-                  fontFamily: "'SF Mono', 'Fira Code', monospace",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
-                  color: '#e8a870',
-                  fontWeight: 700,
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  borderLeft: '3px solid rgba(201, 130, 69, 0.7)',
-                  paddingLeft: '0.75rem',
-                  margin: 0,
-                }}>
+                <p className="hackathon-warning-text">
                   ⚠ Applications close March 16th
                 </p>
               </div>
