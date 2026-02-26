@@ -26,7 +26,8 @@
 }
 
 .btn-ghost {
-  background-color: transparent;
+  background: rgba(13, 11, 8, 0.72);
+  background-image: none;
   color: rgba(255, 235, 210, 0.75);
   border-color: rgba(255, 220, 180, 0.22);
   box-shadow: none;
@@ -34,7 +35,8 @@
 
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
-  background-color: var(--color-paper-dust);
+  background: var(--color-paper-dust);
+  background-image: none;
   box-shadow: 0 12px 30px rgba(40, 33, 26, 0.12);
   filter: none;
 }

@@ -1,17 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NavIndicator } from '@/components/navigation/NavIndicator';
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
+  const [openPathname, setOpenPathname] = useState<string | null>(null);
+  const isMenuOpen = openPathname === pathname;
 
   const menuId = 'primary-navigation';
 
@@ -30,7 +27,9 @@ export function SiteHeader() {
             aria-expanded={isMenuOpen}
             aria-controls={menuId}
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            onClick={() => setIsMenuOpen((open) => !open)}
+            onClick={() => {
+              setOpenPathname((currentPath) => (currentPath === pathname ? null : pathname));
+            }}
           >
             <span />
             <span />
@@ -40,7 +39,7 @@ export function SiteHeader() {
         <div className={`header-nav-wrap${isMenuOpen ? ' is-open' : ''}`} id={menuId}>
           <NavIndicator
             className={isMenuOpen ? 'is-open' : undefined}
-            onNavigate={() => setIsMenuOpen(false)}
+            onNavigate={() => setOpenPathname(null)}
           />
         </div>
       </div>

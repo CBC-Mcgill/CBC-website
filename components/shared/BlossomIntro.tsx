@@ -1,54 +1,75 @@
 'use client';
 
-import { type CSSProperties, useEffect } from 'react';
+import { type CSSProperties, useEffect, useRef } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const INTRO_KEY = 'cbcIntroPlayed';
+const INTRO_DURATION_MS = 3000;
 const TITLE_LETTERS = Array.from('CLAUDE');
 const RING_COUNT = [0, 1, 2];
 const SPARK_COUNT = Array.from({ length: 14 }, (_, index) => index);
 
+const setIntroPlayed = () => {
+  try {
+    sessionStorage.setItem(INTRO_KEY, 'true');
+  } catch {
+    // ignore
+  }
+};
+
+const hasIntroPlayed = () => {
+  try {
+    return sessionStorage.getItem(INTRO_KEY) === 'true';
+  } catch {
+    return false;
+  }
+};
+
 export function BlossomIntro() {
   const reduceMotion = useReducedMotion();
+  const completionTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('intro-play');
+
+    const clearCompletionTimeout = () => {
+      if (completionTimeoutRef.current === null) return;
+      window.clearTimeout(completionTimeoutRef.current);
+      completionTimeoutRef.current = null;
+    };
+
+    const markIntroComplete = () => {
+      root.classList.remove('intro-play');
+      root.classList.add('intro-complete');
+      setIntroPlayed();
+    };
 
     if (reduceMotion) {
-      root.classList.add('intro-complete');
-      return;
+      clearCompletionTimeout();
+      markIntroComplete();
+      return clearCompletionTimeout;
     }
 
-    let hasPlayed = false;
-    try {
-      hasPlayed = sessionStorage.getItem(INTRO_KEY) === 'true';
-    } catch {
-      hasPlayed = false;
+    if (hasIntroPlayed()) {
+      clearCompletionTimeout();
+      markIntroComplete();
+      return clearCompletionTimeout;
     }
 
-    if (hasPlayed) {
-      root.classList.add('intro-complete');
-      return;
+    setIntroPlayed();
+
+    if (!root.classList.contains('intro-play')) {
+      root.classList.remove('intro-complete');
+      root.classList.add('intro-play');
     }
 
-    try {
-      sessionStorage.setItem(INTRO_KEY, 'true');
-    } catch {
-      // ignore
-    }
+    clearCompletionTimeout();
+    completionTimeoutRef.current = window.setTimeout(() => {
+      completionTimeoutRef.current = null;
+      markIntroComplete();
+    }, INTRO_DURATION_MS);
 
-    root.classList.remove('intro-complete');
-    root.classList.add('intro-play');
-
-    const timeout = window.setTimeout(() => {
-      root.classList.add('intro-complete');
-      root.classList.remove('intro-play');
-    }, 3000);
-
-    return () => {
-      window.clearTimeout(timeout);
-    };
+    return clearCompletionTimeout;
   }, [reduceMotion]);
 
   return (
