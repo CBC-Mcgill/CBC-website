@@ -2477,6 +2477,8 @@ body.page-leave .page-shell {
   min-height: 100vh;
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
   font-size: 0.88rem;
+  margin-top: calc(-1 * var(--space-5));    /* cancel main padding-top: 2rem  */
+  margin-bottom: calc(-1 * var(--space-8)); /* cancel main padding-bottom: 6rem */
 }
 
 /* Section base */
