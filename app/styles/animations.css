@@ -136,6 +136,10 @@ body.page-leave .page-shell {
   }
 }
 
+::view-transition {
+  background-color: var(--color-paper);
+}
+
 ::view-transition-old(root) {
   animation: vtFadeOut 0.45s var(--ease) both;
 }
