@@ -1,0 +1,37 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(140deg, #d08a4a, #b56f36);
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.02rem;
+  box-shadow: 0 12px 26px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
+  background: var(--color-accent-strong);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(255, 235, 210, 0.75);
+  border-color: rgba(255, 220, 180, 0.22);
+  box-shadow: none;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background: var(--color-paper-dust);
+  box-shadow: 0 12px 30px rgba(40, 33, 26, 0.12);
+}

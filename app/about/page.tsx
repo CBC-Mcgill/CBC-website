@@ -87,9 +87,9 @@ export default function AboutPage() {
               ].map((item) => (
                 <li
                   key={item}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', color: 'var(--muted)', fontSize: '0.93rem' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', color: 'var(--color-muted)', fontSize: '0.93rem' }}
                 >
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--accent)', flexShrink: 0 }} />
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--color-accent)', flexShrink: 0 }} />
                   {item}
                 </li>
               ))}
@@ -107,21 +107,21 @@ export default function AboutPage() {
             <div className="schedule-item reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
               <div>
                 <strong>Kickoff + onboarding</strong>
-                <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Get tools, join project pods, set build goals</p>
+                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Get tools, join project pods, set build goals</p>
               </div>
               <span>Week 1</span>
             </div>
             <div className="schedule-item reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
               <div>
                 <strong>Workshop cycles</strong>
-                <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Weekly practical sessions with experts and peers</p>
+                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Weekly practical sessions with experts and peers</p>
               </div>
               <span>Weekly</span>
             </div>
             <div className="schedule-item reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
               <div>
                 <strong>Demo days + hackathon</strong>
-                <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Ship, present, and compete for prizes with sponsors</p>
+                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Ship, present, and compete for prizes with sponsors</p>
               </div>
               <span>Seasonal</span>
             </div>
