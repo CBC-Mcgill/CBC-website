@@ -29,11 +29,11 @@ export function HeroSection() {
           <div className="hero-meta reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
             <div className="meta-card">
               <div className="meta-label">Free Claude Pro</div>
-              <div className="meta-value">McGill students get free access to the latest models via Claude Code</div>
+              <div className="meta-value">McGill students get free access to Claude Pro, allowing more usage and access to Claude Code.</div>
             </div>
             <div className="meta-card">
               <div className="meta-label">Workshops</div>
-              <div className="meta-value">Biweekly lectures headed by McGill students + Frequent workshops</div>
+              <div className="meta-value">Biweekly workshops + demos on AI tools where McGill builders can connect.</div>
             </div>
             <div className="meta-card">
               <div className="meta-label">Build with Claude</div>
