@@ -42,12 +42,12 @@
   --muted: rgba(255, 210, 165, 0.48);
   --accent: #c98245;
   --accent-strong: #d4894a;
-  --accent-soft: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.16);
   /* Accent RGB channels — update these 3 values to retheme the accent color.
      Use: rgba(var(--accent-r), var(--accent-g), var(--accent-b), <opacity>) */
   --accent-r: 201;
   --accent-g: 130;
   --accent-b: 69;
+  --accent-soft: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.16);
   --cool: #9ab4c8;
   --line: rgba(255, 220, 180, 0.13);
   --surface: #141109;
@@ -1039,7 +1039,7 @@ main {
 
 .people-grid.is-static .person-card:hover,
 .people-grid.is-static .person-card:focus-within {
-  background: linear-gradient(140deg, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.12), rgba(177, 120, 69, 0.05));
+  background: linear-gradient(140deg, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.12), rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.04));
   border-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
   transform: translateY(-4px);
   box-shadow:
