@@ -56,20 +56,7 @@ export default function AboutPage() {
               'Cambridge',
               '60+ universities worldwide',
             ].map((school) => (
-              <span
-                key={school}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  padding: '0.3rem 0.85rem',
-                  borderRadius: '999px',
-                  background: 'rgba(201, 130, 69, 0.09)',
-                  border: '1px solid rgba(201, 130, 69, 0.22)',
-                  color: 'var(--accent-strong)',
-                  fontSize: '0.83rem',
-                  letterSpacing: '0.01rem',
-                }}
-              >
+              <span key={school} className="school-tag">
                 {school}
               </span>
             ))}
