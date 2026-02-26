@@ -133,7 +133,7 @@ export default function AboutPage() {
             </div>
             <div className="schedule-item reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
               <div>
-                <strong>Demo day + hackathons</strong>
+                <strong>Demo days + hackathon</strong>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Ship, present, and compete for prizes with sponsors</p>
               </div>
               <span>Seasonal</span>
@@ -168,9 +168,9 @@ export default function AboutPage() {
           </div>
           <div>
             <ImgFrame
-              src="/assets/ui/notebook.png"
-              alt="Claude Builder Club planning notebook"
-              label="CBC Notebook"
+              src="/assets/ui/claudeHats.jpg"
+              alt="Claude Builder Club members wearing Claude hats"
+              label="CBC Hats"
             />
           </div>
         </div>
