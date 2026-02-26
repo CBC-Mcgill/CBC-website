@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/*
+ * DESIGN TOKENS — defined twice on purpose:
+ *   @theme {}  → generates Tailwind utility classes (bg-accent, text-ink, etc.)
+ *   :root  {}  → CSS custom properties used by the legacy class names in this file
+ *
+ * When updating a token value, update BOTH blocks to keep them in sync.
+ * Spacing tokens (--space-*) and --container-width live in :root only — Tailwind
+ * does not need them because no utility classes reference them.
+ */
 @theme {
   --color-paper:         #0d0b08;
   --color-paper-deep:    #090806;
@@ -34,6 +43,11 @@
   --accent: #c98245;
   --accent-strong: #d4894a;
   --accent-soft: rgba(201, 130, 69, 0.16);
+  /* Accent RGB channels — update these 3 values to retheme the accent color.
+     Use: rgba(var(--accent-r), var(--accent-g), var(--accent-b), <opacity>) */
+  --accent-r: 201;
+  --accent-g: 130;
+  --accent-b: 69;
   --cool: #9ab4c8;
   --line: rgba(255, 220, 180, 0.13);
   --surface: #141109;
