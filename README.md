@@ -1,1 +1,1 @@
-Website runs here: https://cbc-website-mocha.vercel.app/ and here https://www.claudebuildersmcgill.ca/
+Website runs here: https://cbc-website-mocha.vercel.app/ and https://www.claudebuildersmcgill.ca/
