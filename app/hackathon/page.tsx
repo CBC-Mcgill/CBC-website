@@ -236,7 +236,7 @@ export default function HackathonPage() {
               <div className="hack-file-box reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
                 <p>The theme is social impact. Five tracks. Real problems for real people.</p>
                 <p>78 universities across 12 countries are answering the same question: how can AI help people genuinely flourish? Pick your track. Form a team. Build something worth building.</p>
-                <p>Solo or up to three people. Free. Open to all universities. 8 hours to ship.</p>
+                <p>Solo or up to three people. Free. Open to all universities. 72 hours to ship.</p>
               </div>
             </div>
 
