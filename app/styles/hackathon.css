@@ -1211,3 +1211,165 @@
     width: 100%;
   }
 }
+
+/* ── Hackathon Sponsors ───────────────────────────────────── */
+
+.hack-sponsors-heading {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.hack-sponsors-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
+  background: linear-gradient(135deg, #f5c842 0%, #e8a035 35%, #ffd97a 65%, #c17030 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hack-sponsors-subtitle {
+  font-size: 0.88rem;
+  color: rgba(255, 235, 210, 0.4);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hack-sponsor-tier {
+  margin-bottom: var(--space-7);
+}
+
+/* Rule divider with centered label */
+.hack-sponsor-tier-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(255, 235, 210, 0.3);
+  margin-bottom: var(--space-5);
+  white-space: nowrap;
+}
+
+.hack-sponsor-tier-label::before,
+.hack-sponsor-tier-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 235, 210, 0.08);
+}
+
+.hack-sponsor-tier-note {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: rgba(255, 235, 210, 0.32);
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-top: calc(-1 * var(--space-3));
+  margin-bottom: var(--space-5);
+}
+
+/* Logo row */
+.hack-sponsor-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.hack-sponsor-logo {
+  display: block;
+  object-fit: contain;
+}
+
+.hack-sponsor-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.72;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hack-sponsor-logo-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Sub-challenge sponsor cards */
+.hack-subchal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.hack-subchal-card {
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 220, 180, 0.1);
+  border-left: 2px solid rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.4);
+  background: rgba(255, 220, 180, 0.025);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+  text-decoration: none;
+  color: inherit;
+}
+
+.hack-subchal-card:hover {
+  background: rgba(255, 220, 180, 0.055);
+}
+
+.hack-subchal-logo-wrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.hack-subchal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hack-subchal-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #fff8ef;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hack-subchal-track-badge {
+  display: inline-block;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.9);
+  border: 1px solid rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.28);
+  border-radius: 4px;
+  padding: 0.12rem 0.45rem;
+  width: fit-content;
+}
+
+.hack-subchal-tagline {
+  font-size: 0.82rem;
+  color: rgba(255, 235, 210, 0.35);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .hack-subchal-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -199,10 +199,7 @@ export default function HackathonPage() {
       {/* ── TRACKS ────────────────────────────────────────────── */}
       <section className="hack-section">
         <div className="container">
-          <div className="hack-tracks-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            <h2 className="hack-tracks-title">The Five Tracks</h2>
-            <p className="hack-tracks-sub">Every team picks one. Build for the people in it.</p>
-          </div>
+          <p className="hack-cmd reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>ls -1 tracks/</p>
           <div className="hack-track-grid">
 
             <div className="hack-track-card hack-track-card--health reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
@@ -298,10 +295,7 @@ export default function HackathonPage() {
       {/* ── JUDGING CRITERIA + AWARDS ─────────────────────────── */}
       <section className="hack-section">
         <div className="container">
-          <div className="hack-criteria-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            <h2>How Projects Are Judged</h2>
-            <p>Four dimensions. 100 points total. Ethical alignment weighs as much as technical execution.</p>
-          </div>
+          <p className="hack-cmd reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>ls -1 criteria/</p>
           <div className="hack-criteria-grid">
 
             <div className="hack-criteria-card reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
@@ -343,6 +337,115 @@ export default function HackathonPage() {
         </div>
       </section>
 
+      {/* ── SPONSORS ──────────────────────────────────────────── */}
+      <section className="hack-section">
+        <div className="container">
+
+          <div className="hack-sponsors-heading reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
+            <h2 className="hack-sponsors-title">Sponsors &amp; Partners</h2>
+          </div>
+
+          {/* Tier 1: Sub-challenge sponsors */}
+          <div className="hack-sponsor-tier reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
+            <div className="hack-sponsor-tier-label">Sponsors</div>
+            <p className="hack-sponsor-tier-note">Each sponsor hosts a sub-challenge — teams can win both the general prize and the sponsor&apos;s award.</p>
+            <div className="hack-subchal-grid">
+
+              <a href="https://rootly.com" target="_blank" rel="noopener noreferrer" className="hack-subchal-card" style={{ '--track-r': '109', '--track-g': '184', '--track-b': '154' } as React.CSSProperties}>
+                <div className="hack-subchal-logo-wrap">
+                  <img src="/assets/sponsors/rootlyhq_logo.jpg" alt="Rootly" width={90} height={40} className="hack-sponsor-logo" />
+                </div>
+                <div className="hack-subchal-info">
+                  <div className="hack-subchal-name">Rootly</div>
+                  <span className="hack-subchal-track-badge">Neuroscience &amp; Mental Health</span>
+                </div>
+              </a>
+
+              <a href="https://pcare.ca/" target="_blank" rel="noopener noreferrer" className="hack-subchal-card" style={{ '--track-r': '224', '--track-g': '122', '--track-b': '95' } as React.CSSProperties}>
+                <div className="hack-subchal-logo-wrap">
+                  <img src="/assets/sponsors/pcare+_logo.jpg" alt="Pcare+" width={90} height={40} className="hack-sponsor-logo" />
+                </div>
+                <div className="hack-subchal-info">
+                  <div className="hack-subchal-name">Pcare+</div>
+                  <span className="hack-subchal-track-badge">Biology &amp; Physical Health</span>
+                </div>
+              </a>
+
+              <a href="https://www.brimfinancial.com" target="_blank" rel="noopener noreferrer" className="hack-subchal-card" style={{ '--track-r': '232', '--track-g': '184', '--track-b': '75' } as React.CSSProperties}>
+                <div className="hack-subchal-logo-wrap">
+                  <img src="/assets/sponsors/brimfinancial_logo.jpg" alt="Brim Financial" width={90} height={40} className="hack-sponsor-logo" />
+                </div>
+                <div className="hack-subchal-info">
+                  <div className="hack-subchal-name">Brim Financial</div>
+                  <span className="hack-subchal-track-badge">Economic Empowerment</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          {/* Tier 2: Food & Beverage */}
+          <div className="hack-sponsor-tier reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
+            <div className="hack-sponsor-tier-label">Food &amp; Beverage</div>
+            <div className="hack-sponsor-logos">
+              <a href="https://www.dominos.com" target="_blank" rel="noopener noreferrer" className="hack-sponsor-logo-link">
+                <img
+                  src="/assets/sponsors/dominos_pizza_logo.jpg"
+                  alt="Domino's Pizza"
+                  width={100}
+                  height={50}
+                  className="hack-sponsor-logo"
+                />
+              </a>
+              <a href="https://www.drinkpoppi.com" target="_blank" rel="noopener noreferrer" className="hack-sponsor-logo-link">
+                <img
+                  src="/assets/sponsors/poppi_logo.jpg"
+                  alt="Poppi"
+                  width={100}
+                  height={50}
+                  className="hack-sponsor-logo"
+                />
+              </a>
+              <a href="https://www.redbull.com" target="_blank" rel="noopener noreferrer" className="hack-sponsor-logo-link">
+                <img
+                  src="/assets/sponsors/red_bull_logo.jpg"
+                  alt="Red Bull"
+                  width={100}
+                  height={50}
+                  className="hack-sponsor-logo"
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* Tier 3: Partners */}
+          <div className="hack-sponsor-tier reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
+            <div className="hack-sponsor-tier-label">Partners</div>
+            <div className="hack-sponsor-logos">
+              <a href="https://mcgillvc.ca/" target="_blank" rel="noopener noreferrer" className="hack-sponsor-logo-link">
+                <img
+                  src="/assets/partners/mcgill_ventures_logo.jpg"
+                  alt="McGill Ventures"
+                  width={150}
+                  height={70}
+                  className="hack-sponsor-logo"
+                />
+              </a>
+              <a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" className="hack-sponsor-logo-link">
+                <img
+                  src="/assets/partners/anthropicresearch_logo.jpg"
+                  alt="Anthropic"
+                  width={150}
+                  height={70}
+                  className="hack-sponsor-logo"
+                />
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── CTA ───────────────────────────────────────────────── */}
       <section className="hack-section">
         <div className="container">
@@ -351,7 +454,7 @@ export default function HackathonPage() {
               Ready to take on a real problem?
             </h2>
             <p className="hackathon-lead" style={{ textAlign: 'center', marginBottom: 0 }}>
-              Free. Open to all universities. No prior AI experience needed. Just pick a track and build something worth building.
+              Just pick a track and build something worth building.
             </p>
             <div className="hack-btn-row hack-btn-row-center">
               <a
