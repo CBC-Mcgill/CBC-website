@@ -208,7 +208,7 @@ export default function HackathonPage() {
               <div className="hackathon-stat-label">Date</div>
             </div>
             <div className="hackathon-stat-card">
-              <div className="hackathon-stat-value">1 week</div>
+              <div className="hackathon-stat-value">3 days</div>
               <div className="hackathon-stat-label">Build window</div>
             </div>
             <div className="hackathon-stat-card">
