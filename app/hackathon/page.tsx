@@ -331,7 +331,7 @@ export default function HackathonPage() {
       <section className="hack-section">
         <div className="container">
           <div className="hack-prizes-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            <div className="hack-prizes-total">$2,500+ in prizes</div>
+            <div className="hack-prizes-total">$3,000+ in prizes</div>
             <div className="hack-prizes-sub">Details announced soon. Prizes include Claude API credits + merch + cash</div>
           </div>
         </div>
@@ -366,7 +366,7 @@ export default function HackathonPage() {
                   <img src="/assets/sponsors/pcare+_logo.jpg" alt="Pcare+" width={90} height={40} className="hack-sponsor-logo" />
                 </div>
                 <div className="hack-subchal-info">
-                  <div className="hack-subchal-name">Pcare+</div>
+                  <div className="hack-subchal-name">PCare+</div>
                   <span className="hack-subchal-track-badge">Biology &amp; Physical Health</span>
                 </div>
               </a>
