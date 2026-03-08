@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Countdown from '@/components/hackathon/Countdown';
+import TrackCard from '@/components/hackathon/TrackCard';
 
 export const metadata: Metadata = {
   title: 'Claude Builder Club · Hackathon 2026',
@@ -10,6 +11,80 @@ export const metadata: Metadata = {
 const SIGN_UP_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc30XH0k_ZZdgyZ2tU-txvbN9lJtdC6XzVVRkBofVMWLwGZrg/viewform?usp=sharing&ouid=102839564480593837548';
 const DETAILS_URL = 'https://docs.google.com/document/d/1TEndbv3OXdaNVJrUVNzrXNNZ1ajDU1Ywh9OF3JF0lw0/edit?usp=sharing';
 const VOLUNTEER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeB5iUV9eD6u3xY4Lm9-VL5RkWaOvOiEbhts8a9jgVgyur9ig/viewform';
+
+const tracks = [
+  {
+    num: '01',
+    name: 'Biology and Physical Health',
+    problem: 'Healthcare is expensive, confusing, and out of reach for billions. Medical knowledge that could help people is locked behind jargon and paywalls.',
+    examples: ['Diagnostic aids for underserved clinics', 'Patient education tools', 'Health literacy for treatment decisions'],
+    modifier: 'hack-track-card--health',
+    delay: '0.15s',
+    icon: (
+      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    ),
+  },
+  {
+    num: '02',
+    name: 'Neuroscience and Mental Health',
+    problem: 'There are not enough therapists. Stigma prevents people from seeking help. Quality care is gatekept by insurance and geography.',
+    examples: ['Evidence-based therapeutic support tools', 'Mental health literacy platforms', 'Early recognition and triage tools'],
+    modifier: 'hack-track-card--mental',
+    delay: '0.2s',
+    icon: (
+      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+      </svg>
+    ),
+  },
+  {
+    num: '03',
+    name: 'Economic Empowerment and Education',
+    problem: 'Talent is universal. Access to quality education and opportunity is not. Language, geography, and wealth lock people out.',
+    examples: ['Adaptive tutoring', 'Career transition guidance', 'Financial literacy for underserved communities'],
+    modifier: 'hack-track-card--econ',
+    delay: '0.25s',
+    icon: (
+      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+      </svg>
+    ),
+  },
+  {
+    num: '04',
+    name: 'Governance and Collaboration',
+    problem: 'Civic participation is declining. Polarization makes productive dialogue difficult. Communities cannot coordinate around shared challenges.',
+    examples: ['Policy explanation tools', 'Community deliberation platforms', 'Nonpartisan voter education'],
+    modifier: 'hack-track-card--gov',
+    delay: '0.3s',
+    icon: (
+      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <line x1="12" y1="3" x2="12" y2="21"/>
+        <path d="M5 21h14"/>
+        <path d="M3 9l9-6 9 6"/>
+        <path d="M5 9v9M19 9v9"/>
+        <path d="M9 9v9M15 9v9"/>
+      </svg>
+    ),
+  },
+  {
+    num: '05',
+    name: 'Creative Flourishing',
+    problem: 'As AI handles routine work, questions about human purpose become urgent. Access to creative development and cultural preservation is unequal.',
+    examples: ['Community storytelling platforms', 'Language and culture preservation tools', 'Purpose and meaning exploration guides'],
+    modifier: 'hack-track-card--creative',
+    delay: '0.35s',
+    icon: (
+      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    ),
+  },
+];
 
 export default function HackathonPage() {
   return (
@@ -133,7 +208,7 @@ export default function HackathonPage() {
               <div className="hackathon-stat-label">Date</div>
             </div>
             <div className="hackathon-stat-card">
-              <div className="hackathon-stat-value">8 hrs</div>
+              <div className="hackathon-stat-value">1 week</div>
               <div className="hackathon-stat-label">Build window</div>
             </div>
             <div className="hackathon-stat-card">
@@ -201,93 +276,9 @@ export default function HackathonPage() {
         <div className="container">
           <p className="hack-cmd reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>ls -1 tracks/</p>
           <div className="hack-track-grid">
-
-            <div className="hack-track-card hack-track-card--health reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
-              <div className="hack-track-card-header">
-                <span className="hack-track-num">01</span>
-                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-              </div>
-              <h3 className="hack-track-name">Biology and Physical Health</h3>
-              <p className="hack-track-problem">Healthcare is expensive, confusing, and out of reach for billions. Medical knowledge that could help people is locked behind jargon and paywalls.</p>
-              <ul className="hack-track-examples">
-                <li>Diagnostic aids for underserved clinics</li>
-                <li>Patient education tools</li>
-                <li>Health literacy for treatment decisions</li>
-              </ul>
-            </div>
-
-            <div className="hack-track-card hack-track-card--mental reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-              <div className="hack-track-card-header">
-                <span className="hack-track-num">02</span>
-                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
-                  <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
-                </svg>
-              </div>
-              <h3 className="hack-track-name">Neuroscience and Mental Health</h3>
-              <p className="hack-track-problem">There are not enough therapists. Stigma prevents people from seeking help. Quality care is gatekept by insurance and geography.</p>
-              <ul className="hack-track-examples">
-                <li>Evidence-based therapeutic support tools</li>
-                <li>Mental health literacy platforms</li>
-                <li>Early recognition and triage tools</li>
-              </ul>
-            </div>
-
-            <div className="hack-track-card hack-track-card--econ reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
-              <div className="hack-track-card-header">
-                <span className="hack-track-num">03</span>
-                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
-              </div>
-              <h3 className="hack-track-name">Economic Empowerment and Education</h3>
-              <p className="hack-track-problem">Talent is universal. Access to quality education and opportunity is not. Language, geography, and wealth lock people out.</p>
-              <ul className="hack-track-examples">
-                <li>Adaptive tutoring</li>
-                <li>Career transition guidance</li>
-                <li>Financial literacy for underserved communities</li>
-              </ul>
-            </div>
-
-            <div className="hack-track-card hack-track-card--gov reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
-              <div className="hack-track-card-header">
-                <span className="hack-track-num">04</span>
-                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <line x1="12" y1="3" x2="12" y2="21"/>
-                  <path d="M5 21h14"/>
-                  <path d="M3 9l9-6 9 6"/>
-                  <path d="M5 9v9M19 9v9"/>
-                  <path d="M9 9v9M15 9v9"/>
-                </svg>
-              </div>
-              <h3 className="hack-track-name">Governance and Collaboration</h3>
-              <p className="hack-track-problem">Civic participation is declining. Polarization makes productive dialogue difficult. Communities cannot coordinate around shared challenges.</p>
-              <ul className="hack-track-examples">
-                <li>Policy explanation tools</li>
-                <li>Community deliberation platforms</li>
-                <li>Nonpartisan voter education</li>
-              </ul>
-            </div>
-
-            <div className="hack-track-card hack-track-card--creative reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-              <div className="hack-track-card-header">
-                <span className="hack-track-num">05</span>
-                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-              <h3 className="hack-track-name">Creative Flourishing</h3>
-              <p className="hack-track-problem">As AI handles routine work, questions about human purpose become urgent. Access to creative development and cultural preservation is unequal.</p>
-              <ul className="hack-track-examples">
-                <li>Community storytelling platforms</li>
-                <li>Language and culture preservation tools</li>
-                <li>Purpose and meaning exploration guides</li>
-              </ul>
-            </div>
-
+            {tracks.map(track => (
+              <TrackCard key={track.num} {...track} />
+            ))}
           </div>
         </div>
       </section>
