@@ -62,6 +62,18 @@
   color: rgba(255, 240, 220, 0.92);
 }
 
+.hack-essay-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 235, 210, 0.25);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.hack-essay-link:hover,
+.hack-essay-link:focus-visible {
+  color: rgba(255, 245, 230, 0.9);
+  border-bottom-color: rgba(255, 235, 210, 0.6);
+}
+
 .hackathon-volunteer-inline {
   margin-top: 0.9rem;
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
@@ -153,6 +165,12 @@
 .hackathon-lead {
   font-size: clamp(1rem, 1.4vw, 1.14rem);
   color: rgba(255, 235, 210, 0.7);
+  line-height: 1.72;
+}
+
+.hackathon-lead-sub {
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  color: rgba(255, 235, 210, 0.5);
   line-height: 1.72;
 }
 
@@ -841,6 +859,270 @@
   font-size: 0.8rem;
   color: rgba(255, 235, 210, 0.5);
   line-height: 1.6;
+}
+
+/* ── Hackathon Tracks ─────────────────────────────────────── */
+
+/* Per-track color modifiers */
+.hack-track-card--health  { --track-r: 224; --track-g: 122; --track-b: 95;  }
+.hack-track-card--mental  { --track-r: 109; --track-g: 184; --track-b: 154; }
+.hack-track-card--econ    { --track-r: 232; --track-g: 184; --track-b: 75;  }
+.hack-track-card--gov     { --track-r: 107; --track-g: 159; --track-b: 212; }
+.hack-track-card--creative{ --track-r: 176; --track-g: 127; --track-b: 212; }
+
+.hack-tracks-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.hack-tracks-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: #fff8ef;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.hack-tracks-sub {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 235, 210, 0.45);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.hack-track-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.hack-track-card {
+  padding: 1.8rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 220, 180, 0.1);
+  background: rgba(255, 220, 180, 0.03);
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.hack-track-card:hover {
+  border-color: rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.35);
+  background: rgba(255, 220, 180, 0.06);
+}
+
+.hack-track-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.hack-track-icon {
+  flex-shrink: 0;
+  color: rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.7);
+  margin-top: 0.05rem;
+}
+
+.hack-track-num {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.85);
+  letter-spacing: 0.1em;
+}
+
+.hack-track-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #fff8ef;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.hack-track-problem {
+  font-size: 0.85rem;
+  color: rgba(255, 235, 210, 0.5);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hack-track-examples {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.hack-track-examples li {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 235, 210, 0.55);
+  line-height: 1.5;
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.hack-track-examples li::before {
+  content: '/';
+  position: absolute;
+  left: 0;
+  color: rgba(var(--track-r, var(--accent-r)), var(--track-g, var(--accent-g)), var(--track-b, var(--accent-b)), 0.6);
+}
+
+@media (max-width: 980px) {
+  .hack-track-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hack-track-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Hackathon Judging Criteria ───────────────────────────── */
+
+.hack-criteria-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.hack-criteria-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: #fff8ef;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.hack-criteria-header p {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 235, 210, 0.45);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.hack-criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.hack-criteria-card {
+  padding: 1.8rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 220, 180, 0.1);
+  border-top: 2px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.5);
+  background: rgba(255, 220, 180, 0.03);
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.hack-criteria-card:hover {
+  background: rgba(255, 220, 180, 0.06);
+}
+
+.hack-criteria-pts {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.85);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+}
+
+.hack-criteria-name {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 235, 210, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.hack-criteria-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 235, 210, 0.5);
+  line-height: 1.65;
+  margin: 0.25rem 0 0;
+}
+
+@media (max-width: 640px) {
+  .hack-criteria-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Hackathon Special Awards ─────────────────────────────── */
+
+.hack-awards-header {
+  text-align: center;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 235, 210, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.hack-awards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.hack-award-badge {
+  flex: 1 1 240px;
+  max-width: 300px;
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 220, 180, 0.1);
+  background: rgba(255, 220, 180, 0.03);
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  text-align: center;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.hack-award-badge:hover {
+  border-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
+  background: rgba(255, 220, 180, 0.06);
+}
+
+.hack-award-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.hack-award-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #fff8ef;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hack-award-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 235, 210, 0.45);
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* Prizes + countdown responsive */

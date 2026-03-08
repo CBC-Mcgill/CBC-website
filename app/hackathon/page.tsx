@@ -33,7 +33,11 @@ export default function HackathonPage() {
                   Claude Builders AI Hackathon 2026<br />
                 </h1>
                 <p className="hackathon-lead">
-                  One day. One theme. Build with Claude and ship something that matters.
+                  One day. Five tracks. Build something that could change a life.
+                </p>
+                <p className="hackathon-lead-sub">
+                  Inspired by Dario Amodei&apos;s{' '}
+                  <a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank" rel="noopener noreferrer" className="hack-essay-link">&ldquo;Machines of Loving Grace.&rdquo;</a>
                 </p>
                 <div className="hack-btn-row">
                   <a
@@ -129,7 +133,7 @@ export default function HackathonPage() {
               <div className="hackathon-stat-label">Date</div>
             </div>
             <div className="hackathon-stat-card">
-              <div className="hackathon-stat-value">6 hrs</div>
+              <div className="hackathon-stat-value">8 hrs</div>
               <div className="hackathon-stat-label">Build window</div>
             </div>
             <div className="hackathon-stat-card">
@@ -155,11 +159,9 @@ export default function HackathonPage() {
                 cat mission-brief.md
               </p>
               <div className="hack-file-box reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-                <p>Claude Builders Hackathon is a one-day sprint at McGill where you build
-                   real AI products with Claude — Code, API, or both.</p>
-                <p>The theme is revealed on the morning of April 4th. Solo or team up to three.
-                   Free to enter. Open to all universities.</p>
-                <p>Build something a real person would use. You have a 6-hour build window.</p>
+                <p>The theme is social impact. Five tracks. Real problems for real people.</p>
+                <p>78 universities across 12 countries are answering the same question: how can AI help people genuinely flourish? Pick your track. Form a team. Build something worth building.</p>
+                <p>Solo or up to three people. Free. Open to all universities. 8 hours to ship.</p>
               </div>
             </div>
 
@@ -175,7 +177,7 @@ export default function HackathonPage() {
                     </svg>
                   </div>
                   <h3>Claude Code</h3>
-                  <p>Agentic coding in your terminal. Build entire features with natural language — Claude writes, runs, and iterates on code for you.</p>
+                  <p>Agentic coding in your terminal. Build entire features with natural language: Claude writes, runs, and iterates on code for you.</p>
                 </div>
                 <div className="integration-card">
                   <span className="option-label">02</span>
@@ -185,7 +187,7 @@ export default function HackathonPage() {
                     </svg>
                   </div>
                   <h3>Claude API</h3>
-                  <p>Direct model access via <code>anthropic</code> SDK. Stream completions, tool use, vision — build any AI-powered product from scratch.</p>
+                  <p>Direct model access via <code>anthropic</code> SDK. Stream completions, tool use, vision: build any AI-powered product from scratch.</p>
                 </div>
               </div>
             </div>
@@ -194,11 +196,148 @@ export default function HackathonPage() {
         </div>
       </section>
 
+      {/* ── TRACKS ────────────────────────────────────────────── */}
+      <section className="hack-section">
+        <div className="container">
+          <div className="hack-tracks-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
+            <h2 className="hack-tracks-title">The Five Tracks</h2>
+            <p className="hack-tracks-sub">Every team picks one. Build for the people in it.</p>
+          </div>
+          <div className="hack-track-grid">
+
+            <div className="hack-track-card hack-track-card--health reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
+              <div className="hack-track-card-header">
+                <span className="hack-track-num">01</span>
+                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <h3 className="hack-track-name">Biology and Physical Health</h3>
+              <p className="hack-track-problem">Healthcare is expensive, confusing, and out of reach for billions. Medical knowledge that could help people is locked behind jargon and paywalls.</p>
+              <ul className="hack-track-examples">
+                <li>Diagnostic aids for underserved clinics</li>
+                <li>Patient education tools</li>
+                <li>Health literacy for treatment decisions</li>
+              </ul>
+            </div>
+
+            <div className="hack-track-card hack-track-card--mental reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
+              <div className="hack-track-card-header">
+                <span className="hack-track-num">02</span>
+                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                  <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                </svg>
+              </div>
+              <h3 className="hack-track-name">Neuroscience and Mental Health</h3>
+              <p className="hack-track-problem">There are not enough therapists. Stigma prevents people from seeking help. Quality care is gatekept by insurance and geography.</p>
+              <ul className="hack-track-examples">
+                <li>Evidence-based therapeutic support tools</li>
+                <li>Mental health literacy platforms</li>
+                <li>Early recognition and triage tools</li>
+              </ul>
+            </div>
+
+            <div className="hack-track-card hack-track-card--econ reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
+              <div className="hack-track-card-header">
+                <span className="hack-track-num">03</span>
+                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <h3 className="hack-track-name">Economic Empowerment and Education</h3>
+              <p className="hack-track-problem">Talent is universal. Access to quality education and opportunity is not. Language, geography, and wealth lock people out.</p>
+              <ul className="hack-track-examples">
+                <li>Adaptive tutoring</li>
+                <li>Career transition guidance</li>
+                <li>Financial literacy for underserved communities</li>
+              </ul>
+            </div>
+
+            <div className="hack-track-card hack-track-card--gov reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
+              <div className="hack-track-card-header">
+                <span className="hack-track-num">04</span>
+                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="12" y1="3" x2="12" y2="21"/>
+                  <path d="M5 21h14"/>
+                  <path d="M3 9l9-6 9 6"/>
+                  <path d="M5 9v9M19 9v9"/>
+                  <path d="M9 9v9M15 9v9"/>
+                </svg>
+              </div>
+              <h3 className="hack-track-name">Governance and Collaboration</h3>
+              <p className="hack-track-problem">Civic participation is declining. Polarization makes productive dialogue difficult. Communities cannot coordinate around shared challenges.</p>
+              <ul className="hack-track-examples">
+                <li>Policy explanation tools</li>
+                <li>Community deliberation platforms</li>
+                <li>Nonpartisan voter education</li>
+              </ul>
+            </div>
+
+            <div className="hack-track-card hack-track-card--creative reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
+              <div className="hack-track-card-header">
+                <span className="hack-track-num">05</span>
+                <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 className="hack-track-name">Creative Flourishing</h3>
+              <p className="hack-track-problem">As AI handles routine work, questions about human purpose become urgent. Access to creative development and cultural preservation is unequal.</p>
+              <ul className="hack-track-examples">
+                <li>Community storytelling platforms</li>
+                <li>Language and culture preservation tools</li>
+                <li>Purpose and meaning exploration guides</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── JUDGING CRITERIA + AWARDS ─────────────────────────── */}
+      <section className="hack-section">
+        <div className="container">
+          <div className="hack-criteria-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
+            <h2>How Projects Are Judged</h2>
+            <p>Four dimensions. 100 points total. Ethical alignment weighs as much as technical execution.</p>
+          </div>
+          <div className="hack-criteria-grid">
+
+            <div className="hack-criteria-card reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
+              <div className="hack-criteria-pts">25</div>
+              <div className="hack-criteria-name">Impact Potential</div>
+              <p className="hack-criteria-desc">Does this solve a real problem for a specific group of people? Could it actually reach and help them?</p>
+            </div>
+
+            <div className="hack-criteria-card reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
+              <div className="hack-criteria-pts">30</div>
+              <div className="hack-criteria-name">Technical Execution</div>
+              <p className="hack-criteria-desc">Does it work? Is the AI integration purposeful? Can you show it functioning for a real user?</p>
+            </div>
+
+            <div className="hack-criteria-card reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
+              <div className="hack-criteria-pts">25</div>
+              <div className="hack-criteria-name">Ethical Alignment</div>
+              <p className="hack-criteria-desc">Does it empower people rather than replace their judgment? Have you seriously considered what could go wrong and what you would do about it?</p>
+            </div>
+
+            <div className="hack-criteria-card reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
+              <div className="hack-criteria-pts">20</div>
+              <div className="hack-criteria-name">Presentation</div>
+              <p className="hack-criteria-desc">Can you clearly explain the problem, your solution, and what you would do next?</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* ── PRIZES ────────────────────────────────────────────── */}
       <section className="hack-section">
         <div className="container">
           <div className="hack-prizes-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            <div className="hack-prizes-total">$2,000+ in prizes</div>
+            <div className="hack-prizes-total">$2,500+ in prizes</div>
             <div className="hack-prizes-sub">Details announced soon. Prizes include Claude API credits + merch + cash</div>
           </div>
         </div>
@@ -209,10 +348,10 @@ export default function HackathonPage() {
         <div className="container">
           <div className="hackathon-cta-panel reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
             <h2 className="hackathon-title" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.8rem)' }}>
-              Ready to build?
+              Ready to take on a real problem?
             </h2>
             <p className="hackathon-lead" style={{ textAlign: 'center', marginBottom: 0 }}>
-              Register now — free, open to all universities, no experience required.
+              Free. Open to all universities. No prior AI experience needed. Just pick a track and build something worth building.
             </p>
             <div className="hack-btn-row hack-btn-row-center">
               <a
