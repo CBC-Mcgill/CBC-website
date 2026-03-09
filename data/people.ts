@@ -37,6 +37,6 @@ export const associates: Person[] = [
   Person('David Tang', 'Associate', "I mod my MacBook to use Linux. Long live Linux!", 'assets/people/DavidTang.jpeg', '', 'https://www.linkedin.com/in/david-tang-a96376328/'),
   Person('Mubeen Mohammed', 'Technical Associate', "CS + ML nerd who unwinds with manga and squash.", 'assets/people/MubeenMohammed.jpeg', 'mubeen.mohammed@mail.mcgill.ca', 'https://www.linkedin.com/in/mubeen12', 'https://github.com/mubeenmohammed'),
   Person('Minh Vo', 'Technical Associate', "I am building Jarvis with Thai and David", 'assets/people/MinhVo.jpeg', '', 'https://www.linkedin.com/in/minh-vo-657b09324/'),
-  Person('Joshua', 'Associate', "I am building a swarm agent. ", 'assets/people/joshua.jpg', '', 'https://www.linkedin.com/in/joshuazhou1/'),
-  Person('Julien Yang', 'Associate', "Julienning ...", 'assets/people/JulienYang.jpeg', '', '', 'https://github.com/forknay'),
+  Person('Joshua Zhou', 'Associate', "I max out my Claude Pro usage at least once a day.", 'assets/people/joshua.jpg', '', 'https://www.linkedin.com/in/joshuazhou1/', 'https://github.com/joshuazhou744'),
+  Person('Julien Yang', 'Associate', "Building a vertical AI B2B SaaS startup.", 'assets/people/JulienYang.jpeg', '', 'https://www.linkedin.com/in/julienyang12/', 'https://github.com/forknay'),
 ];
