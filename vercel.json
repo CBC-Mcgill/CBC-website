@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/roulette",
-      "destination": "https://claude-roulette-2egcjzz8i-benghads-projects.vercel.app"
+      "destination": "https://claude-roulette.vercel.app"
     },
     {
       "source": "/roulette/:path*",
-      "destination": "https://claude-roulette-2egcjzz8i-benghads-projects.vercel.app/:path*"
+      "destination": "https://claude-roulette.vercel.app/:path*"
     }
   ]
 }
