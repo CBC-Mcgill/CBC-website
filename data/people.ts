@@ -25,7 +25,7 @@ export const leadership: Person[] = [
   Person('Virgile Couture', 'VP Finance', "I am still a 6-hcp golfer on paper.", 'assets/people/VirgileCouture.png', '', 'https://www.linkedin.com/in/v-couture/'),
   Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/BenGhad.jpg', 'benjamin.ghaderi@mail.mcgill.ca', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
   Person('Benjamin Coriat', 'Director of Partnerships and Sponsorships', "My superpower is memory and contacts! I remember most people and have no social awareness. Don't hesitate to reach out!", 'assets/people/BenjiCoriat.png', '', 'https://www.linkedin.com/in/benjamin-coriat-763a9819a/'),
-  Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "By day I'm chasing alpha with ML models, by weekend I'm tackling on the rugby pitch. Always happy to connect over both!", 'assets/people/LawrenceKang.jpeg', '', 'https://www.linkedin.com/in/lawrence-kang-589b63175/'),
+  Person('Lawrence Kang', 'Director of Partnerships and Sponsorships', "Flat whites > Cappuccinos, change my mind! if you can...", 'assets/people/LawrenceKang.jpeg', '', 'https://www.linkedin.com/in/lawrence-kang-589b63175/'),
 ];
 
 export const associates: Person[] = [
