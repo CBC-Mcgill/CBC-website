@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'Claude Builders Hackathon at McGill — April 4th, 2026. Free, open to all universities. Build meaningful AI products in one day with Claude Code, the Claude API, or both.',
 };
 
-const SIGN_UP_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc30XH0k_ZZdgyZ2tU-txvbN9lJtdC6XzVVRkBofVMWLwGZrg/viewform?usp=sharing&ouid=102839564480593837548';
+const SIGN_UP_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc30XH0k_ZZdgyZ2tU-txvbN9lJtdC6XzVVRkBofVMWLwGZrg/viewform?usp=dialog';
 const DETAILS_URL = 'https://docs.google.com/document/d/1TEndbv3OXdaNVJrUVNzrXNNZ1ajDU1Ywh9OF3JF0lw0/edit?usp=sharing';
 const VOLUNTEER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeB5iUV9eD6u3xY4Lm9-VL5RkWaOvOiEbhts8a9jgVgyur9ig/viewform';
 
