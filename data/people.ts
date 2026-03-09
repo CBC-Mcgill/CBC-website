@@ -30,13 +30,13 @@ export const leadership: Person[] = [
 
 export const associates: Person[] = [
   Person('Annie Huynh', 'Design Associate', "Responsible for the graphics, the aesthetics, and the gender ratio.", 'assets/people/AnnieHuynh.jpeg', '', 'https://www.linkedin.com/in/annie-huynh-60805b202/'),
-  Person('Parsa Rahimnia', 'Tech Lead', "Claude University Alumni with a Bachelors in prompt engineering", 'assets/people/ParsaRahimnia.jpeg', '', '', ' https://github.com/ParseDotEXE'),
+  Person('Parsa Rahimnia', 'Tech Lead', "Claude University Alumni with a Bachelor in Prompt Engineering", 'assets/people/ParsaRahimnia.jpeg', '', '', ' https://github.com/ParseDotEXE'),
   Person('Ralph Azrak', 'Hackathon Lead', "I coordinate teams and ensure we deliver a high-impact and well-organized event", 'assets/people/RalphAzrak.jpg', 'ralph.azrak@mail.mcgill.ca', 'www.linkedin.com/in/ralph-azrak/', 'https://github.com/RalphAzrak'),
   Person('Rayyan Khan', 'Associate', "I’m building Quebec’s largest Islamic charity hackathon: muslimhacks.ca", 'assets/people/RayyanKhan.png', '', 'https://www.linkedin.com/in/rayyankhan1', 'https://github.com/rayyankhan47'),
   Person('Jason Wang', 'Technical Associate', "I'm gonna name my son Claude.", 'assets/people/JasonWang.png', '', 'https://www.linkedin.com/in/jason-wang-6a87b9311/'),
   Person('David Tang', 'Associate', "I mod my MacBook to use Linux. Long live Linux!", 'assets/people/DavidTang.jpeg', '', 'https://www.linkedin.com/in/david-tang-a96376328/'),
   Person('Mubeen Mohammed', 'Technical Associate', "CS + ML nerd who unwinds with manga and squash.", 'assets/people/MubeenMohammed.jpeg', 'mubeen.mohammed@mail.mcgill.ca', 'https://www.linkedin.com/in/mubeen12', 'https://github.com/mubeenmohammed'),
   Person('Minh Vo', 'Technical Associate', "I am building Jarvis with Thai and David", 'assets/people/MinhVo.jpeg', '', 'https://www.linkedin.com/in/minh-vo-657b09324/'),
-  Person('Joshua', 'Associate', "I am building a swarm agent. ", 'assets/people/joshua.jpg', '', 'https://www.linkedin.com/in/joshuazhou1/'),
-  Person('Julien Yang', 'Associate', "Julienning ...", 'assets/people/JulienYang.jpeg', '', '', 'https://github.com/forknay'),
+  Person('Joshua Zhou', 'Associate', "I max out my Claude Pro usage at least once a day.", 'assets/people/joshua.jpg', '', 'https://www.linkedin.com/in/joshuazhou1/', 'https://github.com/joshuazhou744'),
+  Person('Julien Yang', 'Associate', "Building a vertical AI B2B SaaS startup.", 'assets/people/JulienYang.jpeg', '', 'https://www.linkedin.com/in/julienyang12/', 'https://github.com/forknay'),
 ];
