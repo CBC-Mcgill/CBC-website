@@ -30,7 +30,7 @@ export const leadership: Person[] = [
 
 export const associates: Person[] = [
   Person('Annie Huynh', 'Design Associate', "Responsible for the graphics, the aesthetics, and the gender ratio.", 'assets/people/AnnieHuynh.jpeg', '', 'https://www.linkedin.com/in/annie-huynh-60805b202/'),
-  Person('Parsa Rahimnia', 'Tech Lead', "Claude University Alumni with a Bachelors in prompt engineering", 'assets/people/ParsaRahimnia.jpeg', '', '', ' https://github.com/ParseDotEXE'),
+  Person('Parsa Rahimnia', 'Tech Lead', "Claude University Alumni with a Bachelor in Prompt Engineering", 'assets/people/ParsaRahimnia.jpeg', '', '', ' https://github.com/ParseDotEXE'),
   Person('Ralph Azrak', 'Hackathon Lead', "I coordinate teams and ensure we deliver a high-impact and well-organized event", 'assets/people/RalphAzrak.jpg', 'ralph.azrak@mail.mcgill.ca', 'www.linkedin.com/in/ralph-azrak/', 'https://github.com/RalphAzrak'),
   Person('Rayyan Khan', 'Associate', "I’m building Quebec’s largest Islamic charity hackathon: muslimhacks.ca", 'assets/people/RayyanKhan.png', '', 'https://www.linkedin.com/in/rayyankhan1', 'https://github.com/rayyankhan47'),
   Person('Jason Wang', 'Technical Associate', "I'm gonna name my son Claude.", 'assets/people/JasonWang.png', '', 'https://www.linkedin.com/in/jason-wang-6a87b9311/'),
