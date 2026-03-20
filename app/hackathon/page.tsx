@@ -56,28 +56,11 @@ const tracks = [
   },
   {
     num: '04',
-    name: 'Governance and Collaboration',
-    problem: 'Civic participation is declining. Polarization makes productive dialogue difficult. Communities cannot coordinate around shared challenges.',
-    examples: ['Policy explanation tools', 'Community deliberation platforms', 'Nonpartisan voter education'],
-    modifier: 'hack-track-card--gov',
-    delay: '0.3s',
-    icon: (
-      <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <line x1="12" y1="3" x2="12" y2="21"/>
-        <path d="M5 21h14"/>
-        <path d="M3 9l9-6 9 6"/>
-        <path d="M5 9v9M19 9v9"/>
-        <path d="M9 9v9M15 9v9"/>
-      </svg>
-    ),
-  },
-  {
-    num: '05',
     name: 'Creative Flourishing',
     problem: 'As AI handles routine work, questions about human purpose become urgent. Access to creative development and cultural preservation is unequal.',
     examples: ['Community storytelling platforms', 'Language and culture preservation tools', 'Purpose and meaning exploration guides'],
     modifier: 'hack-track-card--creative',
-    delay: '0.35s',
+    delay: '0.3s',
     icon: (
       <svg className="hack-track-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -108,7 +91,7 @@ export default function HackathonPage() {
                   Claude Builders AI Hackathon 2026<br />
                 </h1>
                 <p className="hackathon-lead">
-                  One day. Five tracks. Build something that could change a life.
+                  One day. Four tracks. Build something that could change a life.
                 </p>
                 <p className="hackathon-lead-sub">
                   Inspired by Dario Amodei&apos;s{' '}
@@ -234,7 +217,7 @@ export default function HackathonPage() {
                 cat mission-brief.md
               </p>
               <div className="hack-file-box reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-                <p>The theme is social impact. Five tracks. Real problems for real people.</p>
+                <p>The theme is social impact. Four tracks. Real problems for real people.</p>
                 <p>78 universities across 12 countries are answering the same question: how can AI help people genuinely flourish? Pick your track. Form a team. Build something worth building.</p>
                 <p>Solo or up to three people. Free. Open to all universities. 72 hours to ship.</p>
               </div>
