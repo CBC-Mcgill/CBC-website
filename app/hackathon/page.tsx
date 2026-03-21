@@ -304,9 +304,49 @@ export default function HackathonPage() {
       {/* ── PRIZES ────────────────────────────────────────────── */}
       <section className="hack-section">
         <div className="container">
-          <div className="hack-prizes-header reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            <div className="hack-prizes-total">$3,000+ in prizes</div>
-            <div className="hack-prizes-sub">Details announced soon. Prizes include Claude API credits + merch + cash</div>
+          <p className="hack-cmd reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>cat prizes.md</p>
+
+          {/* General prizes */}
+          <div className="hack-prizes-header reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
+            <div className="hack-prizes-total">General Prize</div>
+            <div className="hack-prizes-sub">Awarded to the top three teams overall — every winner receives a Claude hat</div>
+          </div>
+          <div className="hack-prizes-grid reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
+            <div className="hack-prize-card">
+              <div className="hack-prize-rank">🥇</div>
+              <div className="hack-prize-name">1st Place</div>
+              <div className="hack-prize-amount">$100</div>
+              <div className="hack-prize-amount-sub">per team member</div>
+              <div className="hack-prize-perks">
+                <span className="hack-prize-perk">1,000 API credits (team)</span>
+                <span className="hack-prize-perk">Claude hat per member</span>
+              </div>
+            </div>
+            <div className="hack-prize-card">
+              <div className="hack-prize-rank">🥈</div>
+              <div className="hack-prize-name">2nd Place</div>
+              <div className="hack-prize-amount">$50</div>
+              <div className="hack-prize-amount-sub">per team member</div>
+              <div className="hack-prize-perks">
+                <span className="hack-prize-perk">500 API credits (team)</span>
+                <span className="hack-prize-perk">Claude hat per member</span>
+              </div>
+            </div>
+            <div className="hack-prize-card">
+              <div className="hack-prize-rank">🥉</div>
+              <div className="hack-prize-name">3rd Place</div>
+              <div className="hack-prize-amount">$50</div>
+              <div className="hack-prize-amount-sub">per team member</div>
+              <div className="hack-prize-perks">
+                <span className="hack-prize-perk">Claude hat per member</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Sub-challenge prizes */}
+          <div className="hack-prizes-header reveal" style={{ '--delay': '0.25s', marginTop: 'var(--space-6)' } as React.CSSProperties}>
+            <div className="hack-prizes-total">⭐ Sub-Challenge Prize — <span className="hack-prize-amount" style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', verticalAlign: 'middle' }}>$100</span> <span className="hack-prize-amount-sub" style={{ fontSize: '0.72rem' }}>team prize</span></div>
+            <div className="hack-prizes-sub">Each sponsor sub-challenge awards its own prize — stackable with the general prize</div>
           </div>
         </div>
       </section>
