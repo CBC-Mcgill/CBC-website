@@ -7,6 +7,14 @@
     {
       "source": "/roulette/:path*",
       "destination": "https://claude-roulette.vercel.app/:path*"
+    },
+    {
+      "source": "/judging",
+      "destination": "https://judging-dashboard.vercel.app"
+    },
+    {
+      "source": "/judging/:path*",
+      "destination": "https://judging-dashboard.vercel.app/:path*"
     }
   ]
 }
