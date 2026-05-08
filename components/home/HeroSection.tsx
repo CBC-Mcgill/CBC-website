@@ -7,7 +7,7 @@ export function HeroSection() {
       <div className="container hero">
         <div className="hero-copy">
           <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-            Anyone can build with AI.
+             AI Fluency is the most important skill of the century. Building with AI is even more valuable. We build with AI and help you do the same.
           </h1>
           <div className="hero-actions reveal" style={{ '--delay': '0.45s' } as React.CSSProperties}>
           </div>

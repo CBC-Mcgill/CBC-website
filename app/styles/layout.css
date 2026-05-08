@@ -56,12 +56,6 @@
 }
 
 .logo-text {
-  font-size: 1.1rem;
-  letter-spacing: 0.04rem;
-}
-
-/* Homepage wordmark: bigger + playful Fraunces (WONK + SOFT axes) + brand orange. */
-body[data-page="home"] .logo-text {
   font-size: clamp(1.6rem, 2.5vw, 2.2rem);
   font-weight: 650;
   font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
