@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div>
           <h3>Claude Builder Club</h3>
           <p className="section-copy">
-            Anyone can build with AI. McGill students join CBC for free Claude Pro access,
+            Join us for free Claude Pro access,
             API credits, workshops, and a high-accountability builder community.
           </p>
         </div>

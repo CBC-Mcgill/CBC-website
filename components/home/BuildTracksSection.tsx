@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { BuildTrack, BuildTrackStatus } from '@/types';
 import { GitHubIcon } from '@/components/icons';
 
@@ -16,12 +16,79 @@ const STATUS_LABELS: Record<BuildTrackStatus, string> = {
   complete: 'Complete',
 };
 
+type FilterValue = 'all' | BuildTrackStatus;
+
+const FILTER_OPTIONS: { value: FilterValue; label: string }[] = [
+  { value: 'all', label: 'All statuses' },
+  { value: 'open', label: 'Open' },
+  { value: 'full', label: 'Full' },
+  { value: 'complete', label: 'Complete' },
+];
+
+function StatusFilter({ value, onChange }: { value: FilterValue; onChange: (v: FilterValue) => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onMouseDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
+
+  const current = FILTER_OPTIONS.find((o) => o.value === value)?.label ?? 'All statuses';
+
+  return (
+    <div ref={ref} className="tracks-dropdown">
+      <button
+        type="button"
+        className="tracks-select"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Filter by status"
+        onClick={() => setOpen((o) => !o)}
+      >
+        {current}
+      </button>
+      {open && (
+        <ul className="tracks-dropdown-menu" role="listbox">
+          {FILTER_OPTIONS.map((opt) => (
+            <li
+              key={opt.value}
+              role="option"
+              aria-selected={opt.value === value}
+              className="tracks-dropdown-option"
+              onClick={() => {
+                onChange(opt.value);
+                setOpen(false);
+              }}
+            >
+              {opt.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 interface BuildTracksSectionProps {
   tracks: BuildTrack[];
 }
 
 export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
-  const [filter, setFilter] = useState<'all' | BuildTrackStatus>('all');
+  const [filter, setFilter] = useState<FilterValue>('all');
 
   const sorted = [...tracks].sort((a, b) => {
     const pa = STATUS_PRIORITY[a.status] ?? 99;
@@ -37,23 +104,12 @@ export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
       <div className="container soft-panel">
         <div className="section-head">
           <div>
-            <span className="tag">Build Tracks</span>
-            <h2 className="section-title">What you could build this term</h2>
-            <p className="section-copy">Reach out to the project leads to start contributing!</p>
+            <span className="tag tag--plain">Build Tracks</span>
+            <h2 className="section-title">What we are building for McGill students</h2>
+            <p className="section-copy">We do what we preach!</p>
           </div>
           <div className="tracks-controls" aria-label="Build tracks controls">
-            <label className="sr-only" htmlFor="tracks-status">Filter by status</label>
-            <select
-              id="tracks-status"
-              className="tracks-select"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value as 'all' | BuildTrackStatus)}
-            >
-              <option value="all">All statuses</option>
-              <option value="open">Open</option>
-              <option value="full">Full</option>
-              <option value="complete">Complete</option>
-            </select>
+            <StatusFilter value={filter} onChange={setFilter} />
             <button
               id="tracks-clear"
               className="tracks-clear"
