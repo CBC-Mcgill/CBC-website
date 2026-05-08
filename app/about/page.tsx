@@ -131,35 +131,16 @@ export default function AboutPage() {
 
       <section className="section">
         <div className="container split">
-          <div>
-            <h2 className="section-title reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-              What we optimize for
-            </h2>
-            <p className="section-copy reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-              Learn quickly, build responsibly, and launch with confidence.
-            </p>
-            <div className="note-list">
-              <div className="note reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
-                <h4>Practical learning</h4>
-                <p>Every session focuses on hands-on workflows you can apply to your own projects.</p>
-              </div>
-              <div className="note reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-                <h4>Builder accountability</h4>
-                <p>Work in teams, set milestones, and keep momentum with consistent check-ins.</p>
-              </div>
-              <div className="note reveal" style={{ '--delay': '0.45s' } as React.CSSProperties}>
-                <h4>Responsible building</h4>
-                <p>Ship thoughtfully — with attention to ethical AI use and real-world impact.</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <ImgFrame
-              src="/assets/ui/claudeHats.jpg"
-              alt="Claude Builder Club members wearing Claude hats"
-              label="CBC Hats"
-            />
-          </div>
+          <ImgFrame
+            src="/assets/ui/claudeHats.jpg"
+            alt="Claude Builder Club members wearing Claude hats"
+            label="CBC Hats"
+          />
+          <ImgFrame
+            src="/assets/ui/hero.png"
+            alt="Students collaborating in Claude Builder Club"
+            label="CBC Builders"
+          />
         </div>
       </section>
     </>

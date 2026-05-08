@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import { clubLinks } from '@/data/links';
-import { ImgFrame } from '@/components/shared/ImgFrame';
 import { HeroShader } from './HeroShader';
 
 export function HeroSection() {
@@ -32,15 +29,6 @@ export function HeroSection() {
               <div className="meta-value">Compete in our biannual hackathons to win prizes and stand out to sponsors.</div>
             </div>
           </div>
-        </div>
-
-        <div className="hero-visual reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-          <ImgFrame
-            src="assets/ui/hero.png"
-            alt="Students collaborating in Claude Builder Club"
-            label="CBC Builders"
-            priority
-          />
         </div>
       </div>
     </section>
