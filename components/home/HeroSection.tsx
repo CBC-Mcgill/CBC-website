@@ -1,3 +1,4 @@
+import { Claude } from '@lobehub/icons';
 import { HeroShader } from './HeroShader';
 
 export function HeroSection() {
@@ -7,28 +8,16 @@ export function HeroSection() {
       <div className="container hero">
         <div className="hero-copy">
           <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-             AI Fluency is the most important skill of the century. Building with AI is even more valuable. We build with AI and help you do the same.
+            <span className="hero-gold">AI Fluency</span> is the <span className="hero-display">skill of the century</span>
           </h1>
-          <div className="hero-actions reveal" style={{ '--delay': '0.45s' } as React.CSSProperties}>
+          <p className="lead reveal" style={{ '--delay': '0.4s' } as React.CSSProperties}>
+            That&rsquo;s why we <em className="hero-italic">build with AI</em> actively and unapologetically. <br/> If that is you, come learn and build with us.
+          </p>
+          <div className="hero-actions reveal" style={{ '--delay': '0.5s' } as React.CSSProperties}>
           </div>
-          <div className="hero-meta reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
-            <div className="meta-card">
-              <div className="meta-label">Free Claude Pro</div>
-              <div className="meta-value">McGill students get free access to Claude Pro, allowing more usage and access to Claude Code.</div>
-            </div>
-            <div className="meta-card">
-              <div className="meta-label">Workshops</div>
-              <div className="meta-value">Biweekly workshops + demos on AI tools where McGill builders can connect.</div>
-            </div>
-            <div className="meta-card">
-              <div className="meta-label">Build with Claude</div>
-              <div className="meta-value">Work on any of our open dev projects and build something lasting for your peers.</div>
-            </div>
-            <div className="meta-card">
-              <div className="meta-label">Join a Hackathon</div>
-              <div className="meta-value">Compete in our biannual hackathons to win prizes and stand out to sponsors.</div>
-            </div>
-          </div>
+          <p className="hero-footnote reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
+            In partnership with Anthropic, we can also provide free Claude Pro for McGill students <Claude.Color size={24} />
+          </p>
         </div>
       </div>
     </section>

@@ -64,8 +64,62 @@ main {
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
-  line-height: 1.1;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* Subline under the centered headline. Scoped to .hero-copy so other
+   .lead instances (e.g. the About page) keep their existing alignment. */
+.hero-copy .lead {
+  text-align: center;
+  max-width: 56ch;
+  margin-inline: auto;
+}
+
+/* Footnote / attribution line at the bottom of the hero copy. */
+.hero-footnote {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 60ch;
+  margin: var(--space-2) auto 0;
+}
+
+/* Inline Claude mark at the end of the footnote — vertical-align fix
+   so the SVG sits on the typographic midline instead of the baseline. */
+.hero-footnote svg {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -0.05em;
+}
+
+/* "AI Fluency" — golden gradient (rhymes with the hackathon prize amounts). */
+.hero-gold {
+  background: linear-gradient(135deg, #f5c97a 0%, #e8a85a 50%, #c98245 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* "skill of the century" — display-italic Fraunces with WONK swashes. */
+.hero-display {
+  display: inline-block;
+  font-style: italic;
+  font-size: 1.25em;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+/* "building with AI" — text-sized italic Fraunces, echoes the headline at a smaller scale. */
+.hero-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
+  font-weight: 600;
 }
 
 .lead {
@@ -85,6 +139,13 @@ main {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-3);
   margin-top: 0;
+  align-items: start;
+}
+
+/* Combined "Claude" card: logo on top, label/value below. */
+.meta-card--claude {
+  display: grid;
+  gap: var(--space-3);
 }
 
 .meta-card {
@@ -627,9 +688,10 @@ main {
 .hero-shader {
   position: absolute;
   inset: 0;
-  /* Extend upward to cover main's padding-top, eliminating the dark band
-     between the sticky nav and the shader. */
-  top: calc(-1 * var(--space-5));
+  /* Extend upward to cover main's padding-top AND the header itself, so
+     the shader is visible through the transparent glass nav. The 6rem is
+     a generous estimate of header height — bump if the header grows. */
+  top: calc(-1 * (var(--space-5) + 6rem));
   z-index: 0;
   pointer-events: none;            /* clicks/hover still hit underlying buttons */
   overflow: hidden;
