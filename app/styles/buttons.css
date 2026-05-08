@@ -12,7 +12,6 @@
   color: #fff;
   font-size: 0.95rem;
   letter-spacing: 0.02rem;
-  box-shadow: 0 12px 26px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background-position 0.3s var(--ease), background-color 0.3s var(--ease), filter 0.3s var(--ease);
   filter: none;
 }

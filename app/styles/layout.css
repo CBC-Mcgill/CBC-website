@@ -31,7 +31,6 @@
   background: rgba(13, 11, 8, 0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-line);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
 .site-header .container {
@@ -59,6 +58,17 @@
 .logo-text {
   font-size: 1.1rem;
   letter-spacing: 0.04rem;
+}
+
+/* Homepage wordmark: bigger + playful Fraunces (WONK + SOFT axes) + brand orange. */
+body[data-page="home"] .logo-text {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 650;
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+  color: #e09050;
+  text-shadow: 0 0 24px rgba(224, 144, 80, 0.25);
 }
 
 .logo-sub {

@@ -17,9 +17,8 @@ export function SiteHeader() {
       <div className="container">
         <div className="header-bar">
           <Link className="logo" href="/">
-            <span className="logo-mark">CBC</span>
             <span className="logo-text">Claude Builder Club</span>
-            <span className="logo-sub">McGill University Chapter</span>
+            <span className="logo-sub">McGill Chapter</span>
           </Link>
           <button
             className="nav-toggle"

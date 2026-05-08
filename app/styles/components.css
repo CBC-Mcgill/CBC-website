@@ -97,10 +97,11 @@ main {
 }
 
 .meta-label {
-  font-size: 0.82rem;
+  font-size: 0.95rem;
+  font-weight: 650;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  color: var(--color-muted);
+  letter-spacing: 0.08rem;
+  color: var(--color-ink);
 }
 
 .meta-value {
@@ -115,7 +116,6 @@ main {
   overflow: hidden;
   background: linear-gradient(145deg, #1a1410, #201812);
   border: 1px solid var(--color-line);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,7 +174,6 @@ main {
   background: linear-gradient(140deg, rgba(255, 220, 180, 0.06), rgba(255, 220, 180, 0.03));
   border: 1px dashed rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
   color: var(--color-muted);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
@@ -248,7 +247,6 @@ main {
   border-radius: var(--radius-md);
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  box-shadow: 0 12px 28px rgba(40, 33, 26, 0.06);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
   overflow: hidden;
   isolation: isolate;
@@ -294,7 +292,6 @@ main {
   gap: var(--space-4);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(40, 33, 26, 0.08);
 }
 
 /* School/badge pill used on the About page */
@@ -388,7 +385,6 @@ main {
   border-radius: var(--radius-sm);
   background: rgba(255, 220, 180, 0.04);
   border: 1px solid var(--color-line);
-  box-shadow: 0 10px 20px rgba(40, 33, 26, 0.05);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
@@ -611,4 +607,106 @@ main {
   .tracks-clear {
     width: 100%;
   }
+}
+
+/* HeroShader — full-bleed interactive backdrop for the homepage hero.
+ *
+ * Design intent:
+ *   - Shader sits BEHIND .hero copy via z-index 0
+ *   - Radial mask reveals the shader on the right side of the hero (where
+ *     the visual already lives) and fades it out behind text on the left
+ *   - Vignette gradients keep contrast against the headline and meta cards
+ *   - .hero text and frame stay on z-index 1 (already in your layout)
+ */
+
+.section--hero-shader {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-shader {
+  position: absolute;
+  inset: 0;
+  /* Extend upward to cover main's padding-top, eliminating the dark band
+     between the sticky nav and the shader. */
+  top: calc(-1 * var(--space-5));
+  z-index: 0;
+  pointer-events: none;            /* clicks/hover still hit underlying buttons */
+  overflow: hidden;
+  /* Reveal mostly on the right; fade out behind hero copy */
+  -webkit-mask-image: radial-gradient(120% 90% at 70% 40%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(120% 90% at 70% 40%, #000 30%, transparent 75%);
+  opacity: 0.85;
+}
+
+.hero-shader canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-shader__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-paper) 0%,
+      rgba(13, 11, 8, 0) 35%,
+      rgba(13, 11, 8, 0) 65%,
+      rgba(13, 11, 8, 0.4) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(13, 11, 8, 0.5) 0%,
+      rgba(13, 11, 8, 0) 30%,
+      rgba(13, 11, 8, 0) 70%,
+      rgba(13, 11, 8, 0.6) 100%
+    );
+}
+
+/* Make sure hero content sits above the shader */
+.section--hero-shader > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle: when shader is on, the section's own radial accent is redundant */
+.section--hero-shader::before {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-shader {
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-shader {
+    /* On mobile the hero collapses to one column; keep shader subtle */
+    -webkit-mask-image: radial-gradient(140% 70% at 50% 30%, #000 20%, transparent 80%);
+            mask-image: radial-gradient(140% 70% at 50% 30%, #000 20%, transparent 80%);
+    opacity: 0.7;
+  }
+}
+
+/* Suppress ambient divider lines site-wide.
+ * - .section::after          horizontal hairline between sections
+ * - body::after               vertical accent line down the left
+ * - .site-header border       hairline under the sticky nav
+ * - .site-footer border       hairline above the footer
+ * Card borders are intentionally preserved. */
+.section::after,
+body::after {
+  display: none;
+}
+
+.site-header {
+  border-bottom: 0;
+}
+
+.site-footer {
+  border-top: 0;
 }

@@ -1,30 +1,18 @@
 import Link from 'next/link';
 import { clubLinks } from '@/data/links';
 import { ImgFrame } from '@/components/shared/ImgFrame';
+import { HeroShader } from './HeroShader';
 
 export function HeroSection() {
   return (
-    <section className="section">
+    <section className="section section--hero-shader">
+      <HeroShader />
       <div className="container hero">
         <div className="hero-copy">
-          <p className="eyebrow reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            Claude Builder Club
-          </p>
           <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
             Anyone can build with AI.
           </h1>
           <div className="hero-actions reveal" style={{ '--delay': '0.45s' } as React.CSSProperties}>
-            <a
-              className="btn"
-              href={clubLinks.signup}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join CBC
-            </a>
-            <Link className="btn btn-ghost" href="/hackathon">
-              Join our first Claude Hackathon
-            </Link>
           </div>
           <div className="hero-meta reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
             <div className="meta-card">

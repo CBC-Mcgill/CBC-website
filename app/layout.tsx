@@ -24,7 +24,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: 'Claude Builder Club',
+  title: 'It is a great time to be a builder.',
   description: 'Anyone can build with AI. McGill students join CBC for free Claude Pro access, API credits, workshops, and a high-accountability builder community.',
 };
 

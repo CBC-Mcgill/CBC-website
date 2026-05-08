@@ -10,7 +10,6 @@
   overflow: hidden;
   position: relative;
   isolation: isolate;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.18);
 }
 
 .hackathon-hero-panel::before {
@@ -202,7 +201,6 @@
 /* Dark button variants */
 .btn.hackathon-btn-primary {
   background: linear-gradient(140deg, #e09050, #c17030);
-  box-shadow: 0 14px 32px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.38);
 }
 
 .btn.hackathon-btn-primary:hover,
@@ -233,7 +231,6 @@
   border: 1px solid rgba(255, 220, 180, 0.13);
   background: #0e0b08;
   box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 220, 180, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   animation: heroFloat 14s ease-in-out infinite;
@@ -342,7 +339,6 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  box-shadow: 0 12px 28px rgba(40, 33, 26, 0.06);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
   overflow: hidden;
   isolation: isolate;
@@ -438,7 +434,6 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  box-shadow: 0 10px 22px rgba(40, 33, 26, 0.05);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
@@ -470,7 +465,6 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
 }
 
 .hackathon-cta-panel::before {
@@ -500,7 +494,6 @@
 
 .btn.hackathon-cta-btn {
   background: linear-gradient(140deg, #e09050, #c17030);
-  box-shadow: 0 16px 40px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.42);
   font-size: 1.05rem;
   padding: 0.95rem 2.4rem;
 }
@@ -869,7 +862,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 18px rgba(201, 130, 69, 0.45));
   letter-spacing: -0.02em;
 }
 .hack-prize-amount-sub {

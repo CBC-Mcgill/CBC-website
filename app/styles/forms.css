@@ -13,7 +13,6 @@
   gap: 1.5rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(40, 33, 26, 0.08);
 }
 
 .panel-title {
