@@ -43,7 +43,7 @@ export default function AboutPage() {
               CBC at McGill
             </h2>
             <p className="section-copy reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-              We are a builder first club. We want to build and inspire other to build real projects with or without AI. We run regular workshops to teach students how to use Claude and other AI tools, and we have project pods where members ship projects together in a high-accountability environment. We also run hackathons and demo days to celebrate and reward the amazing projects our members build.
+              We are a builder first club. We want to build and inspire other to build. We run regular workshops to teach students how to use Claude and other AI tools, and we have project pods where members ship projects together in a high-accountability environment. We also run hackathons and demo days to celebrate and reward the amazing projects our members build.
             </p>
           </div>
           <div className="card reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>

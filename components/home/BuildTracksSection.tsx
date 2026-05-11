@@ -123,7 +123,7 @@ export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
         </div>
 
         <p className="stat-callout">
-          <span className="stat-callout__number" aria-hidden="true">1</span>{' '}useful software product for all McGill students. That&rsquo;s the combined output of all the software clubs from the past few years.
+          <span className="stat-callout__number" aria-hidden="true">1</span>{' '}useful software for all McGill students. That&rsquo;s the combined output of all McGill "software" clubs from the past few years.
           <br /> <em>But we&rsquo;re changing that.</em>
         </p>
 

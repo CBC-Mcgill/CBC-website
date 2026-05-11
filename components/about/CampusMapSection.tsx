@@ -24,7 +24,7 @@ const STAGGER_TOTAL_MS = 1200;
 type Position = { coordinates: [number, number]; zoom: number };
 type Tooltip = { name: string; country: string; x: number; y: number } | null;
 
-const INITIAL_POSITION: Position = { coordinates: [0, 20], zoom: 1.4 };
+const INITIAL_POSITION: Position = { coordinates: [-73.6, 45.5], zoom: 5.5};
 
 export function CampusMapSection() {
   const countryCount = new Set(claudeCampusSchools.map((s) => s.country)).size;
