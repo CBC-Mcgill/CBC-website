@@ -34,3 +34,10 @@ export interface ClubLinks {
   github: string;
   email?: string;
 }
+
+export interface CampusSchool {
+  name: string;
+  country: string;
+  lat: number;
+  lng: number;
+}
