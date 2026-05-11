@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CampusMapSection } from '@/components/about/CampusMapSection';
 import { ImgFrame } from '@/components/shared/ImgFrame';
 
 export const metadata: Metadata = {
@@ -8,19 +9,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="section">
-        <div className="container page-hero page-hero--about">
-          <p className="eyebrow reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            About CBC
-          </p>
-          <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-            A student AI builder club at McGill.
-          </h1>
-          <p className="lead reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-            We help members turn ideas into real products with modern tools, mentorship, and community support.
-          </p>
-        </div>
-      </section>
+      <CampusMapSection />
 
       <section className="section">
         <div className="container soft-panel">
@@ -35,7 +24,7 @@ export default function AboutPage() {
           <div style={{ display: 'grid', gap: 'var(--space-3)' }}>
             <p className="section-copy reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
               Claude Builder Clubs are part of Anthropic&rsquo;s Claude Campus Program — a network of
-              student-led chapters at universities around the world. The program spans 60+ schools
+              student-led chapters at universities around the world. The program spans 75+ schools
               with over 15,000 students enrolled globally.
             </p>
             <p className="section-copy reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
@@ -43,23 +32,6 @@ export default function AboutPage() {
               access and API credits, and the support needed to run AI tools and fluency workshops, hackathons,
               and demo days on campuses.
             </p>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {[
-              'MIT',
-              'Stanford',
-              'Princeton',
-              'UCLA',
-              'Waterloo',
-              'UofT',
-              'CMU',
-              'Cambridge',
-              '60+ universities worldwide',
-            ].map((school) => (
-              <span key={school} className="school-tag">
-                {school}
-              </span>
-            ))}
           </div>
         </div>
       </section>
