@@ -1135,28 +1135,19 @@ body::after {
   z-index: 2;
 }
 
-/*
- * ─────────────────────────────────────────────────────────
- * LEARNING-MODE CONTRIBUTION SLOT
- * ─────────────────────────────────────────────────────────
- * Define how a dot reacts on hover and keyboard focus.
- *
- * The wrapper exposes `.campus-map__dot:hover`, `.campus-map__dot:focus-visible`,
- * and the descendant `.campus-map__tooltip`. Write 5-10 lines below that:
- *
- *   1. Reveals the tooltip (set `.campus-map__tooltip` to `opacity: 1` and
- *      `transform: translate(-50%, 0)`).
- *   2. Indicates the focused dot itself. Pick ONE approach:
- *
- *        (a) Pure tooltip reveal — dot stays the same size, only the tooltip shows.
- *        (b) Scale-up — dot grows to 1.25x or 1.4x.
- *        (c) Ring expand — drop a box-shadow ring around it.
- *
- * Whatever you pick, also handle `:focus-visible` (keyboard) with the same visual
- * so keyboard users see the same affordance as mouse users.
- *
- * TODO: write your hover/focus rule here.
- */
+.campus-map__dot:hover,
+.campus-map__dot:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 6px
+    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
+  animation-play-state: paused;
+}
+
+.campus-map__dot:hover .campus-map__tooltip,
+.campus-map__dot:focus-visible .campus-map__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .campus-map__dot {
