@@ -1,14 +1,12 @@
 import { Claude } from '@lobehub/icons';
-import { HeroShader } from './HeroShader';
 
 export function HeroSection() {
   return (
-    <section className="section section--hero-shader">
-      <HeroShader />
+    <section className="section">
       <div className="container hero">
         <div className="hero-copy">
           <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-            <span className="hero-gold">AI Fluency</span> is the <span className="hero-display">skill of the century</span>
+            <span className="hero-gold">AI Fluency</span> is the <span className="hero-display">skill of this century</span>
           </h1>
           <p className="lead reveal" style={{ '--delay': '0.4s' } as React.CSSProperties}>
             That&rsquo;s why we <em className="hero-italic">build with AI</em> actively and unapologetically. <br/> If that is you, come learn and build with us.

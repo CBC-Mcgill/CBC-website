@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { BlossomIntro } from '@/components/shared/BlossomIntro';
+import { HeroShader } from '@/components/home/HeroShader';
 import { PageShell } from '@/components/shared/PageShell';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
@@ -41,6 +42,7 @@ export default function RootLayout({
     >
       <body>
         <SkipLink />
+        <HeroShader />
         <BlossomIntro />
         <PageShell>
           <SiteHeader />

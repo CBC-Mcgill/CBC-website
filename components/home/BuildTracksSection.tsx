@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { BuildTrack, BuildTrackStatus } from '@/types';
 import { GitHubIcon } from '@/components/icons';
+import { clubLinks } from '@/data/links';
 
 const STATUS_PRIORITY: Record<BuildTrackStatus, number> = {
   open: 0,
@@ -11,8 +12,8 @@ const STATUS_PRIORITY: Record<BuildTrackStatus, number> = {
 };
 
 const STATUS_LABELS: Record<BuildTrackStatus, string> = {
-  open: 'Open (In progress)',
-  full: 'Full (In progress)',
+  open: 'Open',
+  full: 'Full',
   complete: 'Complete',
 };
 
@@ -104,9 +105,8 @@ export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
       <div className="container soft-panel">
         <div className="section-head">
           <div>
-            <span className="tag tag--plain">Build Tracks</span>
             <h2 className="section-title">What we are building for McGill students</h2>
-            <p className="section-copy">We do what we preach!</p>
+            <p className="section-copy">Yes, we do what we preach!</p>
           </div>
           <div className="tracks-controls" aria-label="Build tracks controls">
             <StatusFilter value={filter} onChange={setFilter} />
@@ -122,37 +122,71 @@ export function BuildTracksSection({ tracks }: BuildTracksSectionProps) {
           </div>
         </div>
 
-        <div className="schedule-list">
-          {filtered.map((track) => (
-            <div key={track.name} className="schedule-item" data-status={track.status}>
-              <div>
-                <strong>{track.name}</strong>
-                <div><span>{track.description}</span></div>
-                <div><span>Lead(s): {track.leads}</span></div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
-                {track.github && (
-                  <a
-                    href={track.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="person-social-link"
-                    aria-label={`${track.name} GitHub repository`}
-                  >
-                    <GitHubIcon />
-                  </a>
+        <p className="stat-callout">
+          <span className="stat-callout__number" aria-hidden="true">1</span>{' '}useful software product for all McGill students. That&rsquo;s the combined output of all the software clubs from the past few years.
+          <br /> <em>But we&rsquo;re changing that.</em>
+        </p>
+
+        {filtered.length > 0 ? (
+          <div className="track-canvas">
+            {filtered.map((track) => (
+              <article
+                key={track.name}
+                className="blueprint"
+                data-status={track.status}
+              >
+                <h3 className="blueprint__name">{track.name}</h3>
+
+                <div className="blueprint__field">
+                  <span className="blueprint__label">What</span>
+                  <p className="blueprint__what">{track.description}</p>
+                </div>
+
+                {track.why && (
+                  <div className="blueprint__field">
+                    <span className="blueprint__label">Why</span>
+                    <p className="blueprint__why">{track.why}</p>
+                  </div>
                 )}
-                <span className={`status-pill status-${track.status}`}>
-                  {STATUS_LABELS[track.status]}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+
+                <footer className="blueprint__foot">
+                  <span className="blueprint__who">
+                    <span className="blueprint__label blueprint__label--inline">Lead</span>
+                    {track.leads}
+                  </span>
+                  <div className="blueprint__foot-actions">
+                    <span className={`status-pill status-${track.status}`}>
+                      {STATUS_LABELS[track.status]}
+                    </span>
+                    {track.github && (
+                      <a
+                        href={track.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="blueprint__repo"
+                        aria-label={`${track.name} GitHub repository`}
+                      >
+                        <GitHubIcon />
+                      </a>
+                    )}
+                  </div>
+                </footer>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="track-empty">
+            No tracks match this filter.
+          </div>
+        )}
 
         <div className="section-footer">
           <p className="section-copy">
-            Want to suggest an idea? <strong>Reach out to our directors.</strong>
+            Want to suggest an idea? Reach out to us at{' '}
+            <a href={`mailto:${clubLinks.email}`} className="section-footer__email">
+              {clubLinks.email}
+            </a>
+            .
           </p>
         </div>
       </div>

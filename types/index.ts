@@ -20,6 +20,7 @@ export type BuildTrackStatus = 'open' | 'full' | 'complete';
 export interface BuildTrack {
   name: string;
   description: string;
+  why?: string;
   leads: string;
   status: BuildTrackStatus;
   github?: string;

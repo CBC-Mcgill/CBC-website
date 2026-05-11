@@ -17,7 +17,6 @@ export default function HomePage() {
         <div className="container soft-panel">
           <div className="section-head">
             <div>
-              <span className="tag">Who we are</span>
               <h2 className="section-title">A student AI builder club at McGill.</h2>
               <p className="section-copy">
                 Learn how the club runs, what we optimize for, and what members get.

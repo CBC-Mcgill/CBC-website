@@ -6,5 +6,5 @@ export const clubLinks: ClubLinks = {
   linkedin: 'https://www.linkedin.com/company/claude-builder-club-mcgill/',
   signup: 'https://www.jotform.com/253555944387168',
   github: 'https://github.com/orgs/CBC-Mcgill/',
-  email: '',
+  email: 'mcgillclaudebuilders@gmail.com',
 };

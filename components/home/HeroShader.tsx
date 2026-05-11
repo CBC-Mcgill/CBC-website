@@ -57,12 +57,6 @@ void main(){
   float spec = pow(max(0.0, 1.0 - length(p-m)*1.2), 8.0);
   col += spec * cream * 0.55;
 
-  float sp = step(
-    0.997,
-    fract(sin(dot(floor(gl_FragCoord.xy*0.5), vec2(12.9898,78.233))) * 43758.5453 + u_time*0.5)
-  );
-  col += sp * 0.55 * cream;
-
   col *= 1.0 - 0.22 * length(p);
   gl_FragColor = vec4(col, 1.0);
 }
@@ -190,7 +184,6 @@ export function HeroShader() {
   return (
     <div ref={containerRef} className="hero-shader" aria-hidden="true">
       <canvas ref={canvasRef} />
-      <div className="hero-shader__veil" />
     </div>
   );
 }

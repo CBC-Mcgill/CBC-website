@@ -248,30 +248,8 @@ main {
   isolation: isolate;
 }
 
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 400px at 8% 20%, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.06), transparent 60%);
-  opacity: 1;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.section:nth-of-type(even)::before {
-  background: radial-gradient(700px 450px at 90% 30%, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.05), transparent 60%);
-  opacity: 1;
-}
-
-/* Build Tracks: stronger, multi-layered warm backdrop so the glass panel
-   has rich color to blur + saturate through. Three blobs at different
-   positions and temperatures (amber → gold → coral) blend through the glass. */
-#build-tracks::before {
-  background:
-    radial-gradient(700px 500px at 12% 25%, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.24), transparent 55%),
-    radial-gradient(600px 450px at 88% 75%, rgba(245, 201, 122, 0.18), transparent 55%),
-    radial-gradient(500px 400px at 55% 45%, rgba(232, 168, 90, 0.12), transparent 60%);
-}
+/* Per-section radial accents removed — replaced by the page-wide
+   <AmbientBackground> blob layer. */
 
 .section::after {
   content: "";
@@ -354,19 +332,27 @@ main {
   color: var(--color-muted);
 }
 
+/* Apple-style glassmorphism: heavy blur + saturation boost + brightness
+ * lift, plus paired top-edge highlight and bottom-edge shadow for material
+ * depth. The .soft-panel::before below adds a top-reflection gradient. */
 .soft-panel {
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 220, 180, 0.1);
-  background: transparent;
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 220, 180, 0.12);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 220, 180, 0.025) 0%,
+    rgba(255, 220, 180, 0.005) 100%
+  );
+  backdrop-filter: blur(16px) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(16px) saturate(180%) brightness(1.05);
   padding: var(--space-6);
   display: grid;
   gap: var(--space-4);
   position: relative;
   overflow: hidden;
-  /* Inner top-edge highlight — gives the glass a soft "lit" lip */
-  box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
 
 /* School/badge pill used on the About page */
@@ -382,15 +368,22 @@ main {
   letter-spacing: 0.01rem;
 }
 
+/* Top-half reflection — mimics light catching the curved upper surface
+ * of real glass. Replaces the old animated radial accent which competed
+ * with the page-wide shader behind the panel. */
 .soft-panel::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(600px 300px at 100% 0%, rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.06), transparent 60%);
-  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   pointer-events: none;
-  transform: translateY(0);
-  animation: panelDrift 14s ease-in-out infinite;
 }
 
 .soft-panel .section-title {
@@ -498,49 +491,56 @@ main {
 }
 
 
-/* Pill status */
+/* Status tag — technical-drawing aesthetic. Mono uppercase, sharp corners,
+   warm palette, status-specific glyph (○ open / ● full / ✓ complete). */
 .status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.2px;
+  gap: 0.55rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
   white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(6px);
+  border: 1px solid;
+  background-color: transparent;
+  line-height: 1;
 }
 
-/* Small dot indicator */
 .status-pill::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.95;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  line-height: 0.7;
 }
 
-/* Variants */
 .status-open {
-  color: #7dd3fc;
-  border-color: rgba(125, 211, 252, 0.35);
-  background: rgba(125, 211, 252, 0.10);
+  color: #f5c97a;
+  border-color: rgba(245, 201, 122, 0.4);
+  background-color: rgba(245, 201, 122, 0.08);
+}
+.status-open::before {
+  content: "\25cb";  /* hollow circle — empty seats, joinable */
 }
 
 .status-full {
-  color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.35);
-  background: rgba(251, 191, 36, 0.10);
+  color: #d4894a;
+  border-color: rgba(212, 137, 74, 0.45);
+  background-color: rgba(212, 137, 74, 0.1);
+}
+.status-full::before {
+  content: "\25cf";  /* filled circle — full team, in build */
 }
 
 .status-complete {
-  color: #86efac;
-  border-color: rgba(134, 239, 172, 0.35);
-  background: rgba(134, 239, 172, 0.10);
+  color: rgba(255, 243, 230, 0.6);
+  border-color: rgba(255, 243, 230, 0.2);
+  background-color: rgba(255, 243, 230, 0.04);
+}
+.status-complete::before {
+  content: "\2713";  /* check — shipped, archived */
 }
 
 /* Footer spacing */
@@ -548,6 +548,18 @@ main {
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-footer__email {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+
+.section-footer__email:hover {
+  text-decoration-color: var(--color-accent-strong);
 }
 
 /* Build tracks filter utilities */
@@ -679,6 +691,214 @@ main {
   display: none !important;
 }
 
+/* Stat callout: a paragraph with a huge inline number (McGill red)
+   acting like a magazine drop-cap. */
+.stat-callout {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  max-width: 62ch;
+  margin: var(--space-4) 0;
+}
+
+.stat-callout__number {
+  font-family: var(--font-display);
+  font-size: 3.2em;
+  font-weight: 700;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #ED1B2F;            /* McGill Martlet red */
+  vertical-align: -0.2em;
+  margin-right: 0.1em;
+}
+
+.stat-callout em {
+  font-style: italic;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .stat-callout__number {
+    font-size: 2.8em;
+    vertical-align: -0.15em;
+  }
+}
+
+/* Build Tracks — Workbench Canvas with Blueprint cards.
+ * Each project is a labelled "blueprint" pinned to a graph-paper canvas.
+ * Cards alternate alignment (left/right offset) for a hand-placed feel. */
+.track-canvas {
+  position: relative;
+  margin-top: var(--space-4);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(255, 220, 180, 0.12);
+  border-radius: var(--radius-md);
+  /* Dot grid background — graph paper feel */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 220, 180, 0.07) 1px, transparent 0);
+  background-size: 22px 22px;
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* Alternating offset / width per card — breaks the rigid grid */
+.blueprint {
+  position: relative;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.24);
+  border-radius: 4px;
+  background: rgba(13, 11, 8, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  gap: 0.9rem;
+  width: min(94%, 36rem);
+  /* Subtle "drawing" corner marks via box-shadow inset highlights */
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 220, 180, 0.04),
+    inset 0 1px 0 rgba(255, 220, 180, 0.06);
+}
+
+.blueprint:nth-child(odd) {
+  justify-self: start;
+}
+
+.blueprint:nth-child(even) {
+  justify-self: end;
+}
+
+/* Faint corner crosshairs — technical-drawing detail */
+.blueprint::before,
+.blueprint::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.35);
+  pointer-events: none;
+}
+
+.blueprint::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.blueprint::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.blueprint__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 650;
+  font-variation-settings: "opsz" 60, "SOFT" 100;
+  line-height: 1.1;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.blueprint__field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.blueprint__label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.blueprint__label--inline {
+  margin-right: 0.5rem;
+}
+
+.blueprint__what {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+.blueprint__why {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin: 0;
+  /* Pulled-quote feel — slight left bar */
+  padding-left: 0.85rem;
+  border-left: 2px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.4);
+}
+
+.blueprint__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(255, 220, 180, 0.12);
+}
+
+.blueprint__foot-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.blueprint__who {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.blueprint__repo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 220, 180, 0.18);
+  color: var(--color-ink);
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.blueprint__repo:hover {
+  border-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.45);
+  background-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.1);
+}
+
+.track-empty {
+  text-align: center;
+  color: var(--color-muted);
+  padding: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .blueprint {
+    width: 100%;
+    justify-self: stretch !important;
+  }
+  .blueprint__head,
+  .blueprint__foot {
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;
@@ -760,35 +980,20 @@ main {
   }
 }
 
-/* HeroShader — full-bleed interactive backdrop for the homepage hero.
- *
- * Design intent:
- *   - Shader sits BEHIND .hero copy via z-index 0
- *   - Radial mask reveals the shader on the right side of the hero (where
- *     the visual already lives) and fades it out behind text on the left
- *   - Vignette gradients keep contrast against the headline and meta cards
- *   - .hero text and frame stay on z-index 1 (already in your layout)
- */
-
-.section--hero-shader {
-  position: relative;
-  isolation: isolate;
-}
-
+/* HeroShader — now a PAGE-WIDE interactive backdrop, rendered at the layout
+ * root and visible behind all content on every page. The veil overlay is
+ * dropped since it was needed only for the right-column photo composition. */
 .hero-shader {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  /* Extend upward to cover main's padding-top AND the header itself, so
-     the shader is visible through the transparent glass nav. The 6rem is
-     a generous estimate of header height — bump if the header grows. */
-  top: calc(-1 * (var(--space-5) + 6rem));
   z-index: 0;
-  pointer-events: none;            /* clicks/hover still hit underlying buttons */
+  pointer-events: none;
   overflow: hidden;
-  /* Reveal mostly on the right; fade out behind hero copy */
-  -webkit-mask-image: radial-gradient(120% 90% at 70% 40%, #000 30%, transparent 75%);
-          mask-image: radial-gradient(120% 90% at 70% 40%, #000 30%, transparent 75%);
-  opacity: 0.85;
+  /* Soft radial mask centered on the viewport — fades to transparent at
+     the edges so text near the page margins stays high-contrast. */
+  -webkit-mask-image: radial-gradient(140% 100% at 50% 35%, #000 35%, transparent 95%);
+          mask-image: radial-gradient(140% 100% at 50% 35%, #000 35%, transparent 95%);
+  opacity: 0.5;
 }
 
 .hero-shader canvas {
@@ -797,50 +1002,15 @@ main {
   height: 100%;
 }
 
-.hero-shader__veil {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      var(--color-paper) 0%,
-      rgba(13, 11, 8, 0) 35%,
-      rgba(13, 11, 8, 0) 65%,
-      rgba(13, 11, 8, 0.4) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(13, 11, 8, 0.5) 0%,
-      rgba(13, 11, 8, 0) 30%,
-      rgba(13, 11, 8, 0) 70%,
-      rgba(13, 11, 8, 0.6) 100%
-    );
-}
-
-/* Make sure hero content sits above the shader */
-.section--hero-shader > .container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Subtle: when shader is on, the section's own radial accent is redundant */
-.section--hero-shader::before {
-  display: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-shader {
-    opacity: 0.65;
+    opacity: 0.4;
   }
 }
 
 @media (max-width: 720px) {
   .hero-shader {
-    /* On mobile the hero collapses to one column; keep shader subtle */
-    -webkit-mask-image: radial-gradient(140% 70% at 50% 30%, #000 20%, transparent 80%);
-            mask-image: radial-gradient(140% 70% at 50% 30%, #000 20%, transparent 80%);
-    opacity: 0.7;
+    opacity: 0.42;
   }
 }
 
