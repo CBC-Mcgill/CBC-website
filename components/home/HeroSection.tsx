@@ -1,4 +1,4 @@
-import { Claude } from '@lobehub/icons';
+import Color from '@lobehub/icons/es/Claude/components/Color';
 
 export function HeroSection() {
   return (
@@ -14,7 +14,7 @@ export function HeroSection() {
           <div className="hero-actions reveal" style={{ '--delay': '0.5s' } as React.CSSProperties}>
           </div>
           <p className="hero-footnote reveal" style={{ '--delay': '0.6s' } as React.CSSProperties}>
-            In partnership with Anthropic, we can also provide free Claude Pro for McGill students <Claude.Color size={24} />
+            In partnership with Anthropic, we can also provide free Claude Pro for McGill students <Color size={24} />
           </p>
         </div>
       </div>

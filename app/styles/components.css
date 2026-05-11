@@ -1057,90 +1057,152 @@ body::after {
   aspect-ratio: 2 / 1;
   border-radius: var(--radius-md, 14px);
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.campus-map__svg {
+.campus-map__svg-root {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.55;
-  filter: saturate(0) brightness(0) invert(1);
-  pointer-events: none;
+  display: block;
+  cursor: grab;
 }
 
-.campus-map__dots {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.campus-map__svg-root:active {
+  cursor: grabbing;
 }
 
-.campus-map__dot-wrap {
+.campus-map__tooltip--floating {
   position: absolute;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-}
-
-.campus-map__dot {
-  appearance: none;
-  -webkit-appearance: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  animation: campusDotPulse 2.4s var(--ease, ease-in-out) infinite;
-  animation-delay: calc(var(--i, 0) * 80ms);
-  transition: transform 180ms var(--ease, ease-in-out);
-}
-
-.campus-map__tooltip {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translate(-50%, 4px);
+  transform: translate(-50%, calc(-100% - 10px));
   padding: 0.35rem 0.6rem;
-  background: rgba(20, 18, 16, 0.92);
+  background: rgba(20, 18, 16, 0.94);
   color: #fff;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-family: var(--font-body);
   white-space: nowrap;
   border-radius: 6px;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 160ms var(--ease, ease-in-out),
-    transform 160ms var(--ease, ease-in-out);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
   z-index: 2;
+  animation: campusTooltipIn 140ms var(--ease, ease-out);
 }
 
-.campus-map__dot:hover,
-.campus-map__dot:focus-visible {
+@keyframes campusTooltipIn {
+  from { opacity: 0; transform: translate(-50%, calc(-100% - 6px)); }
+  to   { opacity: 1; transform: translate(-50%, calc(-100% - 10px)); }
+}
+
+.campus-map__marker {
   outline: none;
-  box-shadow: 0 0 0 6px
-    rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
-  animation-play-state: paused;
 }
 
-.campus-map__dot:hover .campus-map__tooltip,
-.campus-map__dot:focus-visible .campus-map__tooltip {
-  opacity: 1;
-  transform: translate(-50%, 0);
+body.page-loaded:not(.page-initialized) .campus-map__marker {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: campusDotIn 360ms var(--ease, ease-out) both;
+}
+
+@keyframes campusDotIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.campus-map__marker:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.campus-map__pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: campusPulse 2.4s var(--ease, ease-in-out) infinite;
+  opacity: 0.7;
+}
+
+@keyframes campusPulse {
+  0%   { transform: scale(1);   opacity: 0.65; }
+  70%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.campus-map__controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: grid;
+  gap: 4px;
+  z-index: 3;
+}
+
+.campus-map__control {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 220, 180, 0.18);
+  background: rgba(18, 14, 10, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-ink);
+  font-size: 1.05rem;
+  line-height: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 160ms var(--ease, ease-in-out),
+    border-color 160ms var(--ease, ease-in-out),
+    transform 160ms var(--ease, ease-in-out);
+}
+
+.campus-map__control:hover:not(:disabled),
+.campus-map__control:focus-visible {
+  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.22);
+  border-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.55);
+  transform: translateY(-1px);
+}
+
+.campus-map__control:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.campus-map__control:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.campus-map__control:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (pointer: coarse), (max-width: 640px) {
+  .campus-map__control {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+  .campus-map__controls {
+    bottom: 16px;
+    right: 16px;
+    gap: 6px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .campus-map__dot {
+  .campus-map__tooltip--floating,
+  .campus-map__pulse-ring {
     animation: none;
   }
-  .campus-map__tooltip {
+  body.page-loaded:not(.page-initialized) .campus-map__marker {
+    animation: none;
+    opacity: 1;
+  }
+  .campus-map__control {
     transition: none;
   }
 }
