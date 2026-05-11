@@ -1054,7 +1054,7 @@ body::after {
   letter-spacing: -0.01em;
   line-height: 1.1;
   margin: 0;
-  color: var(--color-fg);
+  color: var(--color-ink);
 }
 
 .campus-map-lead {
@@ -1110,9 +1110,9 @@ body::after {
   border-radius: 50%;
   background: var(--color-accent);
   cursor: pointer;
-  animation: campusDotPulse 2.4s var(--ease-soft, ease-in-out) infinite;
+  animation: campusDotPulse 2.4s var(--ease, ease-in-out) infinite;
   animation-delay: calc(var(--i, 0) * 80ms);
-  transition: transform 180ms var(--ease-soft, ease-in-out);
+  transition: transform 180ms var(--ease, ease-in-out);
 }
 
 .campus-map__tooltip {
@@ -1129,8 +1129,8 @@ body::after {
   border-radius: 6px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 160ms var(--ease-soft, ease-in-out),
-    transform 160ms var(--ease-soft, ease-in-out);
+  transition: opacity 160ms var(--ease, ease-in-out),
+    transform 160ms var(--ease, ease-in-out);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
   z-index: 2;
 }
