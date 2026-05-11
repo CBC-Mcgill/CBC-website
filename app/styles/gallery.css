@@ -1,0 +1,239 @@
+/* ──────────────────────────────────────────────────────────────────
+   Gallery — editorial photo layout (Hackathon '26)
+   Header block uses display-serif at scale; body uses CSS columns
+   for masonry. Lightbox is a native <dialog> with overlay controls.
+   ────────────────────────────────────────────────────────────── */
+
+.gallery-header {
+  padding-top: clamp(var(--space-4, 3rem), 8vw, var(--space-5, 5rem));
+  padding-bottom: var(--space-3, 2rem);
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+  margin: 0.25rem 0 0;
+  color: var(--color-ink);
+}
+
+.gallery-dek {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin: 0.9rem 0 0;
+  max-width: 60ch;
+  letter-spacing: 0.01em;
+}
+
+/* Hero */
+
+.gallery-hero {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 var(--space-3, 2rem);
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 380ms var(--ease, ease-out);
+}
+
+.gallery-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 220ms var(--ease, ease-out);
+}
+
+.gallery-hero:hover img,
+.gallery-hero:focus-visible img {
+  opacity: 0.94;
+}
+
+.gallery-hero:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Masonry grid (CSS columns) */
+
+.gallery-grid {
+  column-count: 3;
+  column-gap: clamp(0.5rem, 1vw, 1rem);
+}
+
+@media (max-width: 1000px) {
+  .gallery-grid { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid { column-count: 1; }
+}
+
+.gallery-tile {
+  break-inside: avoid;
+  display: block;
+  width: 100%;
+  margin: 0 0 clamp(0.5rem, 1vw, 1rem) 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 280ms var(--ease, ease-out);
+}
+
+.gallery-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 380ms var(--ease, ease-out), opacity 220ms;
+}
+
+.gallery-tile:hover img,
+.gallery-tile:focus-visible img {
+  transform: scale(1.025);
+}
+
+.gallery-tile:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Lightbox — native <dialog> */
+
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+.gallery-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+
+.gallery-lightbox::backdrop {
+  background: rgba(8, 6, 4, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gallery-lightbox__img {
+  display: block;
+  max-width: 92vw;
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-lightbox__close,
+.gallery-lightbox__nav {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 220, 180, 0.22);
+  background: rgba(20, 14, 10, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    background 180ms var(--ease, ease-in-out),
+    border-color 180ms var(--ease, ease-in-out),
+    transform 180ms var(--ease, ease-in-out);
+}
+
+.gallery-lightbox__close:hover,
+.gallery-lightbox__nav:hover,
+.gallery-lightbox__close:focus-visible,
+.gallery-lightbox__nav:focus-visible {
+  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.25);
+  border-color: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.6);
+  transform: scale(1.05);
+}
+
+.gallery-lightbox__close:focus-visible,
+.gallery-lightbox__nav:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.gallery-lightbox__close {
+  top: clamp(0.75rem, 2vw, 1.25rem);
+  right: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.gallery-lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.85rem;
+}
+
+.gallery-lightbox__nav--prev {
+  left: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.gallery-lightbox__nav--next {
+  right: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.gallery-lightbox__nav:hover,
+.gallery-lightbox__nav:focus-visible {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-lightbox__caption {
+  position: absolute;
+  bottom: clamp(0.5rem, 2vw, 1.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 235, 210, 0.7);
+  pointer-events: none;
+}
+
+.gallery-lightbox__caption span {
+  margin: 0 0.4em;
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-hero,
+  .gallery-tile,
+  .gallery-tile img,
+  .gallery-lightbox__close,
+  .gallery-lightbox__nav {
+    transition: none;
+  }
+}

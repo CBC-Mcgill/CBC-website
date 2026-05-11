@@ -8,6 +8,7 @@ const PAGE_MAP: Record<string, string> = {
   '/about': 'about',
   '/people': 'people',
   '/hackathon': 'hackathon',
+  '/hackathon26': 'hackathon26',
   '/contact': 'contact',
 };
 
