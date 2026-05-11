@@ -229,3 +229,13 @@ body.page-leave .page-shell {
     opacity: 0 !important;
   }
 }
+
+@keyframes campusDotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0);
+  }
+}

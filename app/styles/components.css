@@ -1032,3 +1032,137 @@ body::after {
 .site-footer {
   border-top: 0;
 }
+
+/* ── Campus map ─────────────────────────────────────────── */
+
+.campus-map-panel {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.campus-map-caption {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.campus-map-title {
+  font-family: var(--font-fraunces);
+  font-weight: 500;
+  font-size: clamp(1.85rem, 3.2vw, 2.7rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--color-fg);
+}
+
+.campus-map-lead {
+  color: var(--color-muted);
+  font-size: 0.98rem;
+  max-width: 60ch;
+  margin: 0;
+}
+
+.campus-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius-md, 14px);
+  overflow: hidden;
+}
+
+.campus-map__svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  filter: saturate(0) brightness(0) invert(1);
+  pointer-events: none;
+}
+
+.campus-map__dots {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.campus-map__dot-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+}
+
+.campus-map__dot {
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  animation: campusDotPulse 2.4s var(--ease-soft, ease-in-out) infinite;
+  animation-delay: calc(var(--i, 0) * 80ms);
+  transition: transform 180ms var(--ease-soft, ease-in-out);
+}
+
+.campus-map__tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 0.35rem 0.6rem;
+  background: rgba(20, 18, 16, 0.92);
+  color: #fff;
+  font-size: 0.78rem;
+  font-family: var(--font-source-serif);
+  white-space: nowrap;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms var(--ease-soft, ease-in-out),
+    transform 160ms var(--ease-soft, ease-in-out);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────
+ * LEARNING-MODE CONTRIBUTION SLOT
+ * ─────────────────────────────────────────────────────────
+ * Define how a dot reacts on hover and keyboard focus.
+ *
+ * The wrapper exposes `.campus-map__dot:hover`, `.campus-map__dot:focus-visible`,
+ * and the descendant `.campus-map__tooltip`. Write 5-10 lines below that:
+ *
+ *   1. Reveals the tooltip (set `.campus-map__tooltip` to `opacity: 1` and
+ *      `transform: translate(-50%, 0)`).
+ *   2. Indicates the focused dot itself. Pick ONE approach:
+ *
+ *        (a) Pure tooltip reveal — dot stays the same size, only the tooltip shows.
+ *        (b) Scale-up — dot grows to 1.25x or 1.4x.
+ *        (c) Ring expand — drop a box-shadow ring around it.
+ *
+ * Whatever you pick, also handle `:focus-visible` (keyboard) with the same visual
+ * so keyboard users see the same affordance as mouse users.
+ *
+ * TODO: write your hover/focus rule here.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .campus-map__dot {
+    animation: none;
+  }
+  .campus-map__tooltip {
+    transition: none;
+  }
+}
