@@ -16,12 +16,12 @@ export function CampusMapSection() {
       <div className="container">
         <figure className="campus-map-panel soft-panel">
           <figcaption className="campus-map-caption">
-            <p
+            {/* <p
               className="eyebrow reveal"
               style={{ '--delay': '0.1s' } as React.CSSProperties}
             >
               Claude Campus Program
-            </p>
+            </p> */}
             <h1
               className="campus-map-title reveal"
               style={{ '--delay': '0.2s' } as React.CSSProperties}
