@@ -355,19 +355,6 @@ main {
     inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
 
-/* School/badge pill used on the About page */
-.school-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.09);
-  border: 1px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.22);
-  color: var(--color-accent-strong);
-  font-size: 0.83rem;
-  letter-spacing: 0.01rem;
-}
-
 /* Top-half reflection — mimics light catching the curved upper surface
  * of real glass. Replaces the old animated radial accent which competed
  * with the page-wide shader behind the panel. */
@@ -1048,7 +1035,7 @@ body::after {
 }
 
 .campus-map-title {
-  font-family: var(--font-fraunces);
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(1.85rem, 3.2vw, 2.7rem);
   letter-spacing: -0.01em;
@@ -1124,7 +1111,7 @@ body::after {
   background: rgba(20, 18, 16, 0.92);
   color: #fff;
   font-size: 0.78rem;
-  font-family: var(--font-source-serif);
+  font-family: var(--font-body);
   white-space: nowrap;
   border-radius: 6px;
   pointer-events: none;
