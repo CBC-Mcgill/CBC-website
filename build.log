@@ -1,0 +1,30 @@
+
+> cbc-website@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.6s
+  Running TypeScript ...
+  Collecting page data using 31 workers ...
+  Generating static pages using 31 workers (0/7) ...
+  Generating static pages using 31 workers (1/7) 
+  Generating static pages using 31 workers (3/7) 
+  Generating static pages using 31 workers (5/7) 
+✓ Generating static pages using 31 workers (7/7) in 504.3ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /contact
+├ ○ /hackathon
+└ ○ /people
+
+
+○  (Static)  prerendered as static content
+

@@ -332,19 +332,19 @@ main {
   color: var(--color-muted);
 }
 
-/* Apple-style glassmorphism: heavy blur + saturation boost + brightness
- * lift, plus paired top-edge highlight and bottom-edge shadow for material
- * depth. The .soft-panel::before below adds a top-reflection gradient. */
+/* Smoked-glass panel: heavy blur + saturation boost + brightness dim, with
+ * a translucent dark tint and paired top-edge highlight + bottom-edge shadow
+ * for material depth. The .soft-panel::before below adds a top-reflection. */
 .soft-panel {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 220, 180, 0.12);
   background: linear-gradient(
     135deg,
-    rgba(255, 220, 180, 0.025) 0%,
-    rgba(255, 220, 180, 0.005) 100%
+    rgba(18, 14, 10, 0.30) 0%,
+    rgba(18, 14, 10, 0.22) 100%
   );
-  backdrop-filter: blur(16px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(16px) saturate(180%) brightness(1.05);
+  backdrop-filter: blur(16px) saturate(180%) brightness(0.5);
+  -webkit-backdrop-filter: blur(16px) saturate(180%) brightness(0.5);
   padding: var(--space-6);
   display: grid;
   gap: var(--space-4);
