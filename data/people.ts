@@ -20,7 +20,7 @@ const Person = (
 });
 
 export const leadership: Person[] = [
-  Person('Thai Tran', 'President', "I max out my Claude Pro usage at least twice a day.", 'assets/people/ThaiTran.png', '', 'https://www.linkedin.com/in/thai-tran-minh/', 'https://github.com/thaimtl/'),
+  Person('Thai Tran', 'President', "Claudemaxxing", 'assets/people/ThaiTran.png', '', 'https://www.linkedin.com/in/thai-tran-minh/', 'https://github.com/thaimtl/'),
   Person('Ethan Tran', 'VP Operations', "BOULDERING🧗🧗‍♀️🧗‍♂️‼️‼️‼️‼️", 'assets/people/ethan.png', '', 'https://www.linkedin.com/in/-ethantran-/', 'https://github.com/tran-ethan'),
   Person('Virgile Couture', 'VP Finance', "I am still a 6-hcp golfer on paper.", 'assets/people/VirgileCouture.png', '', 'https://www.linkedin.com/in/v-couture/'),
   Person('Benjamin Ghaderi', 'Technical Director', "I like to build, and eat. I really love food.", 'assets/people/BenGhad.jpg', 'benjamin.ghaderi@mail.mcgill.ca', 'https://linkedin.com/in/ben-ghaderi', 'https://github.com/BenGhad/'),
