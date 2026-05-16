@@ -22,7 +22,7 @@ export const buildTracks: BuildTrack[] = [
     description: 'Automated job scraper for SWE/ML internships and new grad positions.',
     why: "Only applying on Linkedin and McGill job board is so NGMI. We poll the latest drop of internships + gatekept opportunities in Canada/US/Europe and stream it on Discord for you.",
     leads: 'Ben',
-    status: 'complete',
+    status: 'full',
     github: 'https://github.com/CBC-Mcgill/BeensJobBot',
   },
 ];
