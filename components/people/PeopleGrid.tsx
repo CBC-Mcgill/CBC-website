@@ -1,15 +1,11 @@
-import { PersonCard } from './PersonCard';
-import type { Person } from '@/types';
-
-interface PeopleGridProps {
-  people: Person[];
-}
-
-export function PeopleGrid({ people }: PeopleGridProps) {
+import { PersonCard } from "./PersonCard";
+import type { Person } from "@/types";
+import s from "@/app/editorial.module.css";
+export function PeopleGrid({ people }: { people: Person[] }) {
   return (
-    <div className="people-grid is-static" style={{ marginTop: '1.5rem' }}>
-      {people.map((person, index) => (
-        <PersonCard key={`${person.name}-${index}`} person={person} index={index} />
+    <div className={s.team}>
+      {people.map((person) => (
+        <PersonCard key={person.name} person={person} />
       ))}
     </div>
   );

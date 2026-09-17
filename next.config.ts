@@ -1,11 +1,9 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    viewTransition: true,
-  },
+  turbopack: { root: process.cwd() },
   images: {
-    localPatterns: [{ pathname: '/assets/**' }],
+    localPatterns: [{ pathname: "/assets/**" }],
   },
 };
 

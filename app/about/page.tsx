@@ -1,119 +1,75 @@
-import type { Metadata } from 'next';
-import { CampusMapSection } from '@/components/about/CampusMapSection';
-import { ImgFrame } from '@/components/shared/ImgFrame';
-
-export const metadata: Metadata = {
-  title: 'Claude Builder Club · About',
-};
-
+import Image from "next/image";
+import Link from "next/link";
+import s from "../editorial.module.css";
+export const metadata = { title: "About · Claude Builder Club" };
 export default function AboutPage() {
   return (
-    <>
-      <CampusMapSection />
-
-      <section className="section">
-        <div className="container soft-panel">
-          <div>
-            <p className="eyebrow reveal" style={{ '--delay': '0.05s' } as React.CSSProperties}>
-              Backed by Anthropic
-            </p>
-            <h2 className="section-title reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
-              A global initiative
-            </h2>
+    <div className="container">
+      <header className={s.pageHero}>
+        <p className="eyebrow">About CBC</p>
+        <h1>Curiosity is a good place to start.</h1>
+        <p className="lead">
+          We’re Claude Builder Club at McGill: a student-led community exploring
+          what we can make with AI, together.
+        </p>
+      </header>
+      <section className={`section ${s.split}`}>
+        <div className={s.prose}>
+          <h2>A place to turn ideas into something real.</h2>
+          <p>
+            We are a builder first club. We want to build and inspire others to
+            build.
+          </p>
+          <p>
+            We run regular workshops to teach students how to use Claude and
+            other AI tools, and we have project pods where members ship projects
+            together in a high-accountability environment. We also run hackathons
+            and demo days to celebrate and reward the amazing projects our
+            members build.
+          </p>
+          <div className="actions">
+            <Link className="button secondary" href="/#projects">
+              Explore our projects ↗
+            </Link>
           </div>
-          <div style={{ display: 'grid', gap: 'var(--space-3)' }}>
-            <p className="section-copy reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-              Claude Builder Clubs are part of Anthropic&rsquo;s Claude Campus Program — a network of
-              student-led chapters at universities around the world. The program spans 75+ schools
-              with over 15,000 students enrolled globally.
-            </p>
-            <p className="section-copy reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
-              Each chapter is student-run and officially Anthropic-backed. Anthropic gives us free Claude Pro
-              access and API credits, and the support needed to run AI tools and fluency workshops, hackathons,
-              and demo days on campuses.
-            </p>
+        </div>
+        <Image
+          className={s.photo}
+          src="/assets/hackathon_26_photos/ralph_table.jpg"
+          alt="Students talking with club organizers at a CBC event table"
+          width={1200}
+          height={800}
+          sizes="(max-width:600px) 100vw, 50vw"
+        />
+      </section>
+      <section className={`section ${s.intro}`}>
+        <div>
+          <p className="eyebrow">Rooted at McGill</p>
+          <h2>Part of a wider community.</h2>
+        </div>
+        <div className={s.prose}>
+          <p>
+            CBC at McGill is part of Anthropic’s Claude Campus program,
+            connecting student-led builder communities across universities.
+          </p>
+          <p>
+            Here at McGill, our focus is the people beside us: learning
+            together, building together, and making space for the next idea.
+          </p>
+          <div className="actions">
+            <Link href="/people">Meet the team ↗</Link>
           </div>
         </div>
       </section>
-
-      <section className="section">
-        <div className="container split">
-          <div>
-            <h2 className="section-title reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-              CBC at McGill
-            </h2>
-            <p className="section-copy reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-              We are a builder first club. We want to build and inspire other to build. We run regular workshops to teach students how to use Claude and other AI tools, and we have project pods where members ship projects together in a high-accountability environment. We also run hackathons and demo days to celebrate and reward the amazing projects our members build.
-            </p>
-          </div>
-          <div className="card reveal" style={{ '--delay': '0.3s' } as React.CSSProperties}>
-            <h3>What members get</h3>
-            <ul style={{ display: 'grid', gap: '0.55rem', marginTop: '0.85rem', padding: 0, listStyle: 'none' }}>
-              {[
-                'Free Claude Pro access',
-                'Anthropic API credits',
-                'Claude Code workshops',
-                'Hackathons & demo days',
-                'High-accountability build team',
-              ].map((item) => (
-                <li
-                  key={item}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', color: 'var(--color-muted)', fontSize: '0.93rem' }}
-                >
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--color-accent)', flexShrink: 0 }} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+      <section className={s.join}>
+        <div>
+          <h2>Bring an idea. Or just yourself.</h2>
+          <p>Get connected and learn how to take part.</p>
         </div>
+        <Link className="button" href="/contact">
+          Join CBC ↗
+        </Link>
       </section>
-
-      <section className="section">
-        <div className="container soft-panel">
-          <h2 className="section-title reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            How the term runs
-          </h2>
-          <div className="schedule-list">
-            <div className="schedule-item reveal" style={{ '--delay': '0.15s' } as React.CSSProperties}>
-              <div>
-                <strong>Kickoff + onboarding</strong>
-                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Get tools, join project pods, set build goals</p>
-              </div>
-              <span>Week 1</span>
-            </div>
-            <div className="schedule-item reveal" style={{ '--delay': '0.25s' } as React.CSSProperties}>
-              <div>
-                <strong>Workshop cycles</strong>
-                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Weekly practical sessions with experts and peers</p>
-              </div>
-              <span>Weekly</span>
-            </div>
-            <div className="schedule-item reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-              <div>
-                <strong>Demo days + hackathon</strong>
-                <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Ship, present, and compete for prizes with sponsors</p>
-              </div>
-              <span>Seasonal</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container split">
-          <ImgFrame
-            src="/assets/ui/claudeHats.jpg"
-            alt="Claude Builder Club members wearing Claude hats"
-            label="CBC Hats"
-          />
-          <ImgFrame
-            src="/assets/ui/hero.png"
-            alt="Students collaborating in Claude Builder Club"
-            label="CBC Builders"
-          />
-        </div>
-      </section>
-    </>
+    </div>
   );
 }
