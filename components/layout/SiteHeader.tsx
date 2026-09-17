@@ -1,46 +1,73 @@
-'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { NavIndicator } from '@/components/navigation/NavIndicator';
-
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+const links = [
+  ["About", "/about"],
+  ["Projects", "/#projects"],
+  ["Team", "/people"],
+  ["Hackathon", "/hackathon"],
+];
 export function SiteHeader() {
   const pathname = usePathname();
-  const [openPathname, setOpenPathname] = useState<string | null>(null);
-  const isMenuOpen = openPathname === pathname;
-
-  const menuId = 'primary-navigation';
-
+  const navigation = (
+    <>
+      {links.map(([label, href]) => (
+        <Link
+          key={href}
+          href={href}
+          aria-current={
+            pathname === href ||
+            (href === "/hackathon" && pathname === "/hackathon26")
+              ? "page"
+              : undefined
+          }
+        >
+          {label}
+        </Link>
+      ))}
+      <Link
+        className="button"
+        href="/contact"
+        aria-current={pathname === "/contact" ? "page" : undefined}
+      >
+        Join CBC <span aria-hidden="true">↗</span>
+      </Link>
+    </>
+  );
   return (
     <header className="site-header">
-      <div className="container">
-        <div className="header-bar">
-          <Link className="logo" href="/">
-            <span className="logo-text">Claude Builder Club</span>
-            <span className="logo-sub">McGill Chapter</span>
-          </Link>
-          <button
-            className="nav-toggle"
-            type="button"
-            aria-expanded={isMenuOpen}
-            aria-controls={menuId}
-            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            onClick={() => {
-              setOpenPathname((currentPath) => (currentPath === pathname ? null : pathname));
+      <div className="container header-bar">
+        <Link className="logo" href="/" aria-label="Claude Builder Club home">
+          <span className="logo-mark" aria-hidden="true">
+            ✳
+          </span>
+          <span>
+            Claude Builder Club<small>McGill University</small>
+          </span>
+        </Link>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {navigation}
+        </nav>
+        <details
+          className="mobile-menu"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              e.currentTarget.open = false;
+              e.currentTarget.querySelector("summary")?.focus();
+            }
+          }}
+        >
+          <summary>Menu</summary>
+          <nav
+            aria-label="Mobile navigation"
+            onClick={(e) => {
+              if ((e.target as HTMLElement).closest("a"))
+                e.currentTarget.closest("details")?.removeAttribute("open");
             }}
           >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-        <div className={`header-nav-wrap${isMenuOpen ? ' is-open' : ''}`} id={menuId}>
-          <NavIndicator
-            className={isMenuOpen ? 'is-open' : undefined}
-            onNavigate={() => setOpenPathname(null)}
-          />
-        </div>
+            {navigation}
+          </nav>
+        </details>
       </div>
     </header>
   );

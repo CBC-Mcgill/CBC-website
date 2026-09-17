@@ -1,38 +1,27 @@
-import Link from 'next/link';
-import { clubLinks } from '@/data/links';
-import { DiscordIcon, InstagramIcon, LinkedInIcon, SignupIcon } from '@/components/icons';
-
+import Link from "next/link";
+import { clubLinks } from "@/data/links";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
         <div>
-          <h3>Claude Builder Club</h3>
-          <p className="section-copy">
-            Join us for free Claude Pro access,
-            API credits, workshops, and a high-accountability builder community.
-          </p>
+          <Link className="logo" href="/">
+            Claude Builder Club
+          </Link>
+          <p>A community of curious builders at McGill.</p>
+          <small>Montréal, Québec</small>
         </div>
-        <div className="footer-links">
-          <Link href="/">Home</Link>
+        <nav aria-label="Footer">
           <Link href="/about">About</Link>
-          <Link href="/people">People</Link>
+          <Link href="/people">Team</Link>
           <Link href="/contact">Contact</Link>
-        </div>
-        <div className="footer-links footer-socials">
-          <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-            <span className="club-link-icon"><DiscordIcon /></span>Discord
-          </a>
-          <a href={clubLinks.instagram} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-            <span className="club-link-icon"><InstagramIcon /></span>Instagram
-          </a>
-          <a href={clubLinks.linkedin} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-            <span className="club-link-icon"><LinkedInIcon /></span>LinkedIn
-          </a>
-          <a href={clubLinks.signup} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-            <span className="club-link-icon"><SignupIcon /></span>Sign-up Form
-          </a>
-        </div>
+        </nav>
+        <nav aria-label="Social links">
+          <a href={clubLinks.discord}>Discord ↗</a>
+          <a href={clubLinks.instagram}>Instagram ↗</a>
+          <a href={clubLinks.linkedin}>LinkedIn ↗</a>
+          <a href={clubLinks.github}>GitHub ↗</a>
+        </nav>
       </div>
     </footer>
   );

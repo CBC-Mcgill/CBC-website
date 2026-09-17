@@ -1,0 +1,210 @@
+.scene {
+  position: relative;
+  min-height: 590px;
+  isolation: isolate;
+  transform: perspective(1100px) rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  transition: transform 0.45s ease;
+}
+.coordinates {
+  display: flex;
+  justify-content: space-between;
+  font: 9px monospace;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding-top: 12px;
+}
+.orbit {
+  position: absolute;
+  inset: 45px -12px 70px;
+  display: grid;
+  place-items: center;
+}
+.flower {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 16px #fda87538);
+  animation: spin 65s linear infinite;
+}
+.outerRing,
+.innerRing {
+  position: absolute;
+  width: 96%;
+  aspect-ratio: 1;
+  border: 1px solid #e7b18b20;
+  border-radius: 50%;
+  transform: rotateX(26deg);
+}
+.innerRing {
+  width: 78%;
+  border-style: dashed;
+  animation: spin 100s linear infinite reverse;
+}
+.outerRing::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  color: #fbc899;
+  font: 16px monospace;
+}
+.satellite {
+  position: absolute;
+  width: 88%;
+  aspect-ratio: 1;
+  animation: spin 24s linear infinite;
+}
+.satellite span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #ffe1b9;
+  box-shadow: 0 0 25px 5px #ffaf6855;
+  border-radius: 50%;
+}
+.snapshot {
+  position: absolute;
+  padding: 8px;
+  margin: 0;
+  background: #221e1b;
+  border: 1px solid #cfa37d45;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px #0006;
+  z-index: 2;
+}
+.snapshot img {
+  width: 100%;
+  aspect-ratio: 1.5;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.snapshot figcaption {
+  font: 10px monospace;
+  color: #e2cbb7;
+  padding: 10px 3px 4px;
+}
+.first {
+  width: 240px;
+  left: -22px;
+  bottom: 52px;
+  --angle: -9deg;
+  animation: float 8s ease-in-out infinite;
+}
+.second {
+  width: 190px;
+  right: -5px;
+  top: 55px;
+  --angle: 10deg;
+  animation: float 9s ease-in-out -3s infinite;
+}
+.note {
+  position: absolute;
+  right: 12px;
+  bottom: 54px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #ddc5b2;
+  transform: rotate(5deg);
+}
+.note span {
+  display: block;
+  font-size: 35px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.axis {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 9px monospace;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--angle));
+  }
+  50% {
+    transform: translateY(-14px) rotate(calc(var(--angle) + 3deg));
+  }
+}
+@media (max-width: 1000px) {
+  .scene {
+    min-height: 480px;
+  }
+  .first {
+    width: 190px;
+    left: 0;
+  }
+  .second {
+    width: 160px;
+    right: 0;
+  }
+  .note {
+    right: 0;
+    bottom: 36px;
+    font-size: 10px;
+  }
+  .orbit {
+    inset: 60px 0 60px;
+  }
+  .coordinates {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+}
+@media (max-width: 600px) {
+  .scene {
+    min-height: 410px;
+    max-width: 430px;
+    width: 100%;
+    margin: auto;
+  }
+  .first {
+    width: 47%;
+    bottom: 40px;
+  }
+  .second {
+    width: 39%;
+    top: 40px;
+  }
+  .note {
+    bottom: 33px;
+  }
+  .coordinates {
+    font-size: 7px;
+  }
+  .orbit {
+    inset: 20px -5px 50px;
+  }
+  .axis {
+    font-size: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    transform: none;
+  }
+  .flower,
+  .satellite,
+  .innerRing,
+  .snapshot {
+    animation: none;
+  }
+  .first {
+    transform: rotate(-9deg);
+  }
+  .second {
+    transform: rotate(10deg);
+  }
+}

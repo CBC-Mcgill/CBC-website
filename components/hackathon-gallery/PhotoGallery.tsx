@@ -1,170 +1,134 @@
-'use client';
-
-import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-
-export type GalleryPhoto = { src: string; width: number; height: number };
-
+"use client";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import s from "./gallery.module.css";
+export type GalleryPhoto = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+};
 export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const [idx, setIdx] = useState<number | null>(null);
-
-  const close = useCallback(() => setIdx(null), []);
-  const prev = useCallback(
-    () => setIdx((i) => (i === null ? null : (i - 1 + photos.length) % photos.length)),
-    [photos.length],
-  );
-  const next = useCallback(
-    () => setIdx((i) => (i === null ? null : (i + 1) % photos.length)),
-    [photos.length],
-  );
-
+  const [index, setIndex] = useState<number | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const origin = useRef<HTMLAnchorElement | null>(null);
   useEffect(() => {
-    const dlg = dialogRef.current;
-    if (!dlg) return;
-    if (idx !== null && !dlg.open) dlg.showModal();
-    else if (idx === null && dlg.open) dlg.close();
-  }, [idx]);
-
-  useEffect(() => {
-    if (idx === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prev();
-      else if (e.key === 'ArrowRight') next();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [idx, prev, next]);
-
-  if (photos.length === 0) {
-    return (
-      <section className="section">
-        <div className="container">
-          <p>No photos yet.</p>
-        </div>
-      </section>
+    if (index !== null && !dialog.current?.open) dialog.current?.showModal();
+  }, [index]);
+  const close = () => {
+    dialog.current?.close();
+    setIndex(null);
+    origin.current?.focus();
+  };
+  const move = (delta: number) =>
+    setIndex((i) =>
+      i === null ? null : (i + delta + photos.length) % photos.length,
     );
-  }
-
-  const [hero, ...rest] = photos;
-  const current = idx !== null ? photos[idx] : null;
-
+  const current = index === null ? null : photos[index];
+  if (!photos.length) return <p>Photos will be added here.</p>;
   return (
-    <>
-      <section className="section gallery-header">
-        <div className="container">
-          <p
-            className="eyebrow reveal"
-            style={{ '--delay': '0.1s' } as React.CSSProperties}
-          >
-            Photo gallery
-          </p>
-          <h1
-            className="gallery-title reveal"
-            style={{ '--delay': '0.2s' } as React.CSSProperties}
-          >
-            Hackathon &rsquo;26
-          </h1>
-          <p
-            className="gallery-dek reveal"
-            style={{ '--delay': '0.3s' } as React.CSSProperties}
-          >
-            McGill &middot; April 4, 2026 &middot; {photos.length} frames
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <button
-            type="button"
-            className="gallery-hero reveal"
-            onClick={() => setIdx(0)}
-            aria-label={`Open photo 1 of ${photos.length}`}
-            style={{ '--delay': '0.4s' } as React.CSSProperties}
+    <section className="section" aria-label="Event photographs">
+      <div className={s.grid}>
+        {photos.map((photo, i) => (
+          <a
+            className={s.tile}
+            key={photo.src}
+            href={photo.src}
+            aria-label={`Open photo ${i + 1}: ${photo.alt}`}
+            onClick={(e) => {
+              e.preventDefault();
+              origin.current = e.currentTarget;
+              setIndex(i);
+            }}
           >
             <Image
-              src={hero.src}
-              width={hero.width}
-              height={hero.height}
-              alt=""
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
+              src={photo.src}
+              width={photo.width}
+              height={photo.height}
+              alt={photo.alt}
+              sizes="(max-width:600px) 100vw, 50vw"
+              priority={i < 2}
             />
-          </button>
-
-          <div className="gallery-grid">
-            {rest.map((photo, i) => (
-              <button
-                type="button"
-                key={photo.src}
-                className="gallery-tile"
-                onClick={() => setIdx(i + 1)}
-                aria-label={`Open photo ${i + 2} of ${photos.length}`}
-              >
-                <Image
-                  src={photo.src}
-                  width={photo.width}
-                  height={photo.height}
-                  alt=""
-                  sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                  loading="lazy"
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
+            <span className={s.caption}>
+              <span>{photo.alt}</span>
+              <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        ))}
+      </div>
       <dialog
-        ref={dialogRef}
-        className="gallery-lightbox"
+        ref={dialog}
+        className={s.dialog}
+        aria-label="Event photo viewer"
+        onCancel={(e) => {
+          e.preventDefault();
+          close();
+        }}
+        onClose={() => {
+          setIndex(null);
+          origin.current?.focus();
+        }}
         onClick={(e) => {
           if (e.target === e.currentTarget) close();
         }}
-        onClose={close}
-        aria-label="Photo viewer"
+        onKeyDown={(e) => {
+          if (e.key === "Tab") {
+            const buttons =
+              e.currentTarget.querySelectorAll<HTMLButtonElement>("button");
+            const first = buttons[0];
+            const last = buttons[buttons.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            move(-1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            move(1);
+          }
+        }}
       >
-        <button
-          type="button"
-          className="gallery-lightbox__close"
-          onClick={close}
-          aria-label="Close photo viewer"
-        >
-          &times;
-        </button>
-        <button
-          type="button"
-          className="gallery-lightbox__nav gallery-lightbox__nav--prev"
-          onClick={prev}
-          aria-label="Previous photo"
-        >
-          &lsaquo;
-        </button>
-        <button
-          type="button"
-          className="gallery-lightbox__nav gallery-lightbox__nav--next"
-          onClick={next}
-          aria-label="Next photo"
-        >
-          &rsaquo;
-        </button>
+        <div className={s.controls}>
+          <button
+            type="button"
+            onClick={() => move(-1)}
+            aria-label="Previous photo"
+          >
+            ← Previous
+          </button>
+          <button
+            type="button"
+            onClick={close}
+            autoFocus
+            aria-label="Close photo viewer"
+          >
+            Close ×
+          </button>
+          <button type="button" onClick={() => move(1)} aria-label="Next photo">
+            Next →
+          </button>
+        </div>
         {current && (
           <Image
-            key={current.src}
+            className={s.fullImage}
             src={current.src}
             width={current.width}
             height={current.height}
-            alt=""
+            alt={current.alt}
             sizes="95vw"
-            priority
-            className="gallery-lightbox__img"
           />
         )}
-        <p className="gallery-lightbox__caption">
-          {(idx ?? 0) + 1} <span aria-hidden="true">/</span> {photos.length}
+        <p className={s.dialogCaption} aria-live="polite">
+          {(index ?? 0) + 1} / {photos.length} · {current?.alt}
         </p>
       </dialog>
-    </>
+    </section>
   );
 }
