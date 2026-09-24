@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claude Builder Hacks | Sponsorship Package</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --surface:#ffffff; --text:#141413; --muted:#626260; --border:rgba(20,20,19,.14); --rule:#b0aea5;
+    --light:#e8e6dc; --orange:#d97757; --blue:#6a9bcc; --green:#788c5d;
+    --orange-tint:rgba(217,119,87,.13); --blue-tint:rgba(106,155,204,.16); --green-tint:rgba(120,140,93,.16);
+    --soft:rgba(232,230,220,.72);
+    --backdrop:#dedcd3;
+    --scale: min(1, calc((100vw - 48px) / 816));
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --backdrop:#242320; } }
+  :root[data-theme="dark"]{ --backdrop:#242320; }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--backdrop);font-family:Lora,Georgia,serif;color:var(--text);
+       -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0 56px}
+  .wrap{width:calc(816px * var(--scale));height:calc(1056px * var(--scale))}
+  .page{width:816px;height:1056px;transform:scale(var(--scale));transform-origin:top left;
+        background:var(--surface);position:relative;overflow:hidden;
+        padding:64px 64px 96px;display:flex;flex-direction:column;
+        box-shadow:0 2px 14px rgba(20,20,19,.16);isolation:isolate}
+
+  .deco{position:absolute;z-index:-1;pointer-events:none}
+  .spark{background:url(/assets/ui/claude_spark.png) center/contain no-repeat}
+  .deco path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  h1,h2,h3,h4,.ui{font-family:Poppins,Arial,sans-serif}
+  h1{font-size:56px;font-weight:600;line-height:60px;letter-spacing:-.02em;margin:0}
+  h2{font-size:40px;font-weight:600;line-height:46px;letter-spacing:-.01em;margin:0}
+  h3{font-size:24px;font-weight:600;line-height:30px;margin:0}
+  h4{font-size:18px;font-weight:600;line-height:24px;margin:0}
+  .overline{font-family:Poppins,Arial,sans-serif;font-size:12px;font-weight:600;line-height:16px;
+            letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  p{margin:0;font-size:16px;line-height:28px}
+  .lede{font-size:18px;line-height:30px}
+  .sm{font-size:14px;line-height:22px}
+  .label{font-family:Poppins,Arial,sans-serif;font-size:14px;font-weight:500;line-height:20px}
+  .caption{font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:18px;color:var(--muted)}
+  .muted{color:var(--muted)}
+  b{font-weight:600}
+
+  .stack{display:flex;flex-direction:column}
+  .row{display:flex}
+  .spacer{flex:1}
+  hr{border:none;border-top:1px solid var(--rule);margin:0}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+  .card p{color:var(--muted)}
+  .photo{flex:1;height:157px;border-radius:12px;overflow:hidden;background:var(--light)}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .slot{background:var(--surface);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center}
+
+  ul{margin:0;padding-left:22px}
+  li{font-size:16px;line-height:28px}
+  li::marker{color:var(--orange)}
+  .num{font-family:Poppins,Arial,sans-serif;font-weight:600;color:var(--text)}
+
+  /* tiers */
+  table{width:100%;border-collapse:collapse}
+  .tiers{table-layout:fixed}
+  .tiers col.lbl{width:52%}
+  .tiers col.tier{width:16%}
+  .tiers td,.tiers th{padding:6px 0;vertical-align:middle;font-size:14px;line-height:20px;text-align:center}
+  .tiers th{font-family:Poppins,Arial,sans-serif}
+  .tiers td:first-child,.tiers th:first-child{text-align:left;padding-left:2px}
+  .tiers tr.item{border-bottom:1px solid var(--border)}
+  .tiers .grp td{padding:18px 2px 6px;text-align:left}
+  .tiers th.head{vertical-align:bottom;padding-bottom:12px}
+  .tiers .tname{font-size:20px;font-weight:600;line-height:26px;color:var(--text)}
+  .tiers .tprice{font-size:14px;font-weight:500;line-height:20px;color:var(--muted)}
+  .tiers .bar{height:5px;width:48px;margin:0 auto 10px;border-radius:999px}
+  .dot{font-size:14px;line-height:1}
+  .val{font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:18px;color:var(--muted)}
+  .t1{color:var(--green)} .t2{color:var(--orange)} .t3{color:var(--text)}
+
+  /* signature events */
+  .ev{border:1px solid var(--border);border-radius:16px;background:#fff;padding:20px;
+      display:flex;flex-direction:column;gap:12px;flex:1;min-width:0}
+  .ev-title{font-family:Poppins,Arial,sans-serif;font-size:17px;font-weight:600;line-height:23px;white-space:nowrap}
+  .ev-sub{font-family:Poppins,Arial,sans-serif;font-size:12px;line-height:16px;color:var(--muted)}
+  .ev-stat{font-family:Poppins,Arial,sans-serif;font-size:34px;font-weight:600;line-height:36px}
+  .ev-lbl{font-family:Poppins,Arial,sans-serif;font-size:12px;line-height:16px;color:var(--muted)}
+  .ck{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+  .ck li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:18px}
+  .ck svg{width:11px;height:11px;flex:none;margin-top:4px;stroke:var(--text)}
+  .act{margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+  .act p{font-size:12px;line-height:17px;color:var(--muted)}
+  .cal{background:var(--light);border-radius:16px;padding:15px 24px;display:flex;align-items:center;gap:16px}
+  .cal-stat{display:flex;flex-direction:column;align-items:center;min-width:76px}
+  .cal-num{font-family:Poppins,Arial,sans-serif;font-size:22px;font-weight:600;line-height:26px}
+  .cal-lbl{font-family:Poppins,Arial,sans-serif;font-size:11.5px;line-height:15px;color:var(--muted);white-space:nowrap}
+  .co{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .co-tile{width:72px;height:72px;display:flex;align-items:center;justify-content:center}
+  .co-tile img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+  .co-name{font-family:Poppins,Arial,sans-serif;font-size:16px;font-weight:600;line-height:22px;text-align:center}
+  .co-tag{font-family:Poppins,Arial,sans-serif;font-size:12.5px;line-height:17px;color:var(--muted);text-align:center}
+  .co-note{font-size:11px;line-height:15px;color:var(--orange);text-align:center;white-space:nowrap}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:70px;gap:10px}
+  .ptile{display:flex;align-items:center;justify-content:center;padding:4px 14px;min-height:0}
+  .ptile img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+  .addons{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
+  .addon{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--border);font-size:14px;line-height:20px}
+  .addon .p{font-family:Poppins,Arial,sans-serif;font-weight:600;color:var(--text);white-space:nowrap}
+
+  .contact{background:var(--orange);color:var(--text);border-radius:16px;padding:18px 26px;display:flex;align-items:center;gap:28px}
+
+  .ig{display:flex;align-items:center;justify-content:flex-end;gap:6px;text-decoration:none}
+  .ig span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+  .ig svg{width:14px;height:14px;flex:none}
+  a{color:inherit;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+  .foot{position:absolute;left:64px;right:64px;bottom:40px;display:flex;justify-content:space-between;
+        font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:18px;color:var(--muted)}
+
+  @media print{
+    :root{--scale:1}
+    body{background:#fff}
+    .deck{gap:0;padding:0}
+    .wrap{width:auto;height:auto}
+    .page{transform:none;box-shadow:none;page-break-after:always;break-after:page}
+    .deck > .wrap:last-child .page{page-break-after:auto;break-after:auto}
+  }
+  @page{size:letter;margin:0}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- COVER -->
+<div class="wrap"><div class="page">
+  <svg class="deco" viewBox="0 0 600 560" style="width:600px;height:560px;right:-190px;top:110px"><path d="M300 30 C 420 20, 560 110, 575 250 C 590 390, 480 520, 330 535 C 190 548, 45 470, 28 330 C 12 190, 150 40, 300 30 Z" style="fill:var(--soft);stroke:none"/></svg>
+  <div class="deco spark" style="width:420px;height:420px;right:-105px;top:170px"></div>
+  <svg class="deco" viewBox="0 0 260 90" style="width:260px;height:90px;right:40px;bottom:120px"><path d="M8 62 C 40 14, 96 12, 108 50 C 117 80, 76 92, 66 66 C 57 40, 112 22, 162 40 C 196 52, 218 70, 252 58" style="stroke:var(--orange);stroke-width:2.4"/></svg>
+  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;right:250px;top:96px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <img src="/assets/ui/claude_wordmark.png" alt="Claude" style="width:224px;height:49px;object-fit:contain;position:relative">
+  <div class="spacer"></div>
+  <div class="stack" style="gap:24px;padding-bottom:64px;position:relative">
+    <p class="overline">Claude Builder Club · McGill University</p>
+    <h1>Claude Builder Hacks</h1>
+    <hr style="width:120px;border-top:3px solid var(--orange);border-radius:999px">
+    <p class="lede">Sponsorship Package</p>
+    <p class="lede muted">2026-2027 &nbsp;·&nbsp; McGill University, Montréal</p>
+  </div>
+  <div class="row" style="align-items:center;gap:12px;position:relative">
+    <span class="caption">McGill's premier AI hackathon</span>
+  </div>
+</div></div>
+
+<!-- 1 · THE EVENT -->
+<div class="wrap"><div class="page">
+  <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
+  <svg class="deco" viewBox="0 0 220 80" style="width:220px;height:80px;right:52px;top:612px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
+  <div class="stack" style="gap:24px;flex:1">
+    <div class="stack" style="gap:12px">
+      <p class="overline">The event</p>
+      <h2>What we run</h2>
+      <p class="lede">Claude Builder Hacks is McGill's premier AI hackathon. In <b>one day</b>, <b>250+ students</b> form teams to build and ship real working projects with frontier AI, guided by mentors, fuelled by workshops, and judged by people who build for a living.</p>
+    </div>
+    <hr>
+    <div class="stack" style="gap:10px">
+      <h3>What is a hackathon?</h3>
+      <p>An event where people gather in teams of two to four and are given a set amount of time to code, design, and build a project. At the end, hackers present what they built and compete for prizes, with workshops, fun activities, and networking events running throughout.</p>
+      <p>For students it is the fastest route from an idea to a working prototype. For sponsors it is the clearest view you will get of how a cohort of builders actually works.</p>
+    </div>
+    <hr>
+    <div class="stack" style="gap:10px">
+      <h3>By the numbers</h3>
+      <ul>
+        <li><span class="num">250+</span> students hosted all-time</li>
+        <li><span class="num">7+</span> schools represented</li>
+        <li><span class="num">$5,000+</span> in sponsorship channelled into student projects</li>
+        <li><span class="num">570+</span> Instagram followers</li>
+        <li><span class="num">400+</span> members in our Discord</li>
+      </ul>
+    </div>
+    <div class="spacer"></div>
+    <div class="row" style="gap:16px">
+      <div class="photo"><img src="/_next/image?url=%2Fassets%2Fhackathon_26_photos%2F2U3A6039.jpg&amp;w=828&amp;q=75" alt=""></div>
+      <div class="photo"><img src="/_next/image?url=%2Fassets%2Fhackathon_26_photos%2F2U3A5833.jpg&amp;w=828&amp;q=75" alt=""></div>
+      <div class="photo"><img src="/_next/image?url=%2Fassets%2Fhackathon_26_photos%2Fralph_table.jpg&amp;w=828&amp;q=75" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>Claude Builder Club · McGill University</span><span>1</span></div>
+</div></div>
+
+<!-- 2 · WHY SPONSOR -->
+<div class="wrap"><div class="page">
+  <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
+  <svg class="deco" viewBox="0 0 480 420" style="width:480px;height:420px;left:-190px;bottom:-150px"><path d="M230 18 C 350 10, 468 100, 462 220 C 456 340, 360 410, 240 404 C 110 398, 14 320, 20 200 C 26 90, 120 26, 230 18 Z" style="fill:var(--soft);stroke:none"/></svg>
+  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;right:180px;top:66px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <div class="stack" style="gap:15px;flex:1">
+    <div class="stack" style="gap:8px">
+      <p class="overline">Why sponsor us</p>
+      <h2>What you gain</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card">
+        <h4>Brand visibility where it compounds</h4>
+        <p class="sm">Your name in front of builders at the moment they choose what to build with, and it follows them into internships, first jobs and their own companies.</p>
+      </div>
+      <div class="card">
+        <h4>Product showcase and real feedback</h4>
+        <p class="sm">Put your API and product in the hands of 400+ people working against a deadline. You learn more about your developer experience in a weekend than in a quarter of surveys.</p>
+      </div>
+      <div class="card">
+        <h4>Access to top talent</h4>
+        <p class="sm">Resume access, a booth, and a full day watching who folds under pressure and who doesn&rsquo;t. Past sponsors have hired grads and interns straight from the room.</p>
+      </div>
+      <div class="card">
+        <h4>First look at what's next</h4>
+        <p class="sm">Montréal is a leading hub for AI research and deployment. Sponsoring puts you in the room with the people shaping what comes next, first.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="stack" style="gap:10px">
+      <h3>Companies founded by McGill alumni</h3>
+      <div class="row" style="gap:14px">
+        <div class="co">
+          <div class="co-tile"><img src="/assets/sponsors/graypass_logo.png" alt="Graypass"></div>
+          <span class="co-name">Graypass</span>
+          <span class="co-tag">(Y Combinator F26)</span>
+          <span class="co-note">Founder built at Claude Builder Hacks</span>
+        </div>
+        <div class="co">
+          <div class="co-tile"><img src="/assets/sponsors/gumloop_logo.png" alt="Gumloop"></div>
+          <span class="co-name">Gumloop</span>
+          <span class="co-tag">(Y Combinator W24)</span>
+        </div>
+        <div class="co">
+          <div class="co-tile"><img src="/assets/sponsors/maintainx_logo.png" alt="MaintainX"></div>
+          <span class="co-name">MaintainX</span>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="stack" style="gap:12px">
+      <h3>Past partners</h3>
+      <div class="pgrid">
+        <div class="ptile"><img src="/assets/sponsors/rootlyhq_logo.jpg" alt="Rootly"></div>
+        <div class="ptile"><img src="/assets/sponsors/red_bull_mark.png" alt="Red Bull"></div>
+        <div class="ptile"><img src="/assets/partners/anthropic_mark.png" alt="Anthropic"></div>
+        <div class="ptile"><img src="/assets/sponsors/brimfinancial_logo.jpg" alt="Brim Financial"></div>
+        <div class="ptile"><img src="/assets/sponsors/pcare+_logo.jpg" alt="PCare+"></div>
+        <div class="ptile"><img src="/assets/sponsors/poppi_logo.jpg" alt="poppi"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Claude Builder Club · McGill University</span><span>2</span></div>
+</div></div>
+
+<!-- 3 · TIERS -->
+<div class="wrap"><div class="page">
+  <div class="deco spark" style="width:170px;height:170px;right:-66px;top:-66px"></div>
+  <svg class="deco" viewBox="0 0 420 380" style="width:420px;height:380px;right:-170px;bottom:-170px"><path d="M210 16 C 320 10, 410 90, 404 200 C 398 300, 310 372, 200 366 C 90 360, 12 280, 18 176 C 24 80, 110 22, 210 16 Z" style="fill:var(--soft);stroke:none"/></svg>
+  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;left:470px;top:72px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <div class="stack" style="gap:20px;flex:1">
+    <div class="stack" style="gap:8px">
+      <p class="overline">Packages</p>
+      <h2>Sponsorship tiers</h2>
+    </div>
+    <table class="tiers">
+      <colgroup><col class="lbl"><col class="tier"><col class="tier"><col class="tier"></colgroup>
+      <tr>
+        <th class="head"></th>
+        <th class="head"><div class="bar" style="background:var(--green)"></div><div class="tname">Sonnet</div><div class="tprice">$500</div></th>
+        <th class="head"><div class="bar" style="background:var(--orange)"></div><div class="tname">Opus</div><div class="tprice">$1,000</div></th>
+        <th class="head"><div class="bar" style="background:var(--text)"></div><div class="tname">Fable</div><div class="tprice">$2,000</div></th>
+      </tr>
+
+      <tr class="grp"><td colspan="4"><span class="overline">General</span></td></tr>
+      <tr class="item"><td>Discord access</td><td><span class="dot t1">&#9679;</span></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Speaking slot at the hackathon</td><td><span class="val">1 min</span></td><td><span class="val">2 min</span></td><td><span class="val">2 min</span></td></tr>
+      <tr class="item"><td>Seat on the judging panel</td><td><span class="dot t1">&#9679;</span></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Booth spot</td><td></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Judge finalists on stage</td><td></td><td></td><td><span class="dot t3">&#9679;</span></td></tr>
+
+      <tr class="grp"><td colspan="4"><span class="overline">Recruiting</span></td></tr>
+      <tr class="item"><td>Access to hacker resumes</td><td></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Custom email to hackers</td><td></td><td></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Post-event interviews</td><td></td><td></td><td><span class="dot t3">&#9679;</span></td></tr>
+
+      <tr class="grp"><td colspan="4"><span class="overline">Engineering</span></td></tr>
+      <tr class="item"><td>API and directories on website and Discord</td><td></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Host a workshop before or during the event</td><td></td><td><span class="val">30 min</span></td><td><span class="val">30 min</span></td></tr>
+      <tr class="item"><td>Custom challenge and prize</td><td></td><td></td><td><span class="dot t3">&#9679;</span></td></tr>
+
+      <tr class="grp"><td colspan="4"><span class="overline">Marketing</span></td></tr>
+      <tr class="item"><td>Logo on the website</td><td><span class="dot t1">&#9679;</span></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Social media promotion</td><td><span class="dot t1">&#9679;</span></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+      <tr class="item"><td>Distribute merch to hackers</td><td><span class="dot t1">&#9679;</span></td><td><span class="dot t2">&#9679;</span></td><td><span class="dot t3">&#9679;</span></td></tr>
+    </table>
+    <p class="caption">&#9679; included &nbsp;·&nbsp; Each tier includes everything in the tier before it &nbsp;·&nbsp; Custom packages available on request</p>
+  </div>
+  <div class="foot"><span>Claude Builder Club · McGill University</span><span>3</span></div>
+</div></div>
+
+<!-- 4 · SIGNATURE EVENTS -->
+<div class="wrap"><div class="page">
+  <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
+  <svg class="deco" viewBox="0 0 220 80" style="width:220px;height:80px;right:150px;top:44px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
+  <div class="stack" style="gap:18px;flex:1">
+    <div class="stack" style="gap:6px">
+      <p class="overline">Engagement opportunities</p>
+      <h2>Other Signature Events</h2>
+      <p class="muted" style="font-size:16px;line-height:24px">Where builders shine and sponsors connect</p>
+    </div>
+
+    <div class="row" style="gap:16px;align-items:stretch">
+      <div class="ev">
+        <div class="stack" style="gap:2px">
+          <span class="ev-title">Claude Hackathons</span>
+          <span class="ev-sub">Quarterly flagship events</span>
+        </div>
+        <div class="stack" style="gap:2px">
+          <span class="ev-stat">200+</span>
+          <span class="ev-lbl">Expected participants</span>
+        </div>
+        <ul class="ck">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>8-hour coding sprint</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Claude API challenges</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Anthropic affiliate mentorship</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>$3.5K+ in prizes</span></li>
+        </ul>
+        <div class="act">
+          <p><b>Sponsor activations</b> &nbsp;Booth space, challenge sponsorship, judging panel seats, resume access</p>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="stack" style="gap:2px">
+          <span class="ev-title">Demo Days</span>
+          <span class="ev-sub">1-2 showcases per semester</span>
+        </div>
+        <div class="stack" style="gap:2px">
+          <span class="ev-stat">5+</span>
+          <span class="ev-lbl">Projects showcased</span>
+        </div>
+        <ul class="ck">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Live product demonstrations</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>5-minute startup-style pitches</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Peer reviewers</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Networking reception</span></li>
+        </ul>
+        <div class="act">
+          <p><b>Sponsor activations</b> &nbsp;Keynote slots, exclusive networking dinner, early project access</p>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="stack" style="gap:2px">
+          <span class="ev-title">Workshops</span>
+          <span class="ev-sub">Bi-weekly deep dives</span>
+        </div>
+        <div class="stack" style="gap:2px">
+          <span class="ev-stat">40+</span>
+          <span class="ev-lbl">Attendees per session</span>
+        </div>
+        <ul class="ck">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Constitutional AI principles</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Advanced prompt engineering</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>AI safety and ethics</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"/></svg><span>Hands-on coding labs</span></li>
+        </ul>
+        <div class="act">
+          <p><b>Sponsor activations</b> &nbsp;Host workshops on your tools, product training sessions, tech talks</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cal">
+      <div class="stack" style="flex:1;min-width:0">
+        <span class="ui" style="font-size:16px;font-weight:600;line-height:22px">2026-2027 Event Calendar</span>
+        <span class="ui muted" style="font-size:12px;line-height:16px">Plan your partnership activations</span>
+      </div>
+      <div class="cal-stat"><span class="cal-num">2+</span><span class="cal-lbl">Hackathons</span></div>
+      <div class="cal-stat"><span class="cal-num">10+</span><span class="cal-lbl">Demo Days</span></div>
+      <div class="cal-stat"><span class="cal-num">10+</span><span class="cal-lbl">Workshops</span></div>
+      <div class="cal-stat"><span class="cal-num">2+</span><span class="cal-lbl">Networking events</span></div>
+    </div>
+
+    <div class="stack" style="gap:10px">
+      <h3>Add-ons</h3>
+      <div class="addons">
+        <div class="addon"><span>Extra 30 minutes on a workshop</span><span class="p">$200</span></div>
+        <div class="addon"><span>Sponsor a custom challenge and prize</span><span class="p">$500</span></div>
+        <div class="addon"><span>Social media post of your choice</span><span class="p">$200</span></div>
+        <div class="addon"><span>Sponsor a meal</span><span class="p">$500</span></div>
+        <div class="addon"><span>Sponsor a snack run</span><span class="p">$250</span></div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="contact">
+      <div class="stack" style="gap:4px;flex:1">
+        <h3>Let's work together</h3>
+        <p class="sm">Workshop slots and challenge tracks are limited and confirmed in order.</p>
+      </div>
+      <div class="stack ui" style="gap:3px;text-align:right;font-size:14px;line-height:20px">
+        <span style="font-weight:600;font-size:15px">yueran.lu@mail.mcgill.ca</span>
+        <a href="https://www.claudebuildersmcgill.ca/">claudebuildersmcgill.ca</a>
+        <a href="https://www.instagram.com/claudeatmcgill/" class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Claude Builder Club · McGill University</span><span>4</span></div>
+</div></div>
+
+</div>
+</body>
+</html>
