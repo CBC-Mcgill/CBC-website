@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './hackathon.css';
 import Countdown from '@/components/hackathon/Countdown';
 import TrackCard from '@/components/hackathon/TrackCard';
 

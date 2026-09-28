@@ -1,5 +1,8 @@
 import type { BuildTrack } from '@/types';
 
+// Project CMS: edit this list to add, update, reorder, or remove homepage projects.
+// Entries appear in list order. Set published: false to keep a draft off the site.
+// why, github, and symbol are optional. See README.md for a copyable template.
 export const buildTracks: BuildTrack[] = [
   {
     name: 'Course Notifier',
@@ -12,7 +15,7 @@ export const buildTracks: BuildTrack[] = [
   {
     name: 'Degree Planner',
     description: 'Gamified planner to build an optimized curriculum.',
-    why: "Planning a degree shouldn't feel like spreadsheet labor or a bunch of screenshots of your curriculum with notes on it. We are turning it into something fun and genuintely easy to visualize.",
+    why: "Planning a degree shouldn't feel like spreadsheet labor or a bunch of screenshots of your curriculum with notes on it. We are turning it into something fun and genuinely easy to visualize.",
     leads: 'Thai',
     status: 'full',
     github: 'https://github.com/CBC-Mcgill/McGill-Plan-Your-Degree'
