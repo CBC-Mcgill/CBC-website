@@ -49,10 +49,6 @@ export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
               sizes="(max-width:600px) 100vw, 50vw"
               priority={i < 2}
             />
-            <span className={s.caption}>
-              <span>{photo.alt}</span>
-              <span aria-hidden="true">↗</span>
-            </span>
           </a>
         ))}
       </div>
@@ -126,7 +122,7 @@ export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
           />
         )}
         <p className={s.dialogCaption} aria-live="polite">
-          {(index ?? 0) + 1} / {photos.length} · {current?.alt}
+          {(index ?? 0) + 1} / {photos.length}
         </p>
       </dialog>
     </section>

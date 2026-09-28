@@ -9,6 +9,16 @@ export const leadership: Person[] = [
     linkedin: "https://www.linkedin.com/in/thai-tran-minh/",
     github: "https://github.com/thaimtl/",
   },
+    {
+    name: "Ralph Azrak",
+    role: "Co-President",
+    tagline:
+      "Co-president by title, professional yapper by trade",
+    photo: "assets/people/RalphAzrak.jpg",
+    email: "ralph.azrak@mail.mcgill.ca",
+    linkedin: "https://www.linkedin.com/in/ralph-azrak/",
+    github: "https://github.com/RalphAzrak",
+  },
   {
     name: "Ethan Tran",
     role: "VP Operations",
@@ -25,10 +35,19 @@ export const leadership: Person[] = [
     linkedin: "https://www.linkedin.com/in/v-couture/",
   },
   {
+    name: "Annie Huynh",
+    role: "VP Marketing",
+    tagline:
+      "lih, lauh, luh claude",
+    photo: "assets/people/AnnieHuynh.jpg",
+    linkedin: "http://linkedin.com/in/annie-huynh-60805b202",
+  },
+
+  {
     name: "Benjamin Ghaderi",
-    role: "Technical Director",
-    tagline: "I like to build, and eat. I really love food.",
-    photo: "assets/people/BenGhad.jpg",
+    role: "VP Technical",
+    tagline: "You've probably seen me somewhere",
+    photo: "assets/people/BenjaminGhaderi.jpeg",
     email: "benjamin.ghaderi@mail.mcgill.ca",
     linkedin: "https://linkedin.com/in/ben-ghaderi",
     github: "https://github.com/BenGhad/",
@@ -52,14 +71,6 @@ export const leadership: Person[] = [
 
 export const associates: Person[] = [
   {
-    name: "Annie Huynh",
-    role: "Design Associate",
-    tagline:
-      "Responsible for the graphics, the aesthetics, and the gender ratio.",
-    photo: "assets/people/AnnieHuynh.jpeg",
-    linkedin: "https://www.linkedin.com/in/annie-huynh-60805b202/",
-  },
-  {
     name: "Parsa Rahimnia",
     role: "Tech Lead",
     tagline: "Claude University Alumni with a Bachelor in Prompt Engineering",
@@ -67,14 +78,22 @@ export const associates: Person[] = [
     github: "https://github.com/ParseDotEXE",
   },
   {
-    name: "Ralph Azrak",
-    role: "Hackathon Lead",
+    name: "Adyan Ullah",
+    role: "Associate Workshop",
     tagline:
-      "I coordinate teams and ensure we deliver a high-impact and well-organized event",
-    photo: "assets/people/RalphAzrak.jpg",
-    email: "ralph.azrak@mail.mcgill.ca",
-    linkedin: "https://www.linkedin.com/in/ralph-azrak/",
-    github: "https://github.com/RalphAzrak",
+      "swag",
+    photo: "assets/people/AdyanUllah.jpeg",
+    email: "Adyan.ullah@gmail.com",
+    linkedin: "https://www.linkedin.com/in/adyan-ullah/",
+  },
+  {
+    name: "Bilal Afzal",
+    role: "Sponsorships Associate",
+    tagline:
+      "Hi! im Bilal. CompEng @ McGill. In the startup/VC world, scouting for funds. me in a sentence: Gym, LeetCode, and always down for a conversation that goes three hours deeper than it needed to.",
+    photo: "assets/people/BilalAfzal.png",
+    email: "bilalafzal2004@hotmail.com",
+    linkedin: "https://www.linkedin.com/in/syedbilalafzal/",
   },
   {
     name: "Rayyan Khan",
@@ -88,16 +107,20 @@ export const associates: Person[] = [
   {
     name: "Jason Wang",
     role: "Technical Associate",
-    tagline: "I'm gonna name my son Claude.",
+    tagline: "Claude Code Enthusiast.",
+    email: "jason.wang3@mail.mcgill.c",
     photo: "assets/people/JasonWang.png",
     linkedin: "https://www.linkedin.com/in/jason-wang-6a87b9311/",
   },
   {
-    name: "David Tang",
-    role: "Associate",
-    tagline: "I mod my MacBook to use Linux. Long live Linux!",
-    photo: "assets/people/DavidTang.jpeg",
-    linkedin: "https://www.linkedin.com/in/david-tang-a96376328/",
+    name: "Lucas Venugopal",
+    role: "Associate Workshop",
+    tagline:
+      "I coordinate teams and ensure we deliver a high-impact and well-organized event",
+    photo: "assets/people/LucasVenugopal.jpg",
+    email: "Lucas.venugopal@mail.mcgill.ca",
+    linkedin: "https://www.linkedin.com/in/lucas-venugopal/",
+    github: "https://github.com/Lucasvngpl",
   },
   {
     name: "Mubeen Mohammed",
@@ -107,13 +130,6 @@ export const associates: Person[] = [
     email: "mubeen.mohammed@mail.mcgill.ca",
     linkedin: "https://www.linkedin.com/in/mubeen12",
     github: "https://github.com/mubeenmohammed",
-  },
-  {
-    name: "Minh Vo",
-    role: "Technical Associate",
-    tagline: "I am building Jarvis with Thai and David",
-    photo: "assets/people/MinhVo.jpeg",
-    linkedin: "https://www.linkedin.com/in/minh-vo-657b09324/",
   },
   {
     name: "Joshua Zhou",
@@ -130,5 +146,13 @@ export const associates: Person[] = [
     photo: "assets/people/JulienYang.jpeg",
     linkedin: "https://www.linkedin.com/in/julienyang12/",
     github: "https://github.com/forknay",
+  },
+    {
+    name: "Giacomo Ridolfi",
+    role: "Associate",
+    tagline: "Hi I’m Giacomo, I am a 4th year engineering student at McGill.",
+    photo: "assets/people/Giacomo Ridolfi.jpeg",
+    email: "giacomo.ridolfi@mail.mcgill.ca",
+    linkedin: "https://www.linkedin.com/in/giacomo-ridolfi-085669387/",
   },
 ];

@@ -5,7 +5,6 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { MotionEffects } from "@/components/motion/MotionEffects";
-import { LoadingScreen } from "@/components/layout/LoadingScreen";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
@@ -24,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={fraunces.variable}>
       <body>
-        <LoadingScreen />
         <SkipLink />
         <MotionEffects />
         <SiteHeader />

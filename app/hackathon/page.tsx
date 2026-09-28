@@ -13,7 +13,7 @@ import Link from "next/link";
 import s from "../editorial.module.css";
 
 const descriptions: Record<string, string> = {
-  "2U3A5631.jpg": "Speaker greeting participants from the lecture hall podium",
+  "2U3A5631.jpg": "OnSpeaker greeting participants from the lecture hall podium",
   "2U3A5640.jpg": "Speaker addressing the room from a wooden podium",
   "2U3A5820.jpg": "Participants collaborating on laptops in the lecture hall",
   "2U3A5833.jpg": "Students discussing their work around laptops",
@@ -84,13 +84,9 @@ export default function HackathonGalleryPage() {
     <div className="container">
       <header className={s.pageHero}>
         <p className="eyebrow">Community / 2026 recap</p>
-        <h1>Ideas, meet possibility.</h1>
+        <h1>Hackathon 26</h1>
         <p className="lead">
           Claude Builders Hackathon · McGill · April 4, 2026
-        </p>
-        <p className="lead">
-          A look back at students collaborating, building, and presenting AI
-          projects at McGill.
         </p>
         <div className="actions">
           <Link href="/hackathon26">Read the archived event details ↗</Link>

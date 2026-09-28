@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { GitHubIcon } from "@/components/icons";
 import { clubLinks } from "@/data/links";
@@ -12,9 +11,6 @@ export default function HomePage() {
     <div className="container">
       <section className={s.hero}>
         <div>
-          <p className="eyebrow">
-            <span className={s.liveDot} /> A home for curious minds · McGill
-          </p>
           <h1>
             AI Fluency is the <em>skill of this century.</em>
           </h1>
@@ -140,39 +136,6 @@ export default function HomePage() {
           Want to suggest an idea? Reach out to us at{" "}
           <a href={`mailto:${clubLinks.email}`}>{clubLinks.email}</a>.
         </p>
-      </section>
-      <section className={`section ${s.split}`}>
-        <Image
-          className={s.photo}
-          src="/assets/hackathon_26_photos/2U3A6039.jpg"
-          alt="Participants gathered in a McGill lecture hall for the 2026 hackathon"
-          width={1200}
-          height={800}
-          sizes="(max-width:600px) 100vw, 50vw"
-        />
-        <div>
-          <p className="eyebrow">From the community · April 4, 2026</p>
-          <h2>A room full of possibilities.</h2>
-          <p className="lead">
-            A look back at the Claude Builders Hackathon: students coming
-            together to work on AI projects at McGill.
-          </p>
-          <div className="actions">
-            <Link className="button secondary" href="/hackathon">
-              See the recap ↗
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className={s.join}>
-        <div>
-          <p className="eyebrow">Your next idea starts here</p>
-          <h2>Come build with us.</h2>
-          <p>Find out how to join CBC and connect with the community.</p>
-        </div>
-        <Link className="button" href="/contact">
-          Join CBC ↗
-        </Link>
       </section>
     </div>
   );

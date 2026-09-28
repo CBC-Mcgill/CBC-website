@@ -61,6 +61,28 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <section className={`section ${s.contactGrid}`} aria-label="Membership and activities">
+        <article className={s.contactItem}>
+          <p className="eyebrow">What members get</p>
+          <h2>Tools, people, and a place to build.</h2>
+          <ul className={s.benefits}>
+            <li>Free Claude Pro access</li>
+            <li>Anthropic API credits</li>
+            <li>Claude Code workshops</li>
+            <li>Hackathons &amp; demo days</li>
+            <li>High-accountability build team</li>
+          </ul>
+        </article>
+        <article className={s.contactItem}>
+          <p className="eyebrow">How the term runs</p>
+          <h2>From first idea to demo day.</h2>
+          <ul className={s.benefits}>
+            <li><strong>Kickoff &amp; onboarding.</strong> Get tools, join project pods, and set build goals.</li>
+            <li><strong>Workshop cycles.</strong> Practical sessions with experts and peers.</li>
+            <li><strong>Demo days &amp; hackathons.</strong> Ship, present, and compete for prizes with sponsors.</li>
+          </ul>
+        </article>
+      </section>
       <section className={s.join}>
         <div>
           <h2>Bring an idea. Or just yourself.</h2>

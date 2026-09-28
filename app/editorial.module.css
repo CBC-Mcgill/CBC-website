@@ -1,6 +1,6 @@
 .hero {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 38px;
   align-items: center;
   padding-block: 56px 72px;
@@ -11,7 +11,7 @@
 }
 .photo {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -33,7 +33,7 @@
 }
 .activities {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
 }
 .activities h3 {
@@ -57,14 +57,14 @@
   gap: 24px;
   margin-bottom: 32px;
 }
-.sectionHead p {
+.sectionHead > p {
   color: var(--muted);
   max-width: 35ch;
   font-size: 0.95rem;
 }
 .projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 .project {
@@ -117,7 +117,7 @@
 }
 .split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 64px;
   align-items: center;
 }
@@ -157,7 +157,7 @@
 }
 .contactGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 48px;
 }
 .contactItem {
@@ -223,7 +223,7 @@
 }
 .history {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
 .history article {
@@ -234,92 +234,12 @@
   margin-top: 12px;
   color: var(--muted);
 }
-@media (max-width: 900px) {
-  .hero {
-    gap: 32px;
-  }
-  .intro {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .projects {
-    grid-template-columns: 1fr;
-  }
-  .project {
-    padding: 24px;
-  }
-  .project dl {
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  }
-  .team {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .split {
-    gap: 32px;
-  }
-  .join {
-    padding: 32px;
-  }
-}
-@media (max-width: 600px) {
-  .hero,
-  .split,
-  .contactGrid,
-  .history {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .hero {
-    padding-block: 40px;
-  }
-  .activities {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .number {
-    margin-bottom: 8px;
-  }
-  .sectionHead,
-  .join {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .pageHero {
-    padding-block: 44px 24px;
-  }
-  .join {
-    padding: 28px;
-  }
-  .caption {
-    font-size: 0.68rem;
-  }
-}
-@media (max-width: 400px) {
-  .team {
-    grid-template-columns: 1fr;
-  }
-}
 
 .hero h1 {
-  font-size: clamp(3.3rem, 6.8vw, 6.2rem);
-  line-height: 1.01;
+  max-width: 100%;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.12;
   letter-spacing: -0.055em;
-}
-.hero .liveDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #c4d9a7;
-  border-radius: 50%;
-  box-shadow: 0 0 0 5px #c4d9a710;
-  margin: 0 12px 2px 0;
-  animation: pulse 3s ease-in-out infinite;
-}
-.hero :global(.eyebrow) {
-  font: 10px monospace;
-  letter-spacing: 0.1em;
-  color: #c9c3b3;
 }
 .hero :global(.lead) {
   font-size: 1rem;
@@ -329,14 +249,6 @@
 }
 .hero :global(.actions) {
   margin-top: 34px;
-}
-.hero h1 em {
-  background: linear-gradient(100deg, #efb890, #f6d4a0, #e59571, #efb890);
-  background-size: 250% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: ink-flow 10s ease infinite;
 }
 .ribbon {
   overflow: hidden;
@@ -530,16 +442,6 @@
   border: 1px solid var(--line);
   border-radius: 14px;
 }
-@keyframes pulse {
-  50% {
-    box-shadow: 0 0 0 8px #c4d9a705;
-  }
-}
-@keyframes ink-flow {
-  50% {
-    background-position: 100% 50%;
-  }
-}
 @keyframes marquee {
   to {
     transform: translateX(-25%);
@@ -555,78 +457,7 @@
     transform: translateY(-50%) rotate(360deg);
   }
 }
-@media (max-width: 900px) {
-  .projects {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-  .project {
-    padding: 20px;
-  }
-  .project h3 {
-    font-size: 1.35rem;
-  }
-  .project dl {
-    grid-template-columns: 1fr;
-  }
-  .projectArt {
-    height: 120px;
-  }
-  .hero {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .hero h1 {
-    font-size: clamp(3.2rem, 7vw, 5rem);
-  }
-}
-@media (max-width: 700px) {
-  .projects {
-    grid-template-columns: 1fr;
-  }
-  .projectArt {
-    height: 155px;
-  }
-  .project dl {
-    grid-template-columns: 1fr 1fr;
-  }
-  .hero {
-    grid-template-columns: 1fr;
-    padding-block: 44px 36px;
-    gap: 30px;
-  }
-  .hero h1 {
-    font-size: clamp(3.5rem, 12vw, 5.2rem);
-  }
-  .hero :global(.lead) {
-    max-width: 45ch;
-  }
-  .ribbon {
-    margin-bottom: 32px;
-  }
-  .pageHero::after {
-    font-size: 90px;
-    top: 35px;
-    right: 0;
-  }
-  .contactItem {
-    padding: 24px;
-  }
-  .join {
-    padding: 32px;
-  }
-  .join::after {
-    right: -50px;
-  }
-  .photo {
-    height: auto;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  .hero h1 em {
-    color: var(--accent);
-    background: none;
-  }
   .project,
   .person {
     transform: none;
@@ -662,4 +493,52 @@
   margin-top: 28px;
   color: var(--muted);
   overflow-wrap: anywhere;
+}
+
+/* One set of breakpoints keeps tablet rules from overriding mobile layouts. */
+.hero > *, .split > *, .intro > *, .contactGrid > * { min-width: 0; }
+.sectionHead > div { max-width: 640px; }
+.sectionHead > p { flex: 0 1 30ch; }
+.join > :global(.button) { white-space: nowrap; }
+.history { margin-top: 28px; }
+.contactGrid { gap: 24px; }
+.contactItem { display: flex; flex-direction: column; align-items: flex-start; }
+.contactItem :global(.actions) { margin-top: auto; padding-top: 28px; }
+.benefits { margin: 24px 0 0; padding-left: 20px; color: var(--muted); }
+.benefits li + li { margin-top: 10px; }
+.benefits li::marker { color: var(--accent); }
+@media (max-width: 1000px) {
+  .hero { gap: 28px; }
+  .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); }
+  .intro { grid-template-columns: 1fr; gap: 24px; }
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .split { gap: 32px; }
+  .join { padding: 36px; }
+}
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; padding-block: 44px; gap: 40px; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 5rem); }
+  .hero :global(.lead) { max-width: 52ch; }
+  .split, .contactGrid { grid-template-columns: 1fr; }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sectionHead { flex-direction: column; align-items: flex-start; }
+  .sectionHead > p { flex-basis: auto; max-width: 52ch; }
+  .pageHero { padding-block: 48px 24px; }
+  .pageHero::after { font-size: 90px; top: 32px; }
+  .join { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .projects, .activities, .history { grid-template-columns: 1fr; }
+  .activities { gap: 28px; }
+  .number { margin-bottom: 12px; }
+  .project, .contactItem, .join { padding: 24px; }
+  .projectArt { height: 120px; margin-bottom: 12px; }
+  .project dl { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .ribbon { margin-bottom: 32px; }
+  .join::after { right: -50px; }
+}
+@media (max-width: 400px) {
+  .team { grid-template-columns: 1fr; }
+  .project dl { grid-template-columns: 1fr; }
 }

@@ -4,10 +4,6 @@ import s from "./orbital.module.css";
 export function Orbital() {
   return (
     <div className={s.scene} data-tilt>
-      <div className={s.coordinates} aria-hidden="true">
-        <span>45°30′ N / 73°34′ W</span>
-        <span>THE BUILDER’S ORBIT</span>
-      </div>
       <div className={s.orbit} aria-hidden="true">
         <div className={s.outerRing} />
         <div className={s.innerRing} />

@@ -1,18 +1,11 @@
 .scene {
   position: relative;
-  min-height: 590px;
+  min-height: 550px;
+  min-width: 0;
   isolation: isolate;
   transform: perspective(1100px) rotateX(var(--rx, 0deg))
     rotateY(var(--ry, 0deg));
   transition: transform 0.45s ease;
-}
-.coordinates {
-  display: flex;
-  justify-content: space-between;
-  font: 9px monospace;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  padding-top: 12px;
 }
 .orbit {
   position: absolute;
@@ -158,14 +151,11 @@
   .orbit {
     inset: 60px 0 60px;
   }
-  .coordinates {
-    font-size: 8px;
-    letter-spacing: 0;
-  }
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .scene {
     min-height: 410px;
+    overflow: clip;
     max-width: 430px;
     width: 100%;
     margin: auto;
@@ -180,9 +170,6 @@
   }
   .note {
     bottom: 33px;
-  }
-  .coordinates {
-    font-size: 7px;
   }
   .orbit {
     inset: 20px -5px 50px;
