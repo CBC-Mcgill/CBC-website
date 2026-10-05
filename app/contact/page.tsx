@@ -1,101 +1,67 @@
-import type { Metadata } from 'next';
-import { clubLinks } from '@/data/links';
-import { DiscordIcon, InstagramIcon, LinkedInIcon, GitHubIcon, SignupIcon } from '@/components/icons';
-
-export const metadata: Metadata = {
-  title: 'Claude Builder Club · Contact',
-};
-
+import { clubLinks } from "@/data/links";
+import s from "../editorial.module.css";
+export const metadata = { title: "Join CBC · Claude Builder Club" };
 export default function ContactPage() {
   return (
-    <>
-      <section className="section">
-        <div className="container page-hero">
-          <p className="eyebrow reveal" style={{ '--delay': '0.1s' } as React.CSSProperties}>
-            Connect with CBC
+    <div className="container">
+      <header className={s.pageHero}>
+        <p className="eyebrow">Join / Contact</p>
+        <h1>There’s room for your curiosity.</h1>
+        <p className="lead">
+          Interested in learning, building, or meeting other students working
+          with AI? Start here.
+        </p>
+      </header>
+      <section className={`section ${s.contactGrid}`}>
+        <article className={s.contactItem}>
+          <span className={s.number}>01 / Become a member</span>
+          <h2>Join the club.</h2>
+          <p>
+            Use our membership form to introduce yourself and express your
+            interest in CBC.
           </p>
-          <h1 className="reveal" style={{ '--delay': '0.2s' } as React.CSSProperties}>
-            All our links in one place.
-          </h1>
-          <p className="lead reveal" style={{ '--delay': '0.35s' } as React.CSSProperties}>
-            Join the community, follow updates, and build with us.
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container contact-grid">
-          <div className="contact-panel">
-            <h2 className="panel-title">Core channels</h2>
-            <p className="section-copy">Use these links for announcements, events, and applications.</p>
-            <div className="social-list">
-              <div className="detail-item">
-                <span>Discord</span>
-                <strong>
-                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><DiscordIcon /></span>
-                    <span className="club-link-label">Join the server</span>
-                  </a>
-                </strong>
-              </div>
-              <div className="detail-item">
-                <span>Instagram</span>
-                <strong>
-                  <a href={clubLinks.instagram} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><InstagramIcon /></span>
-                    <span className="club-link-label">Follow CBC</span>
-                  </a>
-                </strong>
-              </div>
-              <div className="detail-item">
-                <span>LinkedIn</span>
-                <strong>
-                  <a href={clubLinks.linkedin} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><LinkedInIcon /></span>
-                    <span className="club-link-label">Connect on LinkedIn</span>
-                  </a>
-                </strong>
-              </div>
-              <div className="detail-item">
-                <span>Sign-up Form</span>
-                <strong>
-                  <a href={clubLinks.signup} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><SignupIcon /></span>
-                    <span className="club-link-label">Apply to join CBC</span>
-                  </a>
-                </strong>
-              </div>
-            </div>
+          <div className="actions">
+            <a className="button" href={clubLinks.signup}>
+              Open membership form ↗
+            </a>
           </div>
-
-          <div className="contact-panel">
-            <h2 className="panel-title">Build + collaborate</h2>
-            <p className="section-copy">
-              Project and communication channels for builders shipping work together.
-            </p>
-            <div className="social-list">
-              <div className="detail-item">
-                <span>GitHub</span>
-                <strong>
-                  <a href={clubLinks.github} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><GitHubIcon /></span>
-                    <span className="club-link-label">View repositories</span>
-                  </a>
-                </strong>
-              </div>
-              <div className="detail-item">
-                <span>Announcements</span>
-                <strong>
-                  <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer" className="club-link-with-icon">
-                    <span className="club-link-icon"><DiscordIcon /></span>
-                    <span className="club-link-label">Check updates in Discord</span>
-                  </a>
-                </strong>
-              </div>
-            </div>
+        </article>
+        <article className={s.contactItem}>
+          <span className={s.number}>02 / Join the conversation</span>
+          <h2>Find us on Discord.</h2>
+          <p>
+            Connect with the community, follow announcements, and hear about
+            opportunities to get involved.
+          </p>
+          <div className="actions">
+            <a className="button secondary" href={clubLinks.discord}>
+              Join Discord ↗
+            </a>
+          </div>
+        </article>
+      </section>
+      <section className={`section ${s.contactGrid}`}>
+        <div className={s.contactItem}>
+          <p className="eyebrow">Questions & partnerships</p>
+          <h2>Let’s talk.</h2>
+          <p>
+            For general questions, collaborations, or sponsorship conversations,
+            email the organizers.
+          </p>
+          <div className="actions">
+            <a href={`mailto:${clubLinks.email}`}>{clubLinks.email}</a>
+          </div>
+        </div>
+        <div className={s.contactItem}>
+          <p className="eyebrow">Elsewhere</p>
+          <h2>Keep in touch.</h2>
+          <div className="actions">
+            <a href={clubLinks.instagram}>Instagram ↗</a>
+            <a href={clubLinks.linkedin}>LinkedIn ↗</a>
+            <a href={clubLinks.github}>GitHub ↗</a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

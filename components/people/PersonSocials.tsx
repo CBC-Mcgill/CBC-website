@@ -1,8 +1,8 @@
-import { normalizeSocialHref } from '@/lib/normalizeSocialHref';
-import { EmailIcon, LinkedInIcon, GitHubIcon } from '@/components/icons';
-import type { Person } from '@/types';
+import { normalizeSocialHref } from "@/lib/normalizeSocialHref";
+import { EmailIcon, LinkedInIcon, GitHubIcon } from "@/components/icons";
+import type { Person } from "@/types";
 
-type SocialType = 'email' | 'linkedin' | 'github';
+type SocialType = "email" | "linkedin" | "github";
 
 const ICONS: Record<SocialType, React.ReactNode> = {
   email: <EmailIcon />,
@@ -18,9 +18,9 @@ export function PersonSocials({ person }: PersonSocialsProps) {
   const entries: { type: SocialType; href: string }[] = [];
 
   const socials: Array<{ type: SocialType; value: string }> = [
-    { type: 'email', value: person.email || '' },
-    { type: 'linkedin', value: person.linkedin || '' },
-    { type: 'github', value: person.github || '' },
+    { type: "email", value: person.email || "" },
+    { type: "linkedin", value: person.linkedin || "" },
+    { type: "github", value: person.github || "" },
   ];
 
   for (const { type, value } of socials) {
@@ -38,7 +38,9 @@ export function PersonSocials({ person }: PersonSocialsProps) {
           className="person-social-link"
           href={href}
           aria-label={`${person.name} ${type}`}
-          {...(type !== 'email' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...(type !== "email"
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
         >
           {ICONS[type]}
         </a>
