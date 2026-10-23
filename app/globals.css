@@ -96,6 +96,25 @@ img {
   max-width: 100%;
   height: auto;
 }
+.announcement-banner {
+  padding: 12px var(--gutter);
+  background: #f5d547;
+  color: #141412;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.announcement-banner a {
+  display: inline-block;
+  color: inherit;
+  font-weight: 700;
+}
+.announcement-banner a:hover {
+  text-decoration-thickness: 2px;
+}
+.announcement-banner a:focus-visible {
+  outline-color: #141412;
+}
 .container {
   width: min(1120px, calc(100% - var(--gutter) * 2));
   margin-inline: auto;
