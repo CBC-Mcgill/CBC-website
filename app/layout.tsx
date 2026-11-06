@@ -25,10 +25,6 @@ export default function RootLayout({
       <body>
         <SkipLink />
         <MotionEffects />
-        <aside className="announcement-banner" aria-label="Hackathon applications">
-          Applications to join the hackathon team are open!{" "}
-          <a href="https://forms.gle/CRvuossGLcdgHtCbA">Apply now →</a>
-        </aside>
         <SiteHeader />
         <main id="main" tabIndex={-1}>
           {children}
