@@ -13,7 +13,6 @@
     --orange-tint:rgba(217,119,87,.13); --blue-tint:rgba(106,155,204,.16); --green-tint:rgba(120,140,93,.16);
     --soft:rgba(232,230,220,.72);
     --backdrop:#dedcd3;
-    --scale: min(1, calc((100vw - 48px) / 816));
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
@@ -24,8 +23,7 @@
   body{margin:0;background:var(--backdrop);font-family:Lora,Georgia,serif;color:var(--text);
        -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0 56px}
-  .wrap{width:calc(816px * var(--scale));height:calc(1056px * var(--scale))}
-  .page{width:816px;height:1056px;transform:scale(var(--scale));transform-origin:top left;
+  .page{width:816px;height:1056px;
         background:var(--surface);position:relative;overflow:hidden;
         padding:64px 64px 96px;display:flex;flex-direction:column;
         box-shadow:0 2px 14px rgba(20,20,19,.16);isolation:isolate}
@@ -112,6 +110,8 @@
   .addon .p{font-family:Poppins,Arial,sans-serif;font-weight:600;color:var(--text);white-space:nowrap}
 
   .contact{background:var(--orange);color:var(--text);border-radius:16px;padding:18px 26px;display:flex;align-items:center;gap:28px}
+  .contact-links{gap:3px;text-align:right;font-size:14px;line-height:20px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 
   .ig{display:flex;align-items:center;justify-content:flex-end;gap:6px;text-decoration:none}
   .ig span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
@@ -120,12 +120,42 @@
   .foot{position:absolute;left:64px;right:64px;bottom:40px;display:flex;justify-content:space-between;
         font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:18px;color:var(--muted)}
 
+  /* Below one letter-width the fixed sheets reflow into readable cards. Print keeps the sheets. */
+  @media screen and (max-width:863px){
+    .deck{gap:16px;padding:16px 12px 40px;align-items:stretch}
+    .page{width:auto;height:auto;padding:36px 22px 72px}
+    .page.cover{min-height:min(640px,calc(100svh - 32px))}
+    .squiggle{display:none}
+    .page > .spark{width:120px!important;height:120px!important;right:-48px!important;top:-48px!important}
+    h1{font-size:38px;line-height:42px}
+    h2{font-size:30px;line-height:36px}
+    h3{font-size:21px;line-height:27px}
+    .lede{font-size:17px;line-height:28px}
+    .foot{left:22px;right:22px;bottom:26px;font-size:12px}
+    .cards,.addons{grid-template-columns:1fr}
+    .events{flex-direction:column}
+    .photo{height:110px}
+    .co-note{white-space:normal}
+    .pgrid{grid-auto-rows:56px}
+    .tiers col.lbl{width:43%}
+    .tiers col.tier{width:19%}
+    .tiers td,.tiers th{font-size:13px;line-height:18px}
+    .tiers .tname{font-size:15px;line-height:20px}
+    .tiers .tprice{font-size:12px;line-height:16px}
+    .tiers .bar{width:32px}
+    .cal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;padding:16px}
+    .cal > .stack{grid-column:1/-1}
+    .cal-stat{min-width:0}
+    .cal-lbl{white-space:normal;text-align:center}
+    .contact{flex-direction:column;align-items:flex-start;gap:14px;padding:20px}
+    .contact-links{text-align:left}
+    .ig{justify-content:flex-start}
+  }
+
   @media print{
-    :root{--scale:1}
     body{background:#fff}
     .deck{gap:0;padding:0}
-    .wrap{width:auto;height:auto}
-    .page{transform:none;box-shadow:none;page-break-after:always;break-after:page}
+    .page{box-shadow:none;page-break-after:always;break-after:page}
     .deck > .wrap:last-child .page{page-break-after:auto;break-after:auto}
   }
   @page{size:letter;margin:0}
@@ -135,11 +165,11 @@
 <div class="deck">
 
 <!-- COVER -->
-<div class="wrap"><div class="page">
+<div class="wrap"><div class="page cover">
   <svg class="deco" viewBox="0 0 600 560" style="width:600px;height:560px;right:-190px;top:110px"><path d="M300 30 C 420 20, 560 110, 575 250 C 590 390, 480 520, 330 535 C 190 548, 45 470, 28 330 C 12 190, 150 40, 300 30 Z" style="fill:var(--soft);stroke:none"/></svg>
   <div class="deco spark" style="width:420px;height:420px;right:-105px;top:170px"></div>
-  <svg class="deco" viewBox="0 0 260 90" style="width:260px;height:90px;right:40px;bottom:120px"><path d="M8 62 C 40 14, 96 12, 108 50 C 117 80, 76 92, 66 66 C 57 40, 112 22, 162 40 C 196 52, 218 70, 252 58" style="stroke:var(--orange);stroke-width:2.4"/></svg>
-  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;right:250px;top:96px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 260 90" style="width:260px;height:90px;right:40px;bottom:120px"><path d="M8 62 C 40 14, 96 12, 108 50 C 117 80, 76 92, 66 66 C 57 40, 112 22, 162 40 C 196 52, 218 70, 252 58" style="stroke:var(--orange);stroke-width:2.4"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 150 40" style="width:150px;height:40px;right:250px;top:96px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
   <img src="/assets/ui/claude_wordmark.png" alt="Claude" style="width:224px;height:49px;object-fit:contain;position:relative">
   <div class="spacer"></div>
   <div class="stack" style="gap:24px;padding-bottom:64px;position:relative">
@@ -157,7 +187,7 @@
 <!-- 1 · THE EVENT -->
 <div class="wrap"><div class="page">
   <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
-  <svg class="deco" viewBox="0 0 220 80" style="width:220px;height:80px;right:52px;top:612px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 220 80" style="width:220px;height:80px;right:52px;top:612px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
   <div class="stack" style="gap:24px;flex:1">
     <div class="stack" style="gap:12px">
       <p class="overline">The event</p>
@@ -195,13 +225,13 @@
 <div class="wrap"><div class="page">
   <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
   <svg class="deco" viewBox="0 0 480 420" style="width:480px;height:420px;left:-190px;bottom:-150px"><path d="M230 18 C 350 10, 468 100, 462 220 C 456 340, 360 410, 240 404 C 110 398, 14 320, 20 200 C 26 90, 120 26, 230 18 Z" style="fill:var(--soft);stroke:none"/></svg>
-  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;right:180px;top:66px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 150 40" style="width:150px;height:40px;right:180px;top:66px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
   <div class="stack" style="gap:15px;flex:1">
     <div class="stack" style="gap:8px">
       <p class="overline">Why sponsor us</p>
       <h2>What you gain</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div class="cards">
       <div class="card">
         <h4>Brand visibility where it compounds</h4>
         <p class="sm">Your name in front of builders at the moment they choose what to build with, and it follows them into internships, first jobs and their own companies.</p>
@@ -260,7 +290,7 @@
 <div class="wrap"><div class="page">
   <div class="deco spark" style="width:170px;height:170px;right:-66px;top:-66px"></div>
   <svg class="deco" viewBox="0 0 420 380" style="width:420px;height:380px;right:-170px;bottom:-170px"><path d="M210 16 C 320 10, 410 90, 404 200 C 398 300, 310 372, 200 366 C 90 360, 12 280, 18 176 C 24 80, 110 22, 210 16 Z" style="fill:var(--soft);stroke:none"/></svg>
-  <svg class="deco" viewBox="0 0 150 40" style="width:150px;height:40px;left:470px;top:72px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 150 40" style="width:150px;height:40px;left:470px;top:72px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
   <div class="stack" style="gap:20px;flex:1">
     <div class="stack" style="gap:8px">
       <p class="overline">Packages</p>
@@ -305,7 +335,7 @@
 <!-- 4 · SIGNATURE EVENTS -->
 <div class="wrap"><div class="page">
   <div class="deco spark" style="width:190px;height:190px;right:-72px;top:-72px"></div>
-  <svg class="deco" viewBox="0 0 220 80" style="width:220px;height:80px;right:150px;top:44px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 220 80" style="width:220px;height:80px;right:150px;top:44px"><path d="M8 58 C 38 12, 92 10, 104 46 C 112 74, 74 84, 64 60 C 56 36, 106 20, 150 36 C 180 47, 198 62, 214 54" style="stroke:var(--orange);stroke-width:2.2"/></svg>
   <div class="stack" style="gap:18px;flex:1">
     <div class="stack" style="gap:6px">
       <p class="overline">Engagement opportunities</p>
@@ -313,7 +343,7 @@
       <p class="muted" style="font-size:16px;line-height:24px">Where builders shine and sponsors connect</p>
     </div>
 
-    <div class="row" style="gap:16px;align-items:stretch">
+    <div class="row events" style="gap:16px;align-items:stretch">
       <div class="ev">
         <div class="stack" style="gap:2px">
           <span class="ev-title">Claude Hackathons</span>
@@ -401,7 +431,7 @@
         <h3>Let's work together</h3>
         <p class="sm">Workshop slots and challenge tracks are limited and confirmed in order.</p>
       </div>
-      <div class="stack ui" style="gap:3px;text-align:right;font-size:14px;line-height:20px">
+      <div class="stack ui contact-links">
         <span style="font-weight:600;font-size:15px">yueran.lu@mail.mcgill.ca</span>
         <a href="https://www.claudebuildersmcgill.ca/">claudebuildersmcgill.ca</a>
         <a href="https://www.instagram.com/claudeatmcgill/" class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
