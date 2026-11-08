@@ -2,12 +2,22 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import s from "./gallery.module.css";
+
 export type GalleryPhoto = {
   src: string;
   width: number;
   height: number;
   alt: string;
+  /** Spans two columns of the mosaic. Portrait photos span two rows automatically. */
+  wide?: boolean;
 };
+
+function tileLayout(photo: GalleryPhoto) {
+  if (photo.wide) return { className: s.wide, sizes: "(max-width: 719px) 100vw, 800px" };
+  if (photo.height > photo.width) return { className: s.tall, sizes: "(max-width: 719px) 50vw, 400px" };
+  return { className: "", sizes: "(max-width: 719px) 50vw, 400px" };
+}
+
 export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
   const [index, setIndex] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -25,36 +35,38 @@ export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
       i === null ? null : (i + delta + photos.length) % photos.length,
     );
   const current = index === null ? null : photos[index];
-  if (!photos.length) return <p>Photos will be added here.</p>;
   return (
-    <section className="section" aria-label="Event photographs">
-      <div className={s.grid}>
-        {photos.map((photo, i) => (
-          <a
-            className={s.tile}
-            key={photo.src}
-            href={photo.src}
-            aria-label={`Open photo ${i + 1}: ${photo.alt}`}
-            onClick={(e) => {
-              e.preventDefault();
-              origin.current = e.currentTarget;
-              setIndex(i);
-            }}
-          >
-            <Image
-              src={photo.src}
-              width={photo.width}
-              height={photo.height}
-              alt={photo.alt}
-              sizes="(max-width:600px) 100vw, 50vw"
-              priority={i < 2}
-            />
-          </a>
-        ))}
+    <section className={s.wall} aria-label="Event photographs">
+      <div className={s.grid} data-reveal-group>
+        {photos.map((photo, i) => {
+          const layout = tileLayout(photo);
+          return (
+            <a
+              className={`${s.tile} ${layout.className}`}
+              key={photo.src}
+              href={photo.src}
+              aria-label={`Open photo ${i + 1}: ${photo.alt}`}
+              onClick={(e) => {
+                e.preventDefault();
+                origin.current = e.currentTarget;
+                setIndex(i);
+              }}
+            >
+              <Image
+                src={photo.src}
+                width={photo.width}
+                height={photo.height}
+                alt={photo.alt}
+                sizes={layout.sizes}
+                preload={i === 0}
+              />
+            </a>
+          );
+        })}
       </div>
       <dialog
         ref={dialog}
-        className={s.dialog}
+        className={`band-black ${s.dialog}`}
         aria-label="Event photo viewer"
         onCancel={(e) => {
           e.preventDefault();
@@ -91,39 +103,56 @@ export function PhotoGallery({ photos }: { photos: GalleryPhoto[] }) {
           }
         }}
       >
+        <button
+          type="button"
+          className={`btn btn-sm ${s.close}`}
+          onClick={close}
+          autoFocus
+          aria-label="Close photo viewer"
+        >
+          Close
+        </button>
+        <div
+          className={s.stage}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) close();
+          }}
+        >
+          {current && (
+            <Image
+              className={s.fullImage}
+              src={current.src}
+              width={current.width}
+              height={current.height}
+              alt={current.alt}
+              sizes="90vw"
+            />
+          )}
+        </div>
         <div className={s.controls}>
           <button
             type="button"
+            className="btn btn-outline btn-sm"
             onClick={() => move(-1)}
             aria-label="Previous photo"
           >
-            ← Previous
+            Previous
           </button>
+          <p className={`small ${s.caption}`} aria-live="polite">
+            {current?.alt}{" "}
+            <span>
+              {(index ?? 0) + 1} of {photos.length}
+            </span>
+          </p>
           <button
             type="button"
-            onClick={close}
-            autoFocus
-            aria-label="Close photo viewer"
+            className="btn btn-outline btn-sm"
+            onClick={() => move(1)}
+            aria-label="Next photo"
           >
-            Close ×
-          </button>
-          <button type="button" onClick={() => move(1)} aria-label="Next photo">
-            Next →
+            Next
           </button>
         </div>
-        {current && (
-          <Image
-            className={s.fullImage}
-            src={current.src}
-            width={current.width}
-            height={current.height}
-            alt={current.alt}
-            sizes="95vw"
-          />
-        )}
-        <p className={s.dialogCaption} aria-live="polite">
-          {(index ?? 0) + 1} / {photos.length}
-        </p>
       </dialog>
     </section>
   );

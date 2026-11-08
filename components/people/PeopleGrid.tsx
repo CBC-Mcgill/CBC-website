@@ -1,12 +1,15 @@
 import { PersonCard } from "./PersonCard";
 import type { Person } from "@/types";
-import s from "@/app/editorial.module.css";
+import s from "./people.module.css";
+
 export function PeopleGrid({ people }: { people: Person[] }) {
   return (
-    <div className={s.team}>
+    <ul className={s.grid} data-reveal-group>
       {people.map((person) => (
-        <PersonCard key={person.name} person={person} />
+        <li key={person.name}>
+          <PersonCard person={person} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

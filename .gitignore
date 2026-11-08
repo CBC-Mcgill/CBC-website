@@ -49,3 +49,6 @@ Thumbs.db
 
 # Testing
 /coverage/
+
+# Playwright MCP logs
+.playwright-mcp/

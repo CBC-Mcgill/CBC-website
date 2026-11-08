@@ -1,48 +1,34 @@
 import { normalizeSocialHref } from "@/lib/normalizeSocialHref";
 import { EmailIcon, LinkedInIcon, GitHubIcon } from "@/components/icons";
 import type { Person } from "@/types";
+import s from "./people.module.css";
 
 type SocialType = "email" | "linkedin" | "github";
 
-const ICONS: Record<SocialType, React.ReactNode> = {
-  email: <EmailIcon />,
-  linkedin: <LinkedInIcon />,
-  github: <GitHubIcon />,
+const SOCIALS: Record<SocialType, { icon: React.ReactNode; label: (name: string) => string }> = {
+  email: { icon: <EmailIcon />, label: (name) => `Email ${name}` },
+  linkedin: { icon: <LinkedInIcon />, label: (name) => `${name} on LinkedIn` },
+  github: { icon: <GitHubIcon />, label: (name) => `${name} on GitHub` },
 };
 
-interface PersonSocialsProps {
-  person: Person;
-}
-
-export function PersonSocials({ person }: PersonSocialsProps) {
-  const entries: { type: SocialType; href: string }[] = [];
-
-  const socials: Array<{ type: SocialType; value: string }> = [
-    { type: "email", value: person.email || "" },
-    { type: "linkedin", value: person.linkedin || "" },
-    { type: "github", value: person.github || "" },
-  ];
-
-  for (const { type, value } of socials) {
-    const href = normalizeSocialHref(type, value);
-    if (href) entries.push({ type, href });
-  }
+export function PersonSocials({ person }: { person: Person }) {
+  const entries = (["email", "linkedin", "github"] as const)
+    .map((type) => ({ type, href: normalizeSocialHref(type, person[type] || "") }))
+    .filter((e) => e.href);
 
   if (!entries.length) return null;
 
   return (
-    <div className="person-socials">
+    <div className={s.socials}>
       {entries.map(({ type, href }) => (
         <a
           key={type}
-          className="person-social-link"
+          className={s.social}
           href={href}
-          aria-label={`${person.name} ${type}`}
-          {...(type !== "email"
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
+          aria-label={SOCIALS[type].label(person.name)}
+          {...(type !== "email" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         >
-          {ICONS[type]}
+          {SOCIALS[type].icon}
         </a>
       ))}
     </div>

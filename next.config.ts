@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [{ pathname: "/assets/**" }],
   },
+  async redirects() {
+    return [{ source: "/hackathon26", destination: "/hackathon", permanent: true }];
+  },
   async rewrites() {
     return [{ source: '/sponsors', destination: '/sponsors.html' }];
   },

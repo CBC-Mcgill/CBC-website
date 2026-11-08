@@ -1,0 +1,9 @@
+.group {
+  padding-bottom: var(--section-y);
+}
+
+.groupTitle {
+  padding-top: var(--s-5);
+  margin-bottom: clamp(32px, 4vw, 48px);
+  border-top: 2px solid var(--black);
+}

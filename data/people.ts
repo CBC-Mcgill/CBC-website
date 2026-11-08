@@ -108,7 +108,7 @@ export const associates: Person[] = [
     name: "Jason Wang",
     role: "Technical Associate",
     tagline: "Claude Code Enthusiast.",
-    email: "jason.wang3@mail.mcgill.c",
+    email: "jason.wang3@mail.mcgill.ca",
     photo: "assets/people/JasonWang.png",
     linkedin: "https://www.linkedin.com/in/jason-wang-6a87b9311/",
   },
