@@ -49,9 +49,14 @@
   margin-top: var(--s-2);
 }
 
-.links {
-  list-style: none;
-  padding: 0;
-  display: grid;
+.iconLink {
+  display: inline-flex;
+  align-items: center;
   gap: var(--s-2);
+}
+
+.iconLink svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
 }

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { DiscordIcon, EmailIcon } from "@/components/icons";
 import { clubLinks } from "@/data/links";
 import s from "./contact.module.css";
 
@@ -24,8 +26,8 @@ export default function ContactPage() {
             Become a member
           </h2>
           <p>
-            Fill in the membership form. It takes two minutes and we will add
-            you to the mailing list and Discord.
+            Fill in the membership form. It takes two minutes and puts you on
+            the list.
           </p>
           <a className="btn" href={clubLinks.signup} {...external}>
             Open the membership form
@@ -33,13 +35,14 @@ export default function ContactPage() {
         </section>
         <section className={s.block} aria-labelledby="discord">
           <h2 id="discord" className={s.title}>
-            Say hi in Discord
+            Then join the Discord
           </h2>
           <p>
-            That is where workshops get announced, build teams form and Job
-            Bot posts internships.
+            That makes you a member. Workshops get announced there, build
+            teams form and Job Bot posts internships.
           </p>
           <a className="btn btn-outline" href={clubLinks.discord} {...external}>
+            <DiscordIcon />
             Join the Discord
           </a>
         </section>
@@ -51,7 +54,10 @@ export default function ContactPage() {
             Questions and partnerships
           </h2>
           <p>
-            <a href={`mailto:${clubLinks.email}`}>{clubLinks.email}</a>
+            <a className={s.iconLink} href={`mailto:${clubLinks.email}`}>
+              <EmailIcon />
+              {clubLinks.email}
+            </a>
           </p>
         </section>
         <section className={s.block} aria-labelledby="sponsor">
@@ -62,21 +68,15 @@ export default function ContactPage() {
             Read <a href="/sponsors">the package</a>, then email us.
           </p>
         </section>
-        <section className={s.block} aria-labelledby="elsewhere">
-          <h2 id="elsewhere" className={s.subtitle}>
-            Elsewhere
+        <section className={s.block} aria-labelledby="team">
+          <h2 id="team" className={s.subtitle}>
+            Help run the club
           </h2>
-          <ul className={s.links}>
-            <li>
-              <a href={clubLinks.instagram} {...external}>Instagram</a>
-            </li>
-            <li>
-              <a href={clubLinks.linkedin} {...external}>LinkedIn</a>
-            </li>
-            <li>
-              <a href={clubLinks.github} {...external}>GitHub</a>
-            </li>
-          </ul>
+          <p>
+            The internal team handles the day to day: workshops, the hackathon,
+            sponsors. If you want in, contact the directors and VPs directly.
+            They are all on the <Link href="/people">Team page</Link>.
+          </p>
         </section>
       </div>
     </div>
