@@ -15,19 +15,42 @@ export interface PersonDetail {
   text: string;
 }
 
-export type BuildTrackStatus = "open" | "full" | "complete";
+/** live: people can use it today. building: active development. paused: no recent work. */
+export type ProjectStatus = "live" | "building" | "paused";
 
-export interface BuildTrack {
-  /** Omit or set true to show the project; false keeps it as a draft. */
-  published?: boolean;
-  /** Optional decorative character shown above the project title. */
-  symbol?: string;
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export interface Project {
+  slug: string;
+  name: string;
+  /** One sentence, what it does for the person using it. */
+  summary: string;
+  /** Optional longer paragraph for the projects page. */
+  why?: string;
+  status: ProjectStatus;
+  /** Club-supplied names of the people leading it. */
+  leads: string;
+  /** Season it started or shipped, e.g. "Fall 2025". */
+  since?: string;
+  github?: string;
+  /** Where people can use it. */
+  url?: string;
+  urlLabel?: string;
+  image?: ProjectImage;
+  /** Shown first and larger on the home page. */
+  featured?: boolean;
+}
+
+export interface HackathonTrack {
+  number: string;
   name: string;
   description: string;
-  why?: string;
-  leads: string;
-  status: BuildTrackStatus;
-  github?: string;
+  examples: string[];
 }
 
 export interface ClubLinks {
@@ -36,5 +59,5 @@ export interface ClubLinks {
   linkedin: string;
   signup: string;
   github: string;
-  email?: string;
+  email: string;
 }

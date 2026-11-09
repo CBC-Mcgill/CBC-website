@@ -1,51 +1,48 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { clubLinks } from "@/data/links";
+
 const links = [
-  ["About", "/about"],
-  ["Projects", "/#projects"],
-  ["Team", "/people"],
+  ["Projects", "/projects"],
   ["Hackathon", "/hackathon"],
-];
+  ["Team", "/people"],
+  ["About", "/about"],
+] as const;
+
 export function SiteHeader() {
   const pathname = usePathname();
+
   const navigation = (
     <>
       {links.map(([label, href]) => (
         <Link
           key={href}
           href={href}
-          aria-current={
-            pathname === href ||
-            (href === "/hackathon" && pathname === "/hackathon26")
-              ? "page"
-              : undefined
-          }
+          aria-current={pathname === href ? "page" : undefined}
         >
           {label}
         </Link>
       ))}
-      <Link
-        className="button"
-        href="/contact"
-        aria-current={pathname === "/contact" ? "page" : undefined}
+      <a
+        className="btn btn-sm"
+        href={clubLinks.signup}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        Join CBC <span aria-hidden="true">↗</span>
-      </Link>
+        Join the club
+      </a>
     </>
   );
+
   return (
     <header className="site-header">
       <div className="container header-bar">
-        <Link className="logo" href="/" aria-label="Claude Builder Club home">
-          <span className="logo-mark" aria-hidden="true">
-            ✳
-          </span>
-          <span>
-            Claude Builder Club<small>McGill University</small>
-          </span>
+        <Link className="logo" href="/" aria-label="Claude Builder Club McGill, home">
+          Claude Builder Club <small>McGill</small>
         </Link>
-        <nav className="desktop-nav" aria-label="Main navigation">
+        <nav className="site-nav" aria-label="Main">
           {navigation}
         </nav>
         <details
@@ -59,7 +56,7 @@ export function SiteHeader() {
         >
           <summary>Menu</summary>
           <nav
-            aria-label="Mobile navigation"
+            aria-label="Main"
             onClick={(e) => {
               if ((e.target as HTMLElement).closest("a"))
                 e.currentTarget.closest("details")?.removeAttribute("open");

@@ -1,0 +1,321 @@
+/*
+ * The team is drawn as one wiring diagram: a trunk runs down the left, a rail
+ * crosses each row, and a stub drops from the rail onto every member.
+ * Lines live on pseudo-elements so the diagram needs no JavaScript to lay out.
+ */
+
+.grid {
+  --rail: 1.5px;
+  --rail-color: var(--blue);
+  --col-gap: 24px;
+  --trunk-x: 24px; /* distance from the list edge back to the trunk */
+  --stub-x: 64px; /* centre of the figure */
+  --stub-h: 28px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--col-gap);
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.grid > li {
+  position: relative;
+  padding: var(--stub-h) 0 44px;
+}
+
+/* Rail: left half runs to the stub, right half runs on to the next column */
+.grid > li::before,
+.grid > li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: var(--rail);
+  background: var(--rail-color);
+}
+
+.grid > li::before {
+  left: calc(-1 * var(--trunk-x));
+  width: calc(var(--trunk-x) + var(--stub-x));
+}
+
+.grid > li::after {
+  left: var(--stub-x);
+  right: calc(-1 * var(--col-gap));
+}
+
+/* One column: nothing to the right of any stub */
+.grid > li::after {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .grid > li::after {
+    display: block;
+  }
+
+  .grid > li:nth-child(2n)::after,
+  .grid > li:last-child::after {
+    display: none;
+  }
+
+  .grid > li:nth-child(2n)::before {
+    left: 0;
+    width: var(--stub-x);
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid > li:nth-child(2n)::after {
+    display: block;
+  }
+
+  .grid > li:nth-child(2n)::before {
+    left: calc(-1 * var(--trunk-x));
+    width: calc(var(--trunk-x) + var(--stub-x));
+  }
+
+  .grid > li:nth-child(4n)::after,
+  .grid > li:last-child::after {
+    display: none;
+  }
+
+  .grid > li:not(:nth-child(4n + 1))::before {
+    left: 0;
+    width: var(--stub-x);
+  }
+}
+
+.person {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+}
+
+.stub {
+  position: absolute;
+  top: calc(-1 * var(--stub-h));
+  left: calc(var(--stub-x) - var(--rail) / 2);
+  width: var(--rail);
+  height: var(--stub-h);
+  background: var(--rail-color);
+}
+
+/* Figure */
+.figure {
+  position: relative;
+  width: 128px;
+  padding: 0 12px 14px;
+  color: var(--claude);
+  transition: transform 320ms var(--ease-out);
+}
+
+.person:hover .figure {
+  transform: translateY(-4px);
+}
+
+.body {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.body > img {
+  object-position: top;
+}
+
+.initials {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--blue-deep);
+}
+
+.arm {
+  position: absolute;
+  top: 46px;
+  width: 12px;
+  height: 18px;
+  border-radius: 5px;
+  background: currentColor;
+}
+
+.armLeft {
+  left: 1px;
+}
+
+.armRight {
+  right: 1px;
+}
+
+.legs {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.legs i {
+  width: 13px;
+  height: 16px;
+  border-radius: 0 0 5px 5px;
+  background: currentColor;
+}
+
+/* The tagline comes back from the figure as a reply, caret still blinking */
+.reply {
+  position: relative;
+  margin-top: var(--s-3);
+  margin-bottom: var(--s-3);
+  padding: 8px 12px;
+  border-radius: var(--r-md);
+  background: var(--ice);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+  transform-origin: 24px top;
+}
+
+.reply::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 18px;
+  border: 7px solid transparent;
+  border-top: 0;
+  border-bottom-color: var(--ice);
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: var(--blue);
+  animation: caret 1100ms steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.name {
+  margin-top: var(--s-1);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+
+.social {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  color: var(--ink);
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.social:hover {
+  border-color: var(--black);
+  color: var(--ink);
+}
+
+.social svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* The wiring draws itself once on load; rails sweep right, stubs drop down */
+:global(html.js) .grid > li::before,
+:global(html.js) .grid > li::after {
+  transform-origin: left;
+  animation: sweep 500ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 300ms);
+}
+
+:global(html.js) .stub {
+  transform-origin: top;
+  animation: drop 320ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 650ms);
+}
+
+:global(html.js) .figure {
+  transform-origin: top center;
+  animation: land 520ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 850ms);
+}
+
+:global(html.js) .reply {
+  animation: pop 360ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 1350ms);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes drop {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}

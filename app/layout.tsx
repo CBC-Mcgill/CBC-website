@@ -1,35 +1,64 @@
-import type { Metadata } from "next";
-import { Fraunces } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { MotionEffects } from "@/components/motion/MotionEffects";
-const fraunces = Fraunces({
+import { Reveal } from "@/components/motion/Reveal";
+
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  axes: ["opsz", "wdth"],
+  variable: "--font-bricolage",
   display: "swap",
 });
+
 export const metadata: Metadata = {
-  title: "Claude Builder Club · McGill",
+  metadataBase: new URL("https://www.claudebuildersmcgill.ca"),
+  title: {
+    default: "Claude Builder Club at McGill",
+    template: "%s | Claude Builder Club",
+  },
   description:
-    "Build useful things with AI at McGill. Explore student projects, workshops, and the Claude Builder Club community.",
+    "McGill's student builder community. We learn to build with AI, ship tools for students, and run the Claude Builders Hackathon.",
+  openGraph: {
+    type: "website",
+    siteName: "Claude Builder Club",
+    title: "Claude Builder Club at McGill",
+    description:
+      "McGill's student builder community. We learn to build with AI, ship tools for students, and run the Claude Builders Hackathon.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Claude Builder Club McGill" }],
+  },
+  twitter: { card: "summary_large_image" },
 };
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fraunces.variable}>
+    <html lang="en" className={bricolage.variable} suppressHydrationWarning>
+      <head>
+        {/* Marks the document before paint so reveal styles never hide content from no-JS visitors. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body>
         <SkipLink />
-        <MotionEffects />
         <SiteHeader />
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <SiteFooter />
+        <Reveal />
       </body>
     </html>
   );

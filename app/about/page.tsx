@@ -1,97 +1,145 @@
 import Image from "next/image";
 import Link from "next/link";
-import s from "../editorial.module.css";
-export const metadata = { title: "About · Claude Builder Club" };
+import { Clawd } from "@/components/Clawd";
+import { DiscordIcon } from "@/components/icons";
+import { clubLinks } from "@/data/links";
+import s from "./about.module.css";
+
+export const metadata = {
+  title: "About",
+  description:
+    "What Claude Builder Club is, what members get, and how a semester runs.",
+};
+
+const benefits = [
+  { title: "Free Claude Pro access", text: "For every member, for the whole year." },
+  { title: "Anthropic API credits", text: "For your build team's project." },
+  { title: "Claude Code workshops", text: "Hands-on, bi-weekly, laptop required." },
+  { title: "Hackathons and demo days", text: "Build in a day, then show it to the room." },
+  { title: "A build team", text: "Weekly check-ins that keep you shipping." },
+];
+
+const steps = [
+  { title: "Kickoff and onboarding", text: "Meet the club, pick a track, get your Claude access." },
+  { title: "Workshop cycles", text: "Bi-weekly sessions, each one ends with something running." },
+  { title: "Build teams", text: "Weekly check-ins toward a shipped tool." },
+  { title: "Demo day and hackathon", text: "Show it to the club and our partners." },
+];
+
 export default function AboutPage() {
   return (
-    <div className="container">
-      <header className={s.pageHero}>
-        <p className="eyebrow">About CBC</p>
-        <h1>Curiosity is a good place to start.</h1>
+    <>
+      <header className={`container page-head ${s.header}`}>
+        <h1>A club for people who would rather build it.</h1>
         <p className="lead">
-          We’re Claude Builder Club at McGill: a student-led community exploring
-          what we can make with AI, together.
+          Claude Builder Club started at McGill as a place to learn AI by
+          shipping with it. We are part of Anthropic&apos;s Claude Campus
+          program, we are run by students, and everything we make is open
+          source.
         </p>
       </header>
-      <section className={`section ${s.split}`}>
-        <div className={s.prose}>
-          <h2>A place to turn ideas into something real.</h2>
-          <p>
-            We are a builder first club. We want to build and inspire others to
-            build.
-          </p>
-          <p>
-            We run regular workshops to teach students how to use Claude and
-            other AI tools, and we have project pods where members ship projects
-            together in a high-accountability environment. We also run hackathons
-            and demo days to celebrate and reward the amazing projects our
-            members build.
-          </p>
-          <div className="actions">
-            <Link className="button secondary" href="/#projects">
-              Explore our projects ↗
-            </Link>
+
+      <section className={`container ${s.split}`} aria-labelledby="what-we-do">
+        <div className={s.photo}>
+          <span className="tape tape-left" aria-hidden="true" />
+          <div className="frame">
+            <Image
+              src="/assets/hackathon_26_photos/ralph_table.jpg"
+              alt="Students talking with organizers at the club table"
+              width={2048}
+              height={1365}
+              sizes="(max-width: 900px) calc(100vw - 40px), 600px"
+            />
           </div>
         </div>
-        <Image
-          className={s.photo}
-          src="/assets/hackathon_26_photos/ralph_table.jpg"
-          alt="Students talking with club organizers at a CBC event table"
-          width={1200}
-          height={800}
-          sizes="(max-width:600px) 100vw, 50vw"
-        />
-      </section>
-      <section className={`section ${s.intro}`}>
-        <div>
-          <p className="eyebrow">Rooted at McGill</p>
-          <h2>Part of a wider community.</h2>
-        </div>
         <div className={s.prose}>
+          <h2 id="what-we-do">What we do</h2>
           <p>
-            CBC at McGill is part of Anthropic’s Claude Campus program,
-            connecting student-led builder communities across universities.
+            We run hands-on workshops on Claude Code, the Claude API and agent
+            patterns. Everyone leaves with something running.
           </p>
           <p>
-            Here at McGill, our focus is the people beside us: learning
-            together, building together, and making space for the next idea.
+            Members join small build teams that ship a real tool for McGill
+            students over a semester, with weekly check-ins to keep it moving.
           </p>
+          <p>
+            Every spring we host the Claude Builders Hackathon, and through the
+            year we hold demo days where members show their work to the club
+            and our partners.
+          </p>
+          <Link className="btn btn-outline btn-sm" href="/projects">
+            See the projects
+          </Link>
+        </div>
+      </section>
+
+      <section className="band band-ice" aria-labelledby="members-get">
+        <div className="container">
+          <h2 id="members-get" className={s.sectionTitle} data-reveal>
+            <Clawd size={36} className={s.titleClawd} /> What members get
+          </h2>
+          <ul className={s.benefits} data-reveal-group>
+            {benefits.map((b) => (
+              <li key={b.title}>
+                <h3>{b.title}</h3>
+                <p className="muted">{b.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="band" aria-labelledby="semester">
+        <div className="container">
+          <h2 id="semester" className={s.sectionTitle} data-reveal>
+            How a semester runs
+          </h2>
+          <ol className={s.steps} data-reveal-group>
+            {steps.map((step, i) => (
+              <li key={step.title}>
+                <span className={s.numeral} aria-hidden="true">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p className="muted">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="band band-blue" aria-labelledby="join">
+        <div className={`container ${s.join}`}>
+          <div>
+            <h2 id="join">Bring an idea. Or just yourself.</h2>
+            <p className={s.joinText}>
+              Membership is free for McGill students. Fill in the form and say
+              hi in Discord.
+            </p>
+          </div>
           <div className="actions">
-            <Link href="/people">Meet the team ↗</Link>
+            <a
+              className="btn"
+              href={clubLinks.signup}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open the membership form
+            </a>
+            <a
+              className="btn btn-outline"
+              href={clubLinks.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <DiscordIcon />
+              Join the Discord
+            </a>
           </div>
         </div>
       </section>
-      <section className={`section ${s.contactGrid}`} aria-label="Membership and activities">
-        <article className={s.contactItem}>
-          <p className="eyebrow">What members get</p>
-          <h2>Tools, people, and a place to build.</h2>
-          <ul className={s.benefits}>
-            <li>Free Claude Pro access</li>
-            <li>Anthropic API credits</li>
-            <li>Claude Code workshops</li>
-            <li>Hackathons &amp; demo days</li>
-            <li>High-accountability build team</li>
-          </ul>
-        </article>
-        <article className={s.contactItem}>
-          <p className="eyebrow">How the term runs</p>
-          <h2>From first idea to demo day.</h2>
-          <ul className={s.benefits}>
-            <li><strong>Kickoff &amp; onboarding.</strong> Get tools, join project pods, and set build goals.</li>
-            <li><strong>Workshop cycles.</strong> Practical sessions with experts and peers.</li>
-            <li><strong>Demo days &amp; hackathons.</strong> Ship, present, and compete for prizes with sponsors.</li>
-          </ul>
-        </article>
-      </section>
-      <section className={s.join}>
-        <div>
-          <h2>Bring an idea. Or just yourself.</h2>
-          <p>Get connected and learn how to take part.</p>
-        </div>
-        <Link className="button" href="/contact">
-          Join CBC ↗
-        </Link>
-      </section>
-    </div>
+    </>
   );
 }

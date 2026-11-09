@@ -1,67 +1,84 @@
+import Link from "next/link";
+import { DiscordIcon, EmailIcon } from "@/components/icons";
 import { clubLinks } from "@/data/links";
-import s from "../editorial.module.css";
-export const metadata = { title: "Join CBC · Claude Builder Club" };
+import s from "./contact.module.css";
+
+export const metadata = {
+  title: "Join and contact",
+  description: "Join Claude Builder Club at McGill or get in touch.",
+};
+
+const external = { target: "_blank", rel: "noopener noreferrer" } as const;
+
 export default function ContactPage() {
   return (
     <div className="container">
-      <header className={s.pageHero}>
-        <p className="eyebrow">Join / Contact</p>
-        <h1>There’s room for your curiosity.</h1>
+      <header className="page-head">
+        <h1>Join CBC</h1>
         <p className="lead">
-          Interested in learning, building, or meeting other students working
-          with AI? Start here.
+          Membership is free for McGill students. Two steps and you are in.
         </p>
       </header>
-      <section className={`section ${s.contactGrid}`}>
-        <article className={s.contactItem}>
-          <span className={s.number}>01 / Become a member</span>
-          <h2>Join the club.</h2>
+
+      <div className={s.steps} data-reveal-group>
+        <section className={s.block} aria-labelledby="member">
+          <h2 id="member" className={s.title}>
+            Become a member
+          </h2>
           <p>
-            Use our membership form to introduce yourself and express your
-            interest in CBC.
+            Fill in the membership form. It takes two minutes and puts you on
+            the list.
           </p>
-          <div className="actions">
-            <a className="button" href={clubLinks.signup}>
-              Open membership form ↗
+          <a className="btn" href={clubLinks.signup} {...external}>
+            Open the membership form
+          </a>
+        </section>
+        <section className={s.block} aria-labelledby="discord">
+          <h2 id="discord" className={s.title}>
+            Then join the Discord
+          </h2>
+          <p>
+            That makes you a member. Workshops get announced there, build
+            teams form and Job Bot posts internships.
+          </p>
+          <a className="btn btn-outline" href={clubLinks.discord} {...external}>
+            <DiscordIcon />
+            Join the Discord
+          </a>
+        </section>
+      </div>
+
+      <div className={s.more} data-reveal-group>
+        <section className={s.block} aria-labelledby="questions">
+          <h2 id="questions" className={s.subtitle}>
+            Questions and partnerships
+          </h2>
+          <p>
+            <a className={s.iconLink} href={`mailto:${clubLinks.email}`}>
+              <EmailIcon />
+              {clubLinks.email}
             </a>
-          </div>
-        </article>
-        <article className={s.contactItem}>
-          <span className={s.number}>02 / Join the conversation</span>
-          <h2>Find us on Discord.</h2>
-          <p>
-            Connect with the community, follow announcements, and hear about
-            opportunities to get involved.
           </p>
-          <div className="actions">
-            <a className="button secondary" href={clubLinks.discord}>
-              Join Discord ↗
-            </a>
-          </div>
-        </article>
-      </section>
-      <section className={`section ${s.contactGrid}`}>
-        <div className={s.contactItem}>
-          <p className="eyebrow">Questions & partnerships</p>
-          <h2>Let’s talk.</h2>
+        </section>
+        <section className={s.block} aria-labelledby="sponsor">
+          <h2 id="sponsor" className={s.subtitle}>
+            Sponsor the hackathon
+          </h2>
           <p>
-            For general questions, collaborations, or sponsorship conversations,
-            email the organizers.
+            Read <a href="/sponsors">the package</a>, then email us.
           </p>
-          <div className="actions">
-            <a href={`mailto:${clubLinks.email}`}>{clubLinks.email}</a>
-          </div>
-        </div>
-        <div className={s.contactItem}>
-          <p className="eyebrow">Elsewhere</p>
-          <h2>Keep in touch.</h2>
-          <div className="actions">
-            <a href={clubLinks.instagram}>Instagram ↗</a>
-            <a href={clubLinks.linkedin}>LinkedIn ↗</a>
-            <a href={clubLinks.github}>GitHub ↗</a>
-          </div>
-        </div>
-      </section>
+        </section>
+        <section className={s.block} aria-labelledby="team">
+          <h2 id="team" className={s.subtitle}>
+            Help run the club
+          </h2>
+          <p>
+            The internal team handles the day to day: workshops, the hackathon,
+            sponsors. If you want in, contact the directors and VPs directly.
+            They are all on the <Link href="/people">Team page</Link>.
+          </p>
+        </section>
+      </div>
     </div>
   );
 }

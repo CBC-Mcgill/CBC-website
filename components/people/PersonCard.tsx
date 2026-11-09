@@ -1,31 +1,21 @@
-import Image from "next/image";
+import { AgentFigure } from "./AgentFigure";
 import { PersonSocials } from "./PersonSocials";
 import type { Person } from "@/types";
-import s from "@/app/editorial.module.css";
+import s from "./people.module.css";
+
 export function PersonCard({ person }: { person: Person }) {
   return (
-    <article className={s.person} data-tilt>
-      <div className={s.portrait}>
-        {person.photo ? (
-          <Image
-            src={"/" + person.photo.replace(/^\//, "")}
-            alt={person.name}
-            width={600}
-            height={800}
-            sizes="(max-width:400px) 100vw, (max-width:900px) 50vw, 25vw"
-          />
-        ) : (
-          <span aria-label={`Portrait unavailable for ${person.name}`}>
-            {person.name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
-          </span>
-        )}
-      </div>
-      <h3>{person.name}</h3>
-      <p className={s.role}>{person.role}</p>
-      {person.tagline && <p className={s.bio}>{person.tagline}</p>}
+    <article className={s.person}>
+      <span className={s.stub} aria-hidden="true" />
+      <AgentFigure person={person} />
+      {person.tagline && (
+        <p className={`small ${s.reply}`}>
+          {person.tagline}
+          <span className={s.caret} aria-hidden="true" />
+        </p>
+      )}
+      <h3 className={s.name}>{person.name}</h3>
+      <p className="small muted">{person.role}</p>
       <PersonSocials person={person} />
     </article>
   );

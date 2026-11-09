@@ -37,11 +37,3 @@ export function EmailIcon() {
     </svg>
   );
 }
-
-export function SignupIcon() {
-  return (
-    <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
-      <path fillRule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L4.146 11.146a.5.5 0 1 0 .708.708L13 3.707V7.5a.5.5 0 0 0 1 0v-5z" />
-    </svg>
-  );
-}

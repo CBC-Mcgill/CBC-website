@@ -1,0 +1,150 @@
+.root {
+  display: grid;
+  gap: var(--s-4);
+}
+
+/* Prints are placed in % of this box, so nothing jumps while images load */
+.bench {
+  position: relative;
+  aspect-ratio: 100 / 85;
+}
+
+/* The slot owns placement and the load animation; the print inside owns drag and rotation */
+.slot {
+  position: absolute;
+  animation: settle 600ms var(--ease-out) both;
+}
+
+.screen {
+  top: 4%;
+  left: 2%;
+  width: 96%;
+  aspect-ratio: 16 / 10;
+}
+
+.left {
+  left: 0;
+  bottom: 3%;
+  width: 36%;
+  aspect-ratio: 3 / 2;
+  animation-delay: 80ms;
+}
+
+.right {
+  right: 0;
+  bottom: 0;
+  width: 44%;
+  aspect-ratio: 3 / 2;
+  animation-delay: 160ms;
+}
+
+/* Clawd perches on the top edge of the screenshot */
+.clawd {
+  top: -4%;
+  right: 9%;
+  width: 13%;
+  aspect-ratio: 1;
+  animation-delay: 260ms;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18));
+}
+
+.print {
+  position: relative;
+  height: 100%;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: scale 180ms var(--ease-out);
+}
+
+.photo {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--ice);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 24px 48px -24px rgba(0, 0, 0, 0.45);
+  transition: box-shadow 180ms var(--ease-out);
+}
+
+.photo > img {
+  object-fit: cover;
+}
+
+.screen .photo > img {
+  object-position: top left;
+}
+
+/* Full-size tape swamps the small prints on phones */
+@media (max-width: 599px) {
+  .print :global(.tape) {
+    scale: 0.62;
+  }
+}
+
+.caption {
+  display: none;
+  justify-self: end;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .print {
+    cursor: grab;
+  }
+
+  .dragging {
+    cursor: grabbing;
+    scale: 1.03;
+  }
+
+  .dragging .photo {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 40px 64px -28px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (min-width: 900px) {
+  .bench {
+    aspect-ratio: 100 / 82;
+  }
+
+  .screen {
+    top: 6%;
+    left: 6%;
+    width: 90%;
+  }
+
+  .left {
+    width: 38%;
+  }
+
+  .right {
+    width: 46%;
+  }
+
+  .clawd {
+    top: -2%;
+    right: 12%;
+    width: 12%;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .caption {
+    display: block;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

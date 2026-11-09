@@ -1,0 +1,66 @@
+/* One trunk runs from the hub down the whole team; the lists hang their rails off it */
+.tree {
+  --hub: 64px;
+  --trunk-x: calc(var(--hub) / 2);
+  --indent: calc(var(--trunk-x) + 24px);
+  position: relative;
+  padding-bottom: var(--section-y);
+}
+
+@media (min-width: 720px) {
+  .tree {
+    --hub: 88px;
+  }
+}
+
+.tree::before {
+  content: "";
+  position: absolute;
+  top: var(--hub);
+  bottom: calc(var(--section-y) + 30px);
+  left: calc(var(--trunk-x) - 0.75px);
+  width: 1.5px;
+  background: var(--blue);
+}
+
+/* The trunk ends in a small square, like a plug */
+.tree::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--section-y) + 24px);
+  left: calc(var(--trunk-x) - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--blue);
+}
+
+.hub {
+  width: var(--hub);
+  height: var(--hub);
+  position: relative;
+  z-index: 1;
+}
+
+.group {
+  padding-left: var(--indent);
+}
+
+.groupTitle {
+  padding-top: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+:global(html.js) .tree::before {
+  transform-origin: top;
+  animation: grow 900ms var(--ease-out) both;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
