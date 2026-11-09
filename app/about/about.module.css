@@ -129,3 +129,8 @@
     align-items: end;
   }
 }
+
+.titleClawd {
+  margin-right: var(--s-2);
+  vertical-align: -6px;
+}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -27,7 +27,13 @@ export const metadata: Metadata = {
     title: "Claude Builder Club at McGill",
     description:
       "McGill's student builder community. We learn to build with AI, ship tools for students, and run the Claude Builders Hackathon.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Claude Builder Club McGill" }],
   },
+  twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

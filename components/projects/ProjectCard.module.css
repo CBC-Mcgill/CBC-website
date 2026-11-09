@@ -67,3 +67,38 @@
   gap: var(--s-4);
   font-weight: 600;
 }
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.links svg {
+  width: 13px;
+  height: 13px;
+}
+
+.leads {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.avatars {
+  display: inline-flex;
+  flex: none;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--white);
+  background: var(--ice);
+}
+
+.avatar + .avatar {
+  margin-left: -7px;
+}

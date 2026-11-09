@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ProjectMedia } from "@/components/projects/ProjectCard";
+import { GitHubIcon } from "@/components/icons";
+import { Leads } from "@/components/projects/Leads";
+import { LinkIcon, ProjectMedia } from "@/components/projects/ProjectCard";
 import { clubLinks } from "@/data/links";
 import { projects } from "@/data/projects";
 import s from "./projects.module.css";
@@ -26,12 +28,19 @@ export default function ProjectsPage() {
 
       <section className={s.list} aria-label="Projects">
         <div className="container">
-          {projects.map((project) => (
-            <article key={project.slug} id={project.slug} className={s.row} data-reveal>
+          {projects.map((project, i) => (
+            <article
+              key={project.slug}
+              id={project.slug}
+              className={s.row}
+              // The first row is on screen at load, so it never waits for the reveal.
+              data-reveal={i > 0 ? "" : undefined}
+            >
               <ProjectMedia
                 project={project}
                 className={s.media}
                 sizes="(min-width: 1240px) 580px, (min-width: 900px) 48vw, 92vw"
+                preload={i === 0}
               />
               <div className={s.text}>
                 {project.since && (
@@ -40,7 +49,7 @@ export default function ProjectsPage() {
                 <h2>{project.name}</h2>
                 <p className={s.summary}>{project.summary}</p>
                 {project.why && <p className="muted">{project.why}</p>}
-                <p className="small">Led by {project.leads}</p>
+                <Leads leads={project.leads} />
                 <div className="actions">
                   {project.url && (
                     <a
@@ -49,6 +58,7 @@ export default function ProjectsPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <LinkIcon href={project.url} />
                       {project.urlLabel ?? "Open"}
                     </a>
                   )}
@@ -59,6 +69,7 @@ export default function ProjectsPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <GitHubIcon />
                       GitHub
                     </a>
                   )}

@@ -24,6 +24,7 @@ No gradients, glass, glows, or decorative art.
 | `--blue` | `#2338e5` | Brand colour: the blue band, hover states, focus ring, links on hover. |
 | `--blue-deep` | `#1626b4` | Text on `--ice`. |
 | `--marigold` | `#ffc928` | The energy colour: masking tape, the Live chip and stickers, selection, hover on dark bands, and at most one `.band-marigold` section per page. |
+| `--claude` | `#d97757` | Claude orange, used only for Clawd the mascot (`components/Clawd.tsx`). Never for text, buttons or bands. |
 | `--ice` | `#eef0ff` | Tinted surface behind screenshots and the In progress chip. |
 | `--ink-2` / `--ink-3` | `#262626` / `#5c5c5c` | Body copy / secondary copy. |
 
@@ -36,6 +37,7 @@ Shape: `--r-sm` 4px (chips), `--r-md` 6px (buttons), `--r-lg` 10px (frames). Not
 One family, Bricolage Grotesque, loaded in `app/layout.tsx` with the `opsz` and `wdth` axes as `--font-bricolage`.
 Headings are condensed poster type: `h1` and `.display` at weight 800 with `font-stretch` 84 to 88%, `h2` at weight 700 and 92%; body is weight 400 at full width.
 The header wordmark and the giant footer wordmark are plain text, "Claude Builder Club McGill". There is no logo mark; the favicon is just the letters CBC.
+Clawd, the Claude mascot, appears as a small orange figure in a few places (hero bench, hero footnote, footer, 404). It is a sticker, not a logo: keep it small and never put it in the header.
 Do not italicize or recolour a single word in a heading.
 Do not add eyebrow labels, all-caps labels, numbered `01 / 02 / 03` markers, or monospace labels.
 Join metadata with plain words or spacing, not middle dots.
@@ -74,4 +76,4 @@ Check every route at 360px, 768px and 1440px after layout changes.
 - Edit `data/projects.ts` for projects, `data/people.ts` for the roster, `data/links.ts` for club destinations, `data/hackathonTracks.ts` for the hackathon tracks.
 - Keep club-supplied names, roles, taglines and numbers; never invent replacements.
 - Project screenshots live in `public/assets/projects/` and are real captures of the products. Club photos live in `public/assets/hackathon_26_photos/` and `public/assets/people/`. No stock or generated imagery.
-- There is no logo. The wordmark is text, and `app/icon.svg` is the letters CBC on marigold. The look is deliberately independent of Claude or Anthropic branding.
+- There is no logo. The wordmark is text, and `app/icon.svg` is the letters CBC on marigold. The only Claude branding is Clawd in `--claude` orange, used as a small sticker.

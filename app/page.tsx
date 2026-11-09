@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Clawd } from "@/components/Clawd";
 import { Bench } from "@/components/home/Bench";
 import { CountUp } from "@/components/motion/CountUp";
 import { FilmStrip } from "@/components/motion/FilmStrip";
 import { RollingWord } from "@/components/motion/RollingWord";
+import { DiscordIcon, GitHubIcon } from "@/components/icons";
+import { Leads } from "@/components/projects/Leads";
 import { ProjectCard, ProjectMedia } from "@/components/projects/ProjectCard";
 import { clubLinks } from "@/data/links";
 import { leadership } from "@/data/people";
@@ -81,6 +84,7 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="small muted">
+              <Clawd size={18} className={s.heroClawd} />
               Free for McGill students. Members get Claude Pro and API credits.
             </p>
           </div>
@@ -129,7 +133,7 @@ export default function HomePage() {
               <div className={s.featureText}>
                 <h3>{featured.name}</h3>
                 <p>{featured.summary}</p>
-                <p className="small muted">Led by {featured.leads}</p>
+                <Leads leads={featured.leads} className="small muted" />
                 <div className="actions">
                   {featured.url && (
                     <a
@@ -138,7 +142,7 @@ export default function HomePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {featured.urlLabel}
+                      {featured.urlLabel ?? "Open"}
                     </a>
                   )}
                   {featured.github && (
@@ -148,6 +152,7 @@ export default function HomePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <GitHubIcon />
                       GitHub
                     </a>
                   )}
@@ -222,7 +227,7 @@ export default function HomePage() {
                       alt={`Portrait of ${person.name}`}
                       width={600}
                       height={800}
-                      sizes="(min-width: 1240px) 280px, (min-width: 640px) 23vw, 46vw"
+                      sizes="(min-width: 640px) 180px, 46vw"
                     />
                   ) : (
                     <span className={s.initials} aria-hidden="true">
@@ -260,6 +265,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <DiscordIcon />
               Join the Discord
             </a>
           </div>

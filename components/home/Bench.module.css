@@ -38,6 +38,16 @@
   animation-delay: 160ms;
 }
 
+/* Clawd perches on the top edge of the screenshot */
+.clawd {
+  top: -4%;
+  right: 9%;
+  width: 13%;
+  aspect-ratio: 1;
+  animation-delay: 260ms;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18));
+}
+
 .print {
   position: relative;
   height: 100%;
@@ -113,6 +123,12 @@
 
   .right {
     width: 46%;
+  }
+
+  .clawd {
+    top: -2%;
+    right: 12%;
+    width: 12%;
   }
 }
 

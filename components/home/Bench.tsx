@@ -3,17 +3,18 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
+import { Clawd } from "@/components/Clawd";
 import s from "./Bench.module.css";
 
-type Key = "screen" | "left" | "right";
+type Key = "screen" | "left" | "right" | "clawd";
 type Offset = { x: number; y: number };
 
 const prints: {
   key: Key;
-  src: string;
+  src?: string;
   rot: number;
-  tape: string;
-  sizes: string;
+  tape?: string;
+  sizes?: string;
   preload?: boolean;
 }[] = [
   {
@@ -38,6 +39,7 @@ const prints: {
     tape: "tape tape-left",
     sizes: "(min-width: 1240px) 310px, (min-width: 900px) 27vw, 46vw",
   },
+  { key: "clawd", rot: 7 },
 ];
 
 const finePointer = "(hover: hover) and (pointer: fine)";
@@ -45,11 +47,12 @@ const origin: Record<Key, Offset> = {
   screen: { x: 0, y: 0 },
   left: { x: 0, y: 0 },
   right: { x: 0, y: 0 },
+  clawd: { x: 0, y: 0 },
 };
 
 export function Bench() {
   const [offsets, setOffsets] = useState(origin);
-  const [order, setOrder] = useState<Key[]>(["screen", "left", "right"]);
+  const [order, setOrder] = useState<Key[]>(["screen", "left", "right", "clawd"]);
   const [dragging, setDragging] = useState<Key | null>(null);
   const drag = useRef<{
     key: Key;
@@ -116,20 +119,24 @@ export function Bench() {
               onPointerUp={onPointerUp}
               onPointerCancel={onPointerUp}
             >
-              <span className={p.tape} />
+              {p.tape && <span className={p.tape} />}
               {p.key === "screen" && (
                 <span className="chip chip-live sticker">Live</span>
               )}
-              <div className={s.photo}>
-                <Image
-                  src={p.src}
-                  alt=""
-                  fill
-                  draggable={false}
-                  preload={p.preload}
-                  sizes={p.sizes}
-                />
-              </div>
+              {p.src ? (
+                <div className={s.photo}>
+                  <Image
+                    src={p.src}
+                    alt=""
+                    fill
+                    draggable={false}
+                    preload={p.preload}
+                    sizes={p.sizes}
+                  />
+                </div>
+              ) : (
+                <Clawd size="100%" />
+              )}
             </div>
           </div>
         ))}

@@ -1,5 +1,22 @@
 import Link from "next/link";
+import { Clawd } from "@/components/Clawd";
 import { clubLinks } from "@/data/links";
+import {
+  DiscordIcon,
+  EmailIcon,
+  GitHubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+} from "@/components/icons";
+
+const [emailUser, emailHost] = clubLinks.email.split("@");
+
+const elsewhere = [
+  { label: "Discord", href: clubLinks.discord, icon: <DiscordIcon /> },
+  { label: "Instagram", href: clubLinks.instagram, icon: <InstagramIcon /> },
+  { label: "LinkedIn", href: clubLinks.linkedin, icon: <LinkedInIcon /> },
+  { label: "GitHub", href: clubLinks.github, icon: <GitHubIcon /> },
+];
 
 export function SiteFooter() {
   return (
@@ -26,24 +43,29 @@ export function SiteFooter() {
           </nav>
           <nav aria-label="Elsewhere">
             <h3>Elsewhere</h3>
-            <a href={clubLinks.discord} target="_blank" rel="noopener noreferrer">
-              Discord
+            {elsewhere.map((item) => (
+              <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
+                <span className="footer-icon">{item.icon}</span>
+                {item.label}
+              </a>
+            ))}
+            <a href={`mailto:${clubLinks.email}`}>
+              <span className="footer-icon">
+                <EmailIcon />
+              </span>
+              <span>
+                {emailUser}
+                <wbr />@{emailHost}
+              </span>
             </a>
-            <a href={clubLinks.instagram} target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-            <a href={clubLinks.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <a href={clubLinks.github} target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-            <a href={`mailto:${clubLinks.email}`}>{clubLinks.email}</a>
           </nav>
         </div>
         <div className="footer-bottom">
           <span>A student club at McGill University.</span>
-          <span>Part of the Claude Campus program.</span>
+          <span className="footer-campus">
+            <Clawd size={22} />
+            Part of the Claude Campus program.
+          </span>
         </div>
       </div>
     </footer>

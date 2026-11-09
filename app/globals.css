@@ -13,6 +13,7 @@
   --blue: #2338e5;
   --blue-deep: #1626b4;
   --marigold: #ffc928;
+  --claude: #d97757;
   --ice: #eef0ff;
 
   --ink: var(--black);
@@ -612,7 +613,9 @@ button {
   }
 
   .mobile-menu nav .btn {
+    display: flex;
     margin-top: var(--s-3);
+    padding: 0 22px;
     justify-content: center;
     border-bottom: 1.5px solid var(--black);
     color: var(--white);
@@ -674,6 +677,77 @@ button {
 .footer-grid a:hover {
   color: var(--marigold);
   text-decoration: underline;
+}
+
+.footer-grid nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  justify-self: start;
+}
+
+.footer-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.62);
+  transition:
+    color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+.footer-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* Clawd */
+.clawd {
+  display: inline-block;
+  flex: none;
+  color: var(--claude);
+  vertical-align: middle;
+}
+
+.clawd-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 5200ms infinite;
+}
+
+@keyframes blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.12);
+  }
+}
+
+.footer-campus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.btn-sm svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-grid a:hover .footer-icon {
+  color: inherit;
+  transform: rotate(-8deg) scale(1.12);
 }
 
 .footer-grid h3 {

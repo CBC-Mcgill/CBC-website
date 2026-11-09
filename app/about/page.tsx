@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Clawd } from "@/components/Clawd";
+import { DiscordIcon } from "@/components/icons";
 import { clubLinks } from "@/data/links";
 import s from "./about.module.css";
 
@@ -37,7 +39,7 @@ export default function AboutPage() {
         </p>
       </header>
 
-      <section className={`container ${s.split}`} aria-labelledby="what-we-do" data-reveal>
+      <section className={`container ${s.split}`} aria-labelledby="what-we-do">
         <div className={s.photo}>
           <span className="tape tape-left" aria-hidden="true" />
           <div className="frame">
@@ -74,7 +76,7 @@ export default function AboutPage() {
       <section className="band band-ice" aria-labelledby="members-get">
         <div className="container">
           <h2 id="members-get" className={s.sectionTitle} data-reveal>
-            What members get
+            <Clawd size={36} className={s.titleClawd} /> What members get
           </h2>
           <ul className={s.benefits} data-reveal-group>
             {benefits.map((b) => (
@@ -132,6 +134,7 @@ export default function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <DiscordIcon />
               Join the Discord
             </a>
           </div>

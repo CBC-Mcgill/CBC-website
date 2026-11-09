@@ -1,4 +1,9 @@
 /* Hero */
+.heroClawd {
+  margin-right: var(--s-2);
+  vertical-align: -4px;
+}
+
 .hero {
   position: relative;
   overflow-x: clip;
@@ -184,7 +189,7 @@
 
 .people {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
   gap: var(--s-6) var(--s-4);
   margin: 0;
   padding: 0;
@@ -192,7 +197,7 @@
 }
 
 .portrait {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1;
   margin-bottom: var(--s-3);
 }
 
@@ -201,7 +206,7 @@
   place-items: center;
   height: 100%;
   color: var(--blue-deep);
-  font-size: var(--text-h2);
+  font-size: var(--text-h3);
   font-weight: 700;
 }
 
@@ -209,13 +214,6 @@
   font-size: var(--text-body);
   font-weight: 600;
   letter-spacing: -0.005em;
-}
-
-@media (min-width: 640px) {
-  .people {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--s-7) var(--s-5);
-  }
 }
 
 /* Join */
