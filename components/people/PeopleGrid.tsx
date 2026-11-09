@@ -4,9 +4,9 @@ import s from "./people.module.css";
 
 export function PeopleGrid({ people }: { people: Person[] }) {
   return (
-    <ul className={s.grid} data-reveal-group>
-      {people.map((person) => (
-        <li key={person.name}>
+    <ul className={s.grid}>
+      {people.map((person, i) => (
+        <li key={person.name} style={{ "--i": i } as React.CSSProperties}>
           <PersonCard person={person} />
         </li>
       ))}

@@ -1,3 +1,4 @@
+import { Clawd } from "@/components/Clawd";
 import { PeopleGrid } from "@/components/people/PeopleGrid";
 import { leadership, associates } from "@/data/people";
 import s from "./people.module.css";
@@ -16,18 +17,24 @@ export default function PeoplePage() {
           A club is the people who build it. Here is who runs this one.
         </p>
       </header>
-      <section className={s.group} aria-labelledby="leadership">
-        <h2 id="leadership" className={s.groupTitle}>
-          Leadership
-        </h2>
-        <PeopleGrid people={leadership} />
-      </section>
-      <section className={s.group} aria-labelledby="associates">
-        <h2 id="associates" className={s.groupTitle}>
-          Associates
-        </h2>
-        <PeopleGrid people={associates} />
-      </section>
+
+      <div className={s.tree}>
+        <div className={s.hub}>
+          <Clawd size="100%" />
+        </div>
+        <section className={s.group} aria-labelledby="leadership">
+          <h2 id="leadership" className={s.groupTitle}>
+            Leadership
+          </h2>
+          <PeopleGrid people={leadership} />
+        </section>
+        <section className={s.group} aria-labelledby="associates">
+          <h2 id="associates" className={s.groupTitle}>
+            Associates
+          </h2>
+          <PeopleGrid people={associates} />
+        </section>
+      </div>
     </div>
   );
 }
