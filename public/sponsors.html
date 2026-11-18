@@ -45,6 +45,11 @@
   .caption{font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:18px;color:var(--muted)}
   .muted{color:var(--muted)}
   b{font-weight:600}
+  .details{gap:40px;padding-top:4px}
+  .details .stack{gap:4px}
+  .detail{font-family:Poppins,Arial,sans-serif;font-size:17px;font-weight:500;line-height:24px}
+  .partners{align-items:center;gap:18px;position:relative}
+  .partners img{width:auto;display:block}
 
   .stack{display:flex;flex-direction:column}
   .row{display:flex}
@@ -133,6 +138,8 @@
     .lede{font-size:17px;line-height:28px}
     .foot{left:22px;right:22px;bottom:26px;font-size:12px}
     .cards,.addons{grid-template-columns:1fr}
+    .details{flex-wrap:wrap;gap:14px 28px}
+    .partners{flex-wrap:wrap;gap:12px 16px}
     .events{flex-direction:column}
     .photo{height:110px}
     .co-note{white-space:normal}
@@ -168,7 +175,7 @@
 <div class="wrap"><div class="page cover">
   <svg class="deco" viewBox="0 0 600 560" style="width:600px;height:560px;right:-190px;top:110px"><path d="M300 30 C 420 20, 560 110, 575 250 C 590 390, 480 520, 330 535 C 190 548, 45 470, 28 330 C 12 190, 150 40, 300 30 Z" style="fill:var(--soft);stroke:none"/></svg>
   <div class="deco spark" style="width:420px;height:420px;right:-105px;top:170px"></div>
-  <svg class="deco squiggle" viewBox="0 0 260 90" style="width:260px;height:90px;right:40px;bottom:120px"><path d="M8 62 C 40 14, 96 12, 108 50 C 117 80, 76 92, 66 66 C 57 40, 112 22, 162 40 C 196 52, 218 70, 252 58" style="stroke:var(--orange);stroke-width:2.4"/></svg>
+  <svg class="deco squiggle" viewBox="0 0 260 90" style="width:260px;height:90px;left:64px;top:470px"><path d="M8 62 C 40 14, 96 12, 108 50 C 117 80, 76 92, 66 66 C 57 40, 112 22, 162 40 C 196 52, 218 70, 252 58" style="stroke:var(--orange);stroke-width:2.4"/></svg>
   <svg class="deco squiggle" viewBox="0 0 150 40" style="width:150px;height:40px;right:250px;top:96px"><path d="M4 22 C 22 4, 40 38, 58 20 S 94 4, 112 22 S 136 36, 146 20" style="stroke:var(--green);stroke-width:2.2"/></svg>
   <img src="/assets/ui/claude_wordmark.png" alt="Claude" style="width:224px;height:49px;object-fit:contain;position:relative">
   <div class="spacer"></div>
@@ -177,10 +184,18 @@
     <h1>Claude Builder Hacks</h1>
     <hr style="width:120px;border-top:3px solid var(--orange);border-radius:999px">
     <p class="lede">Sponsorship Package</p>
-    <p class="lede muted">2026-2027 &nbsp;·&nbsp; McGill University, Montréal</p>
+    <div class="row details">
+      <div class="stack"><span class="overline">Date</span><span class="detail">Sunday, April 4, 2027</span></div>
+      <div class="stack"><span class="overline">Time</span><span class="detail">9 am to 7 pm</span></div>
+      <div class="stack"><span class="overline">Venue</span><span class="detail">McGill University, Montréal</span></div>
+    </div>
   </div>
-  <div class="row" style="align-items:center;gap:12px;position:relative">
-    <span class="caption">McGill's premier AI hackathon</span>
+  <p class="caption" style="position:relative;margin-bottom:18px">McGill's premier AI hackathon</p>
+  <div class="row partners">
+    <span class="caption">In partnership with</span>
+    <img src="/assets/partners/anthropic_mark.png" alt="Anthropic" style="height:24px">
+    <img src="/assets/partners/mcgill_ventures_wordmark.png" alt="McGill Ventures" style="height:30px">
+    <span class="row" style="align-items:center;gap:8px"><img src="/assets/partners/project_atlas_mark.png" alt="" style="height:30px"><span class="ui" style="font-size:15px;font-weight:600;line-height:20px">Project Atlas</span></span>
   </div>
 </div></div>
 
@@ -192,6 +207,7 @@
     <div class="stack" style="gap:12px">
       <p class="overline">The event</p>
       <h2>What we run</h2>
+      <p class="label muted">Sunday, April 4, 2027 &nbsp;·&nbsp; 9 am to 7 pm &nbsp;·&nbsp; McGill University, Montréal</p>
       <p class="lede">Claude Builder Hacks is McGill's premier AI hackathon. In <b>one day</b>, <b>250+ students</b> form teams to build and ship real working projects with frontier AI, guided by mentors, fuelled by workshops, and judged by people who build for a living.</p>
     </div>
     <hr>
